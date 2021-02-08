@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author User
+ * @author Matias
  */
 public class ControllerCurso extends HttpServlet {
 
@@ -171,8 +171,21 @@ public class ControllerCurso extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void CursosDelProfesor(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void CursosDelProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gson json = new Gson();
+        RestCurso restC = new RestCurso();
+        Curso curso = new Curso();
+        String nombre = request.getParameter("txtIdP");//Cambiar este 
+        ArrayList value = restC.getCursosProf(ArrayList.class, nombre);
+        ArrayList<Curso> list = new ArrayList();
+        for(Object pro: value){
+            curso = json.fromJson(pro.toString(), Curso.class);
+            list.add(curso);
+        }
+        request.setAttribute("lista", list);
+        request.getRequestDispatcher("crudCurso.jsp").forward(request, response);
+        restC.close();
     }
 
     private void mostrarCursos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -187,7 +200,7 @@ public class ControllerCurso extends HttpServlet {
             list.add(curso);
         }
         request.setAttribute("lista", list);
-        request.getRequestDispatcher("ControllerCurso?accion=Listar").forward(request, response);
+        request.getRequestDispatcher("crudCurso.jsp").forward(request, response);
         restC.close();
     }
 

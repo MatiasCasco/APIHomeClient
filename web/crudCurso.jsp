@@ -15,7 +15,7 @@
     <body>
         <div>
             <form action="ControllerCurso" method="POST">
-                <label>Identificador Profesor</label>
+                <label>Nombre Profesor</label>
                 <input type="text" name="txtIdP">
                 <label>Nombre Curso </label>
                 <input type="text" name="txtNombreC">
