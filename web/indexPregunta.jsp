@@ -49,8 +49,10 @@
                             <td>
                                 <form action="ControllerImagenPregunta" method="POST">
                                     <input type="hidden" name="txtid" value="${dato.idPregunta}">
+                                    <input type="hidden" name="txtIdP" value="${dato.idPregunta}">
                                     <input type="submit" name="accion" value="Editar">
                                     <input type="submit" name="accion" value="Delete">
+                                    <input type="submit" name="accion" value="Ver Respuestas">
                                 </form>
                             </td>
                         </tr>

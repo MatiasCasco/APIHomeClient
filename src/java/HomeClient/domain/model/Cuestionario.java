@@ -16,19 +16,38 @@ public class Cuestionario {
     private String fechaInicio;
     private int puntos;
     private String tiempoLimite;
-
+    private int idCurso;
+    private String nameCurso;
     public Cuestionario() {
     }
 
-    public Cuestionario(int idCuestionario, int idMateria, String fechaCierre, String fechaInicio, int puntos, String tiempoLimite) {
+    public Cuestionario(int idCuestionario, int idMateria, String fechaCierre, String fechaInicio, int puntos, String tiempoLimite,int idCurso, String nameCurso) {
         this.idCuestionario = idCuestionario;
         this.idMateria = idMateria;
         this.fechaCierre = fechaCierre;
         this.fechaInicio = fechaInicio;
         this.puntos = puntos;
         this.tiempoLimite = tiempoLimite;
+        this.idCurso = idCurso;
+        this.nameCurso = nameCurso;
     }
 
+    public int getIdCurso() {
+        return idCurso;
+    }
+
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
+    }
+
+    public String getNameCurso() {
+        return nameCurso;
+    }
+
+    public void setNameCurso(String nameCurso) {
+        this.nameCurso = nameCurso;
+    }
+    
     public int getIdCuestionario() {
         return idCuestionario;
     }
@@ -89,6 +108,7 @@ public class Cuestionario {
                 .append(", fechainicio: ").append(fechaInicio)
                 .append(", puntos: ").append(puntos)
                 .append(", tiempolimite:").append(tiempoLimite)
+                .append(", idcurso:").append(idCurso)
                 .append("}").toString();                
     }
     

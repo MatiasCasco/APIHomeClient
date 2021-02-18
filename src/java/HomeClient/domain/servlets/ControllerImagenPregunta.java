@@ -64,7 +64,13 @@ public class ControllerImagenPregunta extends HttpServlet {
             if(accion.equalsIgnoreCase("Delete")){
                 this.Eliminar(request, response);
             }
-            // referencia por default el servlet y la accion
+            if(accion.equalsIgnoreCase("Ver Preguntas")){
+                this.MostrarPreguntas(request, response);
+            }
+            if(accion.equalsIgnoreCase("Ver Respuestas")){
+                request.getRequestDispatcher("ControllerRespuesta?accion=Respuestas de una Pregunta").forward(request, response);
+            }
+// referencia por default el servlet y la accion
 //            request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
             
         } catch(Exception ex){}          
@@ -150,7 +156,23 @@ public class ControllerImagenPregunta extends HttpServlet {
         request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
         restP.close();
     } 
-     
+    
+     private void MostrarPreguntas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gson json = new Gson();
+        RestPregunta restP = new RestPregunta();
+        Pregunta pregunta = new Pregunta();
+        ArrayList value = restP.getPreguntasCuestionario(ArrayList.class, request.getParameter("txtidCuestionario"));
+        ArrayList<Pregunta> list = new ArrayList();
+        for(Object pro: value){
+            pregunta = json.fromJson(pro.toString(), Pregunta.class);
+            list.add(pregunta);
+        }
+        request.setAttribute("lista", list);
+        request.getRequestDispatcher("indexPregunta.jsp").forward(request, response);
+        restP.close();
+    }
+    
     @Override
     public String getServletInfo() {
         return "Short description";

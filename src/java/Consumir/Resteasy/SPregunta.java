@@ -22,7 +22,8 @@ public class SPregunta {
 //        Pregunta pregunta = client.getPregunta(Pregunta.class, "1");
 //        System.out.println(pregunta);
 //        System.out.println(pregunta.toString());
-        ArrayList value = client.getPreguntas(ArrayList.class);
+        ArrayList value = client.getPreguntasCuestionario(ArrayList.class, "1");
+//        ArrayList value = client.getPreguntas(ArrayList.class);
         ArrayList<Pregunta> list = new ArrayList();
 //        System.out.println(value);
         for(Object ob: value){     

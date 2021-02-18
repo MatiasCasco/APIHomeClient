@@ -14,11 +14,15 @@
     <body>
         <div>
             <form action="ControllerCuestionario" method="POST">
+                <label>Nombre Curso</label>
+                <input type="text" name="txtNameCurso">
                 <label>Identificador Cuestionario</label>
                 <input type="text" name="txtIdC">
                 <label>Nombre Materia </label>
                 <input type="text" name="txtNombreM">
                 <input type="submit" name="accion" value="Listar">
+                <input type="submit" name="accion" value="Cuestionarios de un curso">
+                <input type="submit" name="accion" value="Cuestionarios por materia del curso">
                 <input type="submit" name="accion" value="Mostrar Cuestionario">
                 <input type="submit" name="accion" value="Cuestionarios de una Materia">
                 <input type="submit" name="accion" value="Nuevo">
@@ -35,6 +39,7 @@
                         <th>FECHA FIN</th>
                         <th>PUNTOS</th>
                         <th>TIEMPO LIMITE</th>
+                        <th>CURSO</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
@@ -47,12 +52,15 @@
                             <td>${dato.fechaCierre}</td>
                             <td>${dato.puntos}</td>
                             <td>${dato.getTiempoLimite()}</td>
+                            <td>${dato.getNameCurso()}</td>
                             <td>
                                 <form action="ControllerCuestionario" method="POST">
                                     <input type="hidden" name="txtidCuestionario" value="${dato.idCuestionario}">
                                     <input type="submit" name="accion" value="Editar">
                                     <input type="submit" name="accion" value="Delete">
+                                    <input type="submit" name="accion" value="Ver Preguntas">
                                 </form>
+                                
                             </td>
                         </tr>
                     </c:forEach>

@@ -50,15 +50,27 @@ public class RestCuestionario {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
+    public <T> T getCuestionariosOfCurso(Class<T> responseType, String curso) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("cuestionariosOFCurso/{0}", new Object[]{curso}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getCuestionariosOFmateria(Class<T> responseType, String materia) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("cuestionariosOFmateria/{0}", new Object[]{materia}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public <T> T getCuestionario(Class<T> responseType, String id) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("cuestionario/{0}", new Object[]{id}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T getCuestionariosOfMateria(Class<T> responseType, String materia) throws ClientErrorException {
+    public <T> T getCuestionariosOfCursoAndMateria(Class<T> responseType, String cursoName, String materiaName) throws ClientErrorException {
         WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("cuestionariosOFmateria/{0}", new Object[]{materia}));
+        resource = resource.path(java.text.MessageFormat.format("cursoName/{0}/materiaName/{1}", new Object[]{cursoName, materiaName}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

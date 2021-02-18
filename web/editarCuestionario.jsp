@@ -4,6 +4,10 @@
     Author     : User
 --%>
 
+<%@page import="HomeClient.domain.model.Curso"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Consumir.Resteasy.RestCurso"%>
+<%@page import="com.google.gson.Gson"%>
 <%@page import="HomeClient.domain.model.Cuestionario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +15,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+        <script>
+            $(function(){
+                $('.datepicker').datepicker();
+            });
+        </script>
     </head>
     <body>
         <center>
@@ -24,13 +37,44 @@
             <label>Identificador Materia</label>
             <input type="text" name="txtIdMateria" value=<%=cuestionario.getIdMateria()%>>
             <label>Fecha Inicio</label>
-            <input type="text" name="txtFechaInicio"  value=<%=cuestionario.getFechaInicio()%> >
+            <input class="datepicker" type="text" name="txtFechaInicio"  data-date-format="yyyy-mm-dd" value=<%=cuestionario.getFechaInicio()%>>
             <label>Fecha Fin</label>
-            <input type="text" name="txtFechaCierre" value=<%=cuestionario.getFechaCierre()%>>
+            <input class="datepicker" type="text" name="txtFechaCierre" data-date-format="yyyy-mm-dd" value=<%=cuestionario.getFechaCierre()%>>
             <label>Puntos</label>
             <input type="text" name="txtPuntos" value=<%=cuestionario.getPuntos()%>>
             <label>Tiempo Limite</label>
             <input type="text" name="txtTiempoLimite" value=<%=cuestionario.getTiempoLimite()%>>
+            <%--<label>Identificador Curso</label>
+            <input type="text" name="txtIdCurso" value=<%=cuestionario.getIdCurso()%>>--%>
+            <%-- combox dinamico --%>
+            <%  
+                Gson json = new Gson();
+                RestCurso restCurso = new RestCurso();
+                ArrayList<Curso> lista = new ArrayList();
+                ArrayList value = restCurso.getCursos(ArrayList.class);
+                for(Object pro: value){
+                    Curso cursos = json.fromJson(pro.toString(), Curso.class);
+                    lista.add(new Curso(cursos.getIdCurso(), cursos.getNombre(), cursos.getIdProfesor(), cursos.getClaveProfesor(), cursos.getClaveAlumno()));                   
+                }
+            %>
+            <label for="select1">Seleccionar Curso</label>
+            <select name="curso" class="custom-select">
+                
+                <%
+                for(Curso elemento: lista){
+                    if(cuestionario.getIdCurso() == elemento.getIdCurso()){
+                %>        
+                        <option value="<%=elemento.getIdCurso()%>" selected><%=elemento.getNombre()%></option>
+                <%
+                    } else {
+                %>               
+                <option value="<%=elemento.getIdCurso()%>"><%=elemento.getNombre()%></option>
+                <%
+                    }
+                }
+                %>
+            </select>
+            <%-- combox dinamico  aqui termina--%>
             <input type="submit" name="accion" value="Actualizar">
         </form>
         </center>
