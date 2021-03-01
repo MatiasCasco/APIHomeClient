@@ -125,7 +125,7 @@ public class ControllerCurso extends HttpServlet {
         int idProfesor  = Integer.valueOf(request.getParameter("txtIdProfesor"));
         String claveProfesor  = request.getParameter("txtClaveProfesor");
         String claveAlumno  = request.getParameter("txtClaveAlumno");
-        curso =  new Curso(1, Nombre, idProfesor, claveProfesor, claveAlumno);
+        curso =  new Curso(1, Nombre, idProfesor, " ",claveProfesor, claveAlumno);
         restC.addCurso(curso, Curso.class);
         request.getRequestDispatcher("ControllerCurso?accion=Listar").forward(request, response);
         restC.close();
@@ -151,7 +151,7 @@ public class ControllerCurso extends HttpServlet {
         int idProfesor  = Integer.valueOf(request.getParameter("txtIdProfesor"));
         String claveProfesor  = request.getParameter("txtClaveProfesor");
         String claveAlumno  = request.getParameter("txtClaveAlumno");
-        curso =  new Curso(idCurso, nombre, idProfesor, claveProfesor, claveAlumno);
+        curso =  new Curso(idCurso, nombre, idProfesor, " ",claveProfesor, claveAlumno);
         restC.updateCurso(curso);       
         request.getRequestDispatcher("ControllerCurso?accion=Listar").forward(request, response);
         restC.close();

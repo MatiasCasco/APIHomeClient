@@ -32,7 +32,7 @@
                     <tr>
                         <th>ID CURSO</th>
                         <th>NOMBRE</th>
-                        <th>ID PROFESOR</th>
+                        <th>PROFESOR</th>
                         <th>CLAVE PROFESOR</th>
                         <th>CLAVE ALUMNO</th>
                         <th>ACCIONES</th>
@@ -43,7 +43,7 @@
                         <tr>
                             <td>${dato.idCurso}</td>
                             <td>${dato.nombre}</td>
-                            <td>${dato.idProfesor}</td>
+                            <td>${dato.nombreProfesor}</td>
                             <td>${dato.claveProfesor}</td>
                             <td>${dato.claveAlumno}</td>
                             <td>

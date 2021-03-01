@@ -32,6 +32,7 @@
                     <tr>
                         <th>ID CUESTIONARIO</th>
                         <th>ID PREGUNTA</th>
+                        <th>PREGUNTA</th>
                         <th>ID RTA</th>
                         <th>RESPUESTA</th>
                         <th>EVALUACION</th>
@@ -43,6 +44,7 @@
                         <tr>
                             <td>${dato.idCuestionario}</td>
                             <td>${dato.idPregunta}</td>
+                            <td>${dato.pregunta}</td>
                             <td>${dato.idRta}</td>
                             <td>${dato.respuesta}</td>
                             <td>${dato.evaluacion}</td>

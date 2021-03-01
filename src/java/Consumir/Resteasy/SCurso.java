@@ -16,7 +16,7 @@ public class SCurso {
     public static void main(String[] args){
         Gson json = new Gson();
         RestCurso client = new RestCurso();
-        Curso curso = new Curso(1, "octavo", 3, "octavo", "octavo");
+        Curso curso = new Curso(1, "octavo", 3,"", "octavo", "octavo");
         client.addCurso(curso, Curso.class);
         System.out.println("Fue exitoso");
         client.close();

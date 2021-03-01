@@ -25,7 +25,7 @@ public class SRespuesta {
 //            Respuesta respuesta = json.fromJson(ob.toString(), Respuesta.class);
 //            list.add(respuesta);
 //        }
-        Respuesta respuesta =  new Respuesta(1, 1, "Uno", true);
+        Respuesta respuesta =  new Respuesta(1, 1, "hola","Uno", true);
         client.addRespuesta(respuesta, Respuesta.class);
         System.out.println("Fue exitoso");
         //System.out.println(list);

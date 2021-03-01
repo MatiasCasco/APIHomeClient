@@ -34,7 +34,7 @@
                 <thead>
                     <tr>
                         <th>ID CUESTIONARIO</th>
-                        <th>ID MATERIA</th>
+                        <th>NOMBRE MATERIA</th>
                         <th>FECHA INICIO</th>
                         <th>FECHA FIN</th>
                         <th>PUNTOS</th>
@@ -47,12 +47,12 @@
                     <c:forEach var="dato" items="${lista}">
                         <tr>
                             <td>${dato.idCuestionario}</td>
-                            <td>${dato.idMateria}</td>
+                            <td>${dato.getNombreMateria()}</td>
                             <td>${dato.fechaInicio}</td>
                             <td>${dato.fechaCierre}</td>
                             <td>${dato.puntos}</td>
                             <td>${dato.getTiempoLimite()}</td>
-                            <td>${dato.getNameCurso()}</td>
+                            <td>${dato.getNombreCurso()}</td>
                             <td>
                                 <form action="ControllerCuestionario" method="POST">
                                     <input type="hidden" name="txtidCuestionario" value="${dato.idCuestionario}">

@@ -13,25 +13,37 @@ public class Respuesta {
     private int idCuestionario;
     private int idRta;
     private int idPregunta;
+    private String pregunta;
     private String respuesta;
     private Boolean evaluacion;
 
     public Respuesta() {
     }
     
-    public Respuesta(int idRta, int idPregunta, String respuesta, Boolean evaluacion) {
+    public Respuesta(int idRta, int idPregunta, String pregunta,String respuesta, Boolean evaluacion) {
         this.idRta = idRta;
         this.idPregunta = idPregunta;
+        this.pregunta = pregunta;
         this.respuesta = respuesta;
         this.evaluacion = evaluacion;
     }
 
-    public Respuesta(int idCuestionario, int idPregunta, String respuesta) {
-        this.idCuestionario = idCuestionario;
-        this.idPregunta = idPregunta;
-        this.respuesta = respuesta;
+//    public Respuesta(int idCuestionario, int idPregunta, String respuesta) {
+//        this.idCuestionario = idCuestionario;
+//        this.idPregunta = idPregunta;
+//        this.respuesta = respuesta;
+//    }
+
+    public String getPregunta() {
+        return pregunta;
     }
 
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    
+    
     public int getIdCuestionario() {
         return idCuestionario;
     }
@@ -76,6 +88,7 @@ public class Respuesta {
     public String toString() {
      return new StringBuilder("{idRta: ").append(idRta)
                 .append(", idPregunta: ").append(idPregunta)
+                .append(", pregunta: ").append(pregunta)
                 .append(", respuesta: ").append(respuesta)
                 .append(", evaluacion: ").append(evaluacion)
                 .append("}").toString();

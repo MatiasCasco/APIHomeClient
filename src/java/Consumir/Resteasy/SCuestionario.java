@@ -18,7 +18,8 @@ public class SCuestionario {
         Gson json = new Gson();
         RestCuestionario client = new RestCuestionario();
         ArrayList<Cuestionario> list = new ArrayList();
-        client.addCuestionario("{idcuestionario: 1, idmateria: 2, fechacierre: 2020-11-19, fechainicio: 2020-09-27, puntos: 100, tiempolimite:02:00:00}", Cuestionario.class);
+//        ArrayList value = client.getCuestionarios(ArrayList.class);
+        client.addCuestionario("{idcuestionario: 1, idmateria: 2, nombremateria: Matematica,fechacierre: 2020-11-19, fechainicio: 2020-09-27, puntos: 100, tiempolimite:02:00:00, idcurso:7, nombrecurso: quinto}", Cuestionario.class);
 //        ArrayList value = client.getCuestionariosOfMateria(ArrayList.class, "Matematica");
 //        for(Object ob: value){     
 //            System.out.println(ob.toString());
@@ -26,7 +27,7 @@ public class SCuestionario {
 //            list.add(cuestionario);
 ////            System.out.println(cuestionario.getTiempoLimite());
 //        }
-//        System.out.println(list);
+        System.out.println(list);
         
         client.close();
     }

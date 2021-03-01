@@ -6,7 +6,9 @@
 package HomeClient.domain.servlets;
 
 import Consumir.Resteasy.RestCuestionario;
+import Consumir.Resteasy.RestMateria;
 import HomeClient.domain.model.Cuestionario;
+import HomeClient.domain.model.Materia;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -68,6 +70,8 @@ public class ControllerCuestionario extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         String accion = request.getParameter("accion");
+        
+        try{
         switch (accion){
             case "Listar":
                 this.Listar(request, response);
@@ -95,6 +99,7 @@ public class ControllerCuestionario extends HttpServlet {
 //                request.getRequestDispatcher("ControllerRespuesta?accion=Listar").forward(request, response);;
                 break;
         }
+        }catch(ServletException | IOException ex){}
     }
     
     private void ListarCuestionariosDeCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -182,7 +187,7 @@ public class ControllerCuestionario extends HttpServlet {
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = null;
         Gson json = new Gson();
-        int idMateria  = Integer.valueOf(request.getParameter("txtIdMateria"));
+        int idMateria  = Integer.valueOf(request.getParameter("materia"));
         String fechaInicio  = request.getParameter("txtFechaInicio");
         String fechaFin  = request.getParameter("txtFechaCierre");
         int puntos  = Integer.valueOf(request.getParameter("txtPuntos"));
@@ -191,7 +196,7 @@ public class ControllerCuestionario extends HttpServlet {
         int idCurso  = Integer.valueOf(request.getParameter("curso"));
         String [] aux = tiempoLimite.split(":");
         tiempoLimite = aux[0] +"-"+ aux[1] +"-"+ aux[2];
-        cuestionario =  new Cuestionario(1, idMateria, fechaFin, fechaInicio, puntos, tiempoLimite, idCurso, " ");
+        cuestionario =  new Cuestionario(1, idMateria, " ",fechaFin, fechaInicio, puntos, tiempoLimite, idCurso, " ");
         restC.addCuestionario(cuestionario, Cuestionario.class);
         request.getRequestDispatcher("ControllerCuestionario?accion=Listar").forward(request, response);
         restC.close();
@@ -213,7 +218,8 @@ public class ControllerCuestionario extends HttpServlet {
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = null;
         int idCuestionario  = Integer.valueOf(request.getParameter("txtIdC"));
-        int idMateria  = Integer.valueOf(request.getParameter("txtIdMateria"));
+//        int idMateria  = Integer.valueOf(request.getParameter("txtIdMateria"));
+        int idMateria  = Integer.valueOf(request.getParameter("materia"));
         String fechaInicio  = request.getParameter("txtFechaInicio");
         String fechaFin  = request.getParameter("txtFechaCierre");
         int puntos  = Integer.valueOf(request.getParameter("txtPuntos"));
@@ -222,7 +228,7 @@ public class ControllerCuestionario extends HttpServlet {
         int idCurso = Integer.valueOf(request.getParameter("curso"));
         String [] aux = tiempoLimite.split(":");
         tiempoLimite = aux[0] +"-"+ aux[1] +"-"+ aux[2];
-        cuestionario =  new Cuestionario(idCuestionario, idMateria, fechaFin, fechaInicio, puntos, tiempoLimite, idCurso, " ");
+        cuestionario =  new Cuestionario(idCuestionario, idMateria, "",fechaFin, fechaInicio, puntos, tiempoLimite, idCurso, " ");
         restC.updateCuestionario(cuestionario);       
         request.getRequestDispatcher("ControllerCuestionario?accion=Listar").forward(request, response);
         restC.close();

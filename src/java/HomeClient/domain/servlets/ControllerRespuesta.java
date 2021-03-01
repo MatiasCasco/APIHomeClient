@@ -120,14 +120,14 @@ public class ControllerRespuesta extends HttpServlet {
         Respuesta respuesta = null;
         Gson json = new Gson();
         String resp = "\""+request.getParameter("txtRespuesta")+"\"";
-        int idPregunta  = Integer.valueOf(request.getParameter("txtIdP"));
+        int idPregunta  = Integer.valueOf(request.getParameter("pregunta"));
        
         String valor = request.getParameter("Bool");
         Boolean Bool = false; 
         if(valor != null){
             Bool = true;
         }
-        respuesta =  new Respuesta(1, idPregunta, resp, Bool);
+        respuesta =  new Respuesta(1, idPregunta, " ",resp, Bool);
         restR.addRespuesta(respuesta, Respuesta.class);
         request.getRequestDispatcher("ControllerRespuesta?accion=Listar").forward(request, response);
         restR.close();
@@ -147,7 +147,7 @@ public class ControllerRespuesta extends HttpServlet {
         RestRespuesta restR = new RestRespuesta();
         Respuesta respuesta = null;
         int idCuestionario  = Integer.valueOf(request.getParameter("txtIdC"));
-        int idPregunta = Integer.valueOf(request.getParameter("txtIdP"));
+        int idPregunta = Integer.valueOf(request.getParameter("pregunta"));
         int idRta = Integer.valueOf(request.getParameter("txtIdRta"));
         String resp = "\""+request.getParameter("txtRespuesta")+"\"";
         String valor = request.getParameter("Bool");
@@ -155,7 +155,7 @@ public class ControllerRespuesta extends HttpServlet {
         if(valor != null){
             Bool = true;
         }
-        respuesta =  new Respuesta(idRta, idPregunta, resp, Bool);        
+        respuesta =  new Respuesta(idRta, idPregunta, " ",resp, Bool);        
         restR.updateRespuesta(respuesta);       
         request.getRequestDispatcher("ControllerRespuesta?accion=Listar").forward(request, response);
         restR.close();

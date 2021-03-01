@@ -4,6 +4,8 @@
     Author     : User
 --%>
 
+<%@page import="HomeClient.domain.model.Materia"%>
+<%@page import="Consumir.Resteasy.RestMateria"%>
 <%@page import="HomeClient.domain.model.Curso"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Consumir.Resteasy.RestCurso"%>
@@ -34,8 +36,35 @@
             <% Cuestionario cuestionario = (Cuestionario) request.getAttribute("cuestionario");%>
             <label>Identificador Cuestionario</label>
             <input type="text" name="txtIdC" readonly="readonly" value=<%=cuestionario.getIdCuestionario()%>>
-            <label>Identificador Materia</label>
-            <input type="text" name="txtIdMateria" value=<%=cuestionario.getIdMateria()%>>
+            <%--<label>Identificador Materia</label>
+            <input type="text" name="txtIdMateria" value=<%=cuestionario.getIdMateria()%>>--%>
+            <%  
+                Gson json = new Gson();
+                RestMateria restMateria = new RestMateria();
+                ArrayList<Materia> lista2 = new ArrayList();
+                ArrayList valueM = restMateria.getMaterias(ArrayList.class);
+                for(Object pro: valueM){
+                    Materia materias = json.fromJson(pro.toString(), Materia.class);
+                    lista2.add(new Materia(materias.getIdMateria(), materias.getIdCurso(), materias.getNombre()));                   
+                }
+            %> 
+           <label for="select2">Seleccionar Materia</label>
+            <select name="materia" class="custom-select" required>
+                <option value="" selected disabled>Agregar Materia</option>
+                <%            
+                for(Materia elementoM: lista2){
+                    if(cuestionario.getIdMateria() == elementoM.getIdMateria()){
+                %>
+                        <option value="<%=elementoM.getIdMateria()%>"selected><%=elementoM.getNombre()%></option>
+                <%
+                    }else{
+                %>
+                        <option value="<%=elementoM.getIdMateria()%>"><%=elementoM.getNombre()%></option>
+                <%
+                    }
+                }
+                %>
+            </select>
             <label>Fecha Inicio</label>
             <input class="datepicker" type="text" name="txtFechaInicio"  data-date-format="yyyy-mm-dd" value=<%=cuestionario.getFechaInicio()%>>
             <label>Fecha Fin</label>
@@ -48,7 +77,7 @@
             <input type="text" name="txtIdCurso" value=<%=cuestionario.getIdCurso()%>>--%>
             <%-- combox dinamico --%>
             <%  
-                Gson json = new Gson();
+                //Gson json = new Gson();
                 RestCurso restCurso = new RestCurso();
                 ArrayList<Curso> lista = new ArrayList();
                 ArrayList value = restCurso.getCursos(ArrayList.class);
@@ -61,14 +90,14 @@
             <select name="curso" class="custom-select">
                 
                 <%
-                for(Curso elemento: lista){
-                    if(cuestionario.getIdCurso() == elemento.getIdCurso()){
+                for(Curso elementoC: lista){
+                    if(cuestionario.getIdCurso() == elementoC.getIdCurso()){
                 %>        
-                        <option value="<%=elemento.getIdCurso()%>" selected><%=elemento.getNombre()%></option>
+                        <option value="<%=elementoC.getIdCurso()%>" selected><%=elementoC.getNombre()%></option>
                 <%
                     } else {
                 %>               
-                <option value="<%=elemento.getIdCurso()%>"><%=elemento.getNombre()%></option>
+                <option value="<%=elementoC.getIdCurso()%>"><%=elementoC.getNombre()%></option>
                 <%
                     }
                 }
