@@ -20,6 +20,10 @@
         <servlet-name>ControllerCurso</servlet-name>
         <servlet-class>HomeClient.domain.servlets.ControllerCurso</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControllerMateria</servlet-name>
+        <servlet-class>HomeClient.domain.servlets.ControllerMateria</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Imagen</servlet-name>
         <url-pattern>/Imagen</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ControllerCurso</servlet-name>
         <url-pattern>/ControllerCurso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerMateria</servlet-name>
+        <url-pattern>/ControllerMateria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

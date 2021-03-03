@@ -70,19 +70,37 @@ public class ControllerCuestionario extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         String accion = request.getParameter("accion");
-        
+        String cuestionario = request.getParameter("txtIdC");
+        String materia = request.getParameter("txtNombreM");
+        String curso = request.getParameter("txtNameCurso");
         try{
         switch (accion){
             case "Listar":
+                if (!curso.isEmpty()){
+                    this.ListarCuestionariosDeCurso(request, response);
+                }
+                if(!materia.isEmpty()){
+                    this.ListarCuestionariosPorMateria(request, response);
+                }
+                if(!cuestionario.isEmpty()){
+                    this.MostrarCuestionario(request, response);
+                } 
+                if (!(curso.isEmpty()) && (materia.isEmpty())){
+                    this.ListarCuestionariosDeCursoPorMateria(request, response);
+                }
+                if(curso.isEmpty() && materia.isEmpty() && cuestionario.isEmpty()){
+                    this.Listar(request, response);
+                }
+//            case "Cuestionarios de un curso":
+//                this.ListarCuestionariosDeCurso(request, response);
+//            case "Cuestionarios por materia del curso":
+//                this.ListarCuestionariosDeCursoPorMateria(request, response);
+//            case "Mostrar Cuestionario":
+//                this.MostrarCuestionario(request, response);
+//            case "Cuestionarios de una Materia":
+//                this.ListarCuestionariosPorMateria(request, response);
+            case "Listado":
                 this.Listar(request, response);
-            case "Cuestionarios de un curso":
-                this.ListarCuestionariosDeCurso(request, response);
-            case "Cuestionarios por materia del curso":
-                this.ListarCuestionariosDeCursoPorMateria(request, response);
-            case "Mostrar Cuestionario":
-                this.MostrarCuestionario(request, response);
-            case "Cuestionarios de una Materia":
-                this.ListarCuestionariosPorMateria(request, response);
             case "Nuevo":
                 request.getRequestDispatcher("agregarCuestionario.jsp").forward(request, response);
             case "Guardar":
@@ -96,8 +114,7 @@ public class ControllerCuestionario extends HttpServlet {
              case "Ver Preguntas":
                 request.getRequestDispatcher("ControllerImagenPregunta?accion=Ver Preguntas").forward(request, response);  
             default:
-//                request.getRequestDispatcher("ControllerRespuesta?accion=Listar").forward(request, response);;
-                break;
+              request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);
         }
         }catch(ServletException | IOException ex){}
     }
@@ -193,10 +210,10 @@ public class ControllerCuestionario extends HttpServlet {
         int puntos  = Integer.valueOf(request.getParameter("txtPuntos"));
         String tiempoLimite = request.getParameter("txtTiempoLimite");
 //        int idCurso  = Integer.valueOf(request.getParameter("txtIdCurso"));
-        int idCurso  = Integer.valueOf(request.getParameter("curso"));
+//        int idCurso  = Integer.valueOf(request.getParameter("curso"));
         String [] aux = tiempoLimite.split(":");
         tiempoLimite = aux[0] +"-"+ aux[1] +"-"+ aux[2];
-        cuestionario =  new Cuestionario(1, idMateria, " ",fechaFin, fechaInicio, puntos, tiempoLimite, idCurso, " ");
+        cuestionario =  new Cuestionario(1, idMateria, " ",fechaFin, fechaInicio, puntos, tiempoLimite, 0, " ");
         restC.addCuestionario(cuestionario, Cuestionario.class);
         request.getRequestDispatcher("ControllerCuestionario?accion=Listar").forward(request, response);
         restC.close();
@@ -206,7 +223,7 @@ public class ControllerCuestionario extends HttpServlet {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Gson json = new Gson();
         RestCuestionario restC = new RestCuestionario();
-        Cuestionario cuestionario = restC.getCuestionario(Cuestionario.class, request.getParameter("txtidCuestionario"));
+        Cuestionario cuestionario = restC.getCuestionario(Cuestionario.class, request.getParameter("txtidCuestionario"));       
         request.setAttribute("cuestionario", cuestionario);
         request.getRequestDispatcher("editarCuestionario.jsp").forward(request, response);
         restC.close();
@@ -225,12 +242,12 @@ public class ControllerCuestionario extends HttpServlet {
         int puntos  = Integer.valueOf(request.getParameter("txtPuntos"));
         String tiempoLimite = request.getParameter("txtTiempoLimite");
 //        int idCurso = Integer.valueOf(request.getParameter("txtIdCurso"));
-        int idCurso = Integer.valueOf(request.getParameter("curso"));
+//        int idCurso = Integer.valueOf(request.getParameter("curso"));
         String [] aux = tiempoLimite.split(":");
         tiempoLimite = aux[0] +"-"+ aux[1] +"-"+ aux[2];
-        cuestionario =  new Cuestionario(idCuestionario, idMateria, "",fechaFin, fechaInicio, puntos, tiempoLimite, idCurso, " ");
+        cuestionario =  new Cuestionario(idCuestionario, idMateria, "",fechaFin, fechaInicio, puntos, tiempoLimite, 0, " ");
         restC.updateCuestionario(cuestionario);       
-        request.getRequestDispatcher("ControllerCuestionario?accion=Listar").forward(request, response);
+        request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);
         restC.close();
     }
 

@@ -45,7 +45,7 @@
                 ArrayList valueM = restMateria.getMaterias(ArrayList.class);
                 for(Object pro: valueM){
                     Materia materias = json.fromJson(pro.toString(), Materia.class);
-                    lista2.add(new Materia(materias.getIdMateria(), materias.getIdCurso(), materias.getNombre()));                   
+                    lista2.add(materias);                   
                 }
             %> 
            <label for="select2">Seleccionar Materia</label>
@@ -75,7 +75,7 @@
             <input type="text" name="txtTiempoLimite" value=<%=cuestionario.getTiempoLimite()%>>
             <%--<label>Identificador Curso</label>
             <input type="text" name="txtIdCurso" value=<%=cuestionario.getIdCurso()%>>--%>
-            <%-- combox dinamico --%>
+            <%-- combox dinamico 
             <%  
                 //Gson json = new Gson();
                 RestCurso restCurso = new RestCurso();
@@ -102,7 +102,7 @@
                     }
                 }
                 %>
-            </select>
+            </select>--%>
             <%-- combox dinamico  aqui termina--%>
             <input type="submit" name="accion" value="Actualizar">
         </form>

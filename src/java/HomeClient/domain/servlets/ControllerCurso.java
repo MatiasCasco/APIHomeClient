@@ -76,13 +76,25 @@ public class ControllerCurso extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         String accion = request.getParameter("accion");
+        String profesor = request.getParameter("txtIdP");
+        String curso = request.getParameter("txtNombreC");
         switch (accion){
             case "Listar":
+                if (!profesor.isEmpty()){
+                    this.CursosDelProfesor(request, response);
+                }
+                if(!curso.isEmpty()){
+                    this.mostrarCursos(request, response);
+                } 
+                if ((profesor.isEmpty()) && (curso.isEmpty())){
+                    this.Listar(request, response);
+                }
+//            case "Mostrar Cursos del Profesor":
+//                this.CursosDelProfesor(request, response);
+//            case "Buscar Curso":
+//                this.mostrarCursos(request, response);
+            case "Listado":
                 this.Listar(request, response);
-            case "Mostrar Cursos del Profesor":
-                this.CursosDelProfesor(request, response);
-            case "Buscar Curso":
-                this.mostrarCursos(request, response);
             case "Nuevo":
                 request.getRequestDispatcher("agregarCurso.jsp").forward(request, response);
             case "Guardar":
@@ -153,7 +165,7 @@ public class ControllerCurso extends HttpServlet {
         String claveAlumno  = request.getParameter("txtClaveAlumno");
         curso =  new Curso(idCurso, nombre, idProfesor, " ",claveProfesor, claveAlumno);
         restC.updateCurso(curso);       
-        request.getRequestDispatcher("ControllerCurso?accion=Listar").forward(request, response);
+        request.getRequestDispatcher("ControllerCurso?accion=Listado").forward(request, response);
         restC.close();
     }
 

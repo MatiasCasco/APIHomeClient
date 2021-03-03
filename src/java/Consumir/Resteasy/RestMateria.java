@@ -32,29 +32,29 @@ public class RestMateria {
         webTarget = client.target(BASE_URI).path("materiaApi");
     }
 
+    public void removeMateria(String id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("materia/{0}", new Object[]{id})).request().delete();
+    }
+
     public <T> T getMateriasCurso(Class<T> responseType, String NameCurso) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("materiasNameCurso/{0}", new Object[]{NameCurso}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T getMateria(Class<T> responseType, String cursoN, String materiaN) throws ClientErrorException {
+    public <T> T getMateria(Class<T> responseType, String idMateria) throws ClientErrorException {
         WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("cursoN/{0}/materiaN/{1}", new Object[]{cursoN, materiaN}));
+        resource = resource.path(java.text.MessageFormat.format("materia/{0}", new Object[]{idMateria}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T getCursoName(Class<T> responseType, String NameMateria) throws ClientErrorException {
+    public <T> T getMateriaInCursos(Class<T> responseType, String NameMateria) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("materias/{0}", new Object[]{NameMateria}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void updateCurso(Object requestEntity) throws ClientErrorException {
-        webTarget.path("materia").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public <T> T addCurso(Object requestEntity, Class<T> responseType) throws ClientErrorException {
+    public <T> T addMateria(Object requestEntity, Class<T> responseType) throws ClientErrorException {
         return webTarget.path("materia").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
     }
 
@@ -64,8 +64,14 @@ public class RestMateria {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void removeCurso(String id) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("materia/{0}", new Object[]{id})).request().delete();
+    public void updateMateria(Object requestEntity) throws ClientErrorException {
+        webTarget.path("materia").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T getMateriaCurso(Class<T> responseType, String cursoN, String materiaN) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("cursoN/{0}/materiaN/{1}", new Object[]{cursoN, materiaN}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void close() {

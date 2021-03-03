@@ -44,7 +44,6 @@
           /*  document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("ControllerCuestionario").addEventListener('submit', validarFecha); 
             });
-
             function validarFecha(evento) {
               evento.preventDefault();
               var fechaInicio = document.getElementById('fechaInicio').value;
@@ -82,7 +81,7 @@
                 ArrayList valueM = restMateria.getMaterias(ArrayList.class);
                 for(Object pro: valueM){
                     Materia materias = json.fromJson(pro.toString(), Materia.class);
-                    lista2.add(new Materia(materias.getIdMateria(), materias.getIdCurso(), materias.getNombre()));                   
+                    lista2.add(materias);                   
                 }
             %> 
            <label for="select2">Seleccionar Materia</label>
@@ -106,14 +105,15 @@
             <input type="text" name="txtTiempoLimite" value="00:15:00">
             <%--<label>Identificador Curso</label>
             <input type="text" name="txtIdCurso">--%>
-             <%  
+            <%-- 
+            <%  
                 //Gson json = new Gson();
                 RestCurso restCurso = new RestCurso();
                 ArrayList<Curso> lista = new ArrayList();
                 ArrayList valueC = restCurso.getCursos(ArrayList.class);
                 for(Object pro: valueC){
                     Curso cursos = json.fromJson(pro.toString(), Curso.class);
-                    lista.add(new Curso(cursos.getIdCurso(), cursos.getNombre(), cursos.getIdProfesor(), cursos.getClaveProfesor(), cursos.getClaveAlumno()));                   
+                    lista.add(new Curso(cursos.getIdCurso(), cursos.getNombre(), cursos.getIdProfesor(), cursos.getNombreProfesor(), cursos.getClaveProfesor(), cursos.getClaveAlumno()));                   
                 }
             %>
             <label for="select1">Seleccionar Curso</label>
@@ -126,7 +126,7 @@
                 <%
                 }
                 %>
-            </select>
+            </select> --%>
             <input type="submit" name="accion" value="Guardar">
         </form>
         </center>

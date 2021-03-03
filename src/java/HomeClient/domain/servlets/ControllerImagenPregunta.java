@@ -145,6 +145,18 @@ public class ControllerImagenPregunta extends HttpServlet {
             pregunta = json.fromJson(pro.toString(), Pregunta.class);
             list.add(pregunta);
         }
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet ControllerRespuesta</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet ControllerRespuesta at "+ list + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
         request.setAttribute("lista", list);
         request.getRequestDispatcher("/indexPregunta.jsp").forward(request, response);
         restP.close();

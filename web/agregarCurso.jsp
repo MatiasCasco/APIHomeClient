@@ -27,6 +27,6 @@
             <input type="text" name="txtClaveAlumno">
             <input type="submit" name="accion" value="Guardar">
         </form>
-    </center>
+        </center>
     </body>
 </html>

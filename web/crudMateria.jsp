@@ -1,7 +1,7 @@
 <%-- 
-    Document   : crudCurso
-    Created on : 30/10/2020, 03:15:14 PM
-    Author     : Matias
+    Document   : crudMateria
+    Created on : 01/03/2021, 09:37:01 AM
+    Author     : User
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,15 +14,14 @@
     </head>
     <body>
         <div>
-            <form action="ControllerCurso" method="POST">
-                <label>Nombre Profesor</label>
-                <input type="text" name="txtIdP">
-                <label>Nombre Curso </label>
-                <input type="text" name="txtNombreC">
+            <form action="ControllerMateria" method="POST">
+                <label>Materia</label>
+                <input type="text" name="materia">
+                <label>Curso </label>
+                <input type="text" name="curso">
                 <input type="submit" name="accion" value="Listar">
                 <input type="submit" name="accion" value="Nuevo">
-                <%--<input type="submit" name="accion" value="Mostrar Cursos del Profesor">
-                <input type="submit" name="accion" value="Buscar Curso">--%>
+                <%--<input type="submit" name="accion" value="Buscar Materia">--%>
             </form>
         </div>
     <center>
@@ -30,25 +29,22 @@
             <table>
                 <thead>
                     <tr>
+                        <th>ID MATERIA</th>
+                        <th>NOMBRE MATERIA</th>
                         <th>ID CURSO</th>
-                        <th>NOMBRE</th>
-                        <th>PROFESOR</th>
-                        <th>CLAVE PROFESOR</th>
-                        <th>CLAVE ALUMNO</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                    <c:forEach var="dato" items="${lista}">
                         <tr>
-                            <td>${dato.idCurso}</td>
+                            <td>${dato.idMateria}</td>
                             <td>${dato.nombre}</td>
-                            <td>${dato.nombreProfesor}</td>
-                            <td>${dato.claveProfesor}</td>
-                            <td>${dato.claveAlumno}</td>
+                            <td>${dato.idCurso}</td>
+                            <td>${dato.nombreCurso}</td>
                             <td>
-                                <form action="ControllerCurso" method="POST">
-                                    <input type="hidden" name="txtid" value="${dato.idCurso}">
+                                <form action="ControllerMateria" method="POST">
+                                    <input type="hidden" name="txtid" value="${dato.idMateria}">
                                     <input type="submit" name="accion" value="Editar">
                                     <input type="submit" name="accion" value="Delete">
                                 </form>

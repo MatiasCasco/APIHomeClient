@@ -21,10 +21,10 @@
                 <label>Nombre Materia </label>
                 <input type="text" name="txtNombreM">
                 <input type="submit" name="accion" value="Listar">
-                <input type="submit" name="accion" value="Cuestionarios de un curso">
+                <%--<input type="submit" name="accion" value="Cuestionarios de un curso">
                 <input type="submit" name="accion" value="Cuestionarios por materia del curso">
                 <input type="submit" name="accion" value="Mostrar Cuestionario">
-                <input type="submit" name="accion" value="Cuestionarios de una Materia">
+                <input type="submit" name="accion" value="Cuestionarios de una Materia">--%>
                 <input type="submit" name="accion" value="Nuevo">
             </form>
         </div>

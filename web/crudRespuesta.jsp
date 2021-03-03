@@ -20,8 +20,8 @@
                 <label>Identificador del cuestionario </label>
                 <input type="text" name="txtIdC">
                 <input type="submit" name="accion" value="Listar">
-                <input type="submit" name="accion" value="Respuestas de una Pregunta">
-                <input type="submit" name="accion" value="Respuestas de un Cuestionario">
+                <%--<input type="submit" name="accion" value="Respuestas de una Pregunta">
+                <input type="submit" name="accion" value="Respuestas de un Cuestionario">--%>
                 <input type="submit" name="accion" value="Nuevo">
             </form>
         </div>

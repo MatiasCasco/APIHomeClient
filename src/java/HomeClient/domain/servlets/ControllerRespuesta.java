@@ -46,13 +46,25 @@ public class ControllerRespuesta extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         String accion = request.getParameter("accion");
+        String pregunta = request.getParameter("txtIdP");
+        String cuestionario = request.getParameter("txtIdC");
         switch (accion){
             case "Listar":
+                if (!pregunta.isEmpty()){
+                    this.ListarRespuestaP(request, response);
+                }
+                if(!cuestionario.isEmpty()){
+                    this.ListarRespuestaC(request, response);
+                } 
+                if ((pregunta.isEmpty()) && (cuestionario.isEmpty())){
+                    this.Listar(request, response);
+                }
+//            case "Respuestas de un Cuestionario":
+//                this.ListarRespuestaC(request, response);
+//            case "Respuestas de una Pregunta":
+//                this.ListarRespuestaP(request, response);
+            case "Listado":
                 this.Listar(request, response);
-            case "Respuestas de un Cuestionario":
-                this.ListarRespuestaC(request, response);
-            case "Respuestas de una Pregunta":
-                this.ListarRespuestaP(request, response);
             case "Nuevo":
                 request.getRequestDispatcher("agregarRespuesta.jsp").forward(request, response);
             case "Guardar":
@@ -157,7 +169,7 @@ public class ControllerRespuesta extends HttpServlet {
         }
         respuesta =  new Respuesta(idRta, idPregunta, " ",resp, Bool);        
         restR.updateRespuesta(respuesta);       
-        request.getRequestDispatcher("ControllerRespuesta?accion=Listar").forward(request, response);
+        request.getRequestDispatcher("ControllerRespuesta?accion=Listado").forward(request, response);
         restR.close();
     }
     
