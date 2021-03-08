@@ -60,7 +60,8 @@ public class ControllerCurso extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest
+        Listar(request, response);
     }
 
     /**
@@ -89,10 +90,7 @@ public class ControllerCurso extends HttpServlet {
                 if ((profesor.isEmpty()) && (curso.isEmpty())){
                     this.Listar(request, response);
                 }
-//            case "Mostrar Cursos del Profesor":
-//                this.CursosDelProfesor(request, response);
-//            case "Buscar Curso":
-//                this.mostrarCursos(request, response);
+
             case "Listado":
                 this.Listar(request, response);
             case "Nuevo":
@@ -124,8 +122,9 @@ public class ControllerCurso extends HttpServlet {
             list.add(curso);
         }
         request.setAttribute("lista", list);
+         restC.close();
         request.getRequestDispatcher("crudCurso.jsp").forward(request, response);
-        restC.close();
+       
     }
 
     private void agregar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -139,8 +138,9 @@ public class ControllerCurso extends HttpServlet {
         String claveAlumno  = request.getParameter("txtClaveAlumno");
         curso =  new Curso(1, Nombre, idProfesor, " ",claveProfesor, claveAlumno);
         restC.addCurso(curso, Curso.class);
-        request.getRequestDispatcher("ControllerCurso?accion=Listar").forward(request, response);
+        //request.getRequestDispatcher("ControllerCurso?accion=Listar").forward(request, response);
         restC.close();
+        Listar(request,response);
     }
 
     private void mostrarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -149,8 +149,9 @@ public class ControllerCurso extends HttpServlet {
         RestCurso restC = new RestCurso();
         Curso curso = restC.getCurso(Curso.class, request.getParameter("txtid"));
         request.setAttribute("curso", curso);
+         restC.close();
         request.getRequestDispatcher("editarCurso.jsp").forward(request, response);
-        restC.close();
+       
     }
 
     private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -164,17 +165,19 @@ public class ControllerCurso extends HttpServlet {
         String claveProfesor  = request.getParameter("txtClaveProfesor");
         String claveAlumno  = request.getParameter("txtClaveAlumno");
         curso =  new Curso(idCurso, nombre, idProfesor, " ",claveProfesor, claveAlumno);
-        restC.updateCurso(curso);       
-        request.getRequestDispatcher("ControllerCurso?accion=Listado").forward(request, response);
+        restC.updateCurso(curso);     
         restC.close();
+        request.getRequestDispatcher("ControllerCurso?accion=Listado").forward(request, response);
+        
     }
 
     private void Eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         RestCurso restC = new RestCurso();         
         restC.removeCurso(request.getParameter("txtid"));
-        request.getRequestDispatcher("ControllerCurso?accion=Listar").forward(request, response);
+        //request.getRequestDispatcher("ControllerCurso?accion=Listar").forward(request, response);
         restC.close();
+        Listar(request,response);
     }
 
     
@@ -196,8 +199,9 @@ public class ControllerCurso extends HttpServlet {
             list.add(curso);
         }
         request.setAttribute("lista", list);
-        request.getRequestDispatcher("crudCurso.jsp").forward(request, response);
         restC.close();
+        request.getRequestDispatcher("crudCurso.jsp").forward(request, response);
+        
     }
 
     private void mostrarCursos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -212,8 +216,9 @@ public class ControllerCurso extends HttpServlet {
             list.add(curso);
         }
         request.setAttribute("lista", list);
+         restC.close();
         request.getRequestDispatcher("crudCurso.jsp").forward(request, response);
-        restC.close();
+       
     }
 
 }

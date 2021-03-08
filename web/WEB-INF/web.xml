@@ -24,6 +24,14 @@
         <servlet-name>ControllerMateria</servlet-name>
         <servlet-class>HomeClient.domain.servlets.ControllerMateria</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControllerLogg</servlet-name>
+        <servlet-class>HomeClient.domain.servlets.ControllerLogg</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControllerUsuarios</servlet-name>
+        <servlet-class>HomeClient.domain.servlets.ControllerUsuarios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Imagen</servlet-name>
         <url-pattern>/Imagen</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>ControllerMateria</servlet-name>
         <url-pattern>/ControllerMateria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerLogg</servlet-name>
+        <url-pattern>/ControllerLogg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerUsuarios</servlet-name>
+        <url-pattern>/ControllerUsuarios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

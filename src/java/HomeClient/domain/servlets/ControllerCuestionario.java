@@ -54,7 +54,7 @@ public class ControllerCuestionario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            Listar(request, response);
     }
 
     /**
@@ -99,22 +99,31 @@ public class ControllerCuestionario extends HttpServlet {
 //                this.MostrarCuestionario(request, response);
 //            case "Cuestionarios de una Materia":
 //                this.ListarCuestionariosPorMateria(request, response);
+                break;
             case "Listado":
                 this.Listar(request, response);
+                break;
             case "Nuevo":
                 request.getRequestDispatcher("agregarCuestionario.jsp").forward(request, response);
+                break;
             case "Guardar":
                 this.agregar(request, response);
+                break;
             case "Editar":
                 this.mostrarDatos(request, response);
+                break;
             case "Actualizar":
                 this.editar(request, response);
+                break;
             case "Delete":
                 this.Eliminar(request, response); 
+                break;
              case "Ver Preguntas":
                 request.getRequestDispatcher("ControllerImagenPregunta?accion=Ver Preguntas").forward(request, response);  
+                 break;
             default:
               request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);
+                break;
         }
         }catch(ServletException | IOException ex){}
     }
@@ -132,8 +141,9 @@ public class ControllerCuestionario extends HttpServlet {
             list.add(cuestionario);
         }
         request.setAttribute("lista", list);
-        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
         restC.close();
+        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
+        
     }
     
     private void ListarCuestionariosDeCursoPorMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -150,8 +160,9 @@ public class ControllerCuestionario extends HttpServlet {
             list.add(cuestionario);
         }
         request.setAttribute("lista", list);
-        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
         restC.close();
+        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
+        
     }
     
     private void ListarCuestionariosPorMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -167,8 +178,9 @@ public class ControllerCuestionario extends HttpServlet {
             list.add(cuestionario);
         }
         request.setAttribute("lista", list);
+         restC.close();
         request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
-        restC.close();
+       
     }
     
     private void MostrarCuestionario(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -180,8 +192,9 @@ public class ControllerCuestionario extends HttpServlet {
         ArrayList<Cuestionario> list = new ArrayList();
         list.add(cuestionario);
         request.setAttribute("lista", list);
-        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
         restC.close();
+        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
+        
     }
     private void Listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -195,8 +208,9 @@ public class ControllerCuestionario extends HttpServlet {
             list.add(cuestionario);
         }
         request.setAttribute("lista", list);
-        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
         restC.close();
+        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
+        
     }
 
     private void agregar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -215,8 +229,9 @@ public class ControllerCuestionario extends HttpServlet {
         tiempoLimite = aux[0] +"-"+ aux[1] +"-"+ aux[2];
         cuestionario =  new Cuestionario(1, idMateria, " ",fechaFin, fechaInicio, puntos, tiempoLimite, 0, " ");
         restC.addCuestionario(cuestionario, Cuestionario.class);
-        request.getRequestDispatcher("ControllerCuestionario?accion=Listar").forward(request, response);
-        restC.close();
+         restC.close();
+        request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);
+       
     }
 
     private void mostrarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -225,8 +240,9 @@ public class ControllerCuestionario extends HttpServlet {
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = restC.getCuestionario(Cuestionario.class, request.getParameter("txtidCuestionario"));       
         request.setAttribute("cuestionario", cuestionario);
+         restC.close();
         request.getRequestDispatcher("editarCuestionario.jsp").forward(request, response);
-        restC.close();
+       
     }
 
     private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -246,17 +262,19 @@ public class ControllerCuestionario extends HttpServlet {
         String [] aux = tiempoLimite.split(":");
         tiempoLimite = aux[0] +"-"+ aux[1] +"-"+ aux[2];
         cuestionario =  new Cuestionario(idCuestionario, idMateria, "",fechaFin, fechaInicio, puntos, tiempoLimite, 0, " ");
-        restC.updateCuestionario(cuestionario);       
-        request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);
+        restC.updateCuestionario(cuestionario);  
         restC.close();
+        request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);
+        
     }
 
     private void Eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         RestCuestionario restC = new RestCuestionario();         
         restC.removeCuestionario(request.getParameter("txtidCuestionario"));
-        request.getRequestDispatcher("ControllerCuestionario?accion=Listar").forward(request, response);
         restC.close();
+        request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);
+        
     }
     
     @Override

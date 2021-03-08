@@ -49,6 +49,8 @@ public class ControllerImagenPregunta extends HttpServlet {
         try {
             String accion = request.getParameter("accion");
             if(accion.equalsIgnoreCase("Nuevo")){
+                String idCuestionario= request.getParameter("idC");
+                request.setAttribute("idC", idCuestionario);
                 request.getRequestDispatcher("agregarPregunta.jsp").forward(request, response);
             }else if(accion.equalsIgnoreCase("Guardar")){                    
                 this.agregar(request, response);                
@@ -68,14 +70,14 @@ public class ControllerImagenPregunta extends HttpServlet {
                 this.MostrarPreguntas(request, response);
             }
             if(accion.equalsIgnoreCase("Ver Respuestas")){
-                request.getRequestDispatcher("ControllerRespuesta?accion=Respuestas de una Pregunta").forward(request, response);
+                request.getRequestDispatcher("ControllerRespuesta?accion=RespuestasdePregunta").forward(request, response);
             }
 // referencia por default el servlet y la accion
 //            request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
             
         } catch(Exception ex){}          
     }
-    
+  
     private void agregar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         RestPregunta restP = new RestPregunta();
         Pregunta pregunta = null;
@@ -89,9 +91,10 @@ public class ControllerImagenPregunta extends HttpServlet {
         byte[] bytes = IOUtils.toByteArray(inputStream);
         String encoded = Base64.getEncoder().encodeToString(bytes);        
         pregunta =  new Pregunta(1, id, puntoAsignado, puntoObtenido, preg, encoded, "Probando");
-        restP.addPregunta(pregunta, Pregunta.class);       
-        request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
+        restP.addPregunta(pregunta, Pregunta.class); 
         restP.close();
+        request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
+        
     }
 
     private void mostrarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -104,8 +107,9 @@ public class ControllerImagenPregunta extends HttpServlet {
             boo = true;
         }
         request.setAttribute("row", boo);
-        request.getRequestDispatcher("editarPregunta.jsp").forward(request, response);
         restP.close();
+        request.getRequestDispatcher("editarPregunta.jsp").forward(request, response);
+        
     }
     
     private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -129,9 +133,10 @@ public class ControllerImagenPregunta extends HttpServlet {
             pregunta = new Pregunta(idPregunta, idCuestionario, puntoAsignado, puntoObtenido, preg);
             restP.updatePregunta(pregunta);
         }
-        restP.updatePregunta(pregunta);       
-        request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
+        restP.updatePregunta(pregunta); 
         restP.close();
+        request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
+        
     }
 
     
@@ -158,15 +163,17 @@ public class ControllerImagenPregunta extends HttpServlet {
 //            out.println("</html>");
 //        }
         request.setAttribute("lista", list);
+          restP.close();
         request.getRequestDispatcher("/indexPregunta.jsp").forward(request, response);
-        restP.close();
+      
     }
     
     private void Eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         RestPregunta restP = new RestPregunta();         
         restP.removePregunta(request.getParameter("txtid"));
+         restP.close();
         request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
-        restP.close();
+       
     } 
     
      private void MostrarPreguntas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -180,9 +187,12 @@ public class ControllerImagenPregunta extends HttpServlet {
             pregunta = json.fromJson(pro.toString(), Pregunta.class);
             list.add(pregunta);
         }
+        String idCuestionario= request.getParameter("txtidCuestionario");
         request.setAttribute("lista", list);
-        request.getRequestDispatcher("indexPregunta.jsp").forward(request, response);
+        request.setAttribute("idC", idCuestionario);
         restP.close();
+        request.getRequestDispatcher("indexPregunta.jsp").forward(request, response);
+        
     }
     
     @Override

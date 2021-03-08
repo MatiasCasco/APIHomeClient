@@ -60,7 +60,8 @@ public class ControllerMateria extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest
+        Listar(request, response);
     }
 
     /**
@@ -95,17 +96,23 @@ public class ControllerMateria extends HttpServlet {
             case "Listado":
                  
                 this.Listar(request, response);
+                break;
                 
             case "Nuevo":
                 request.getRequestDispatcher("agregarMateria.jsp").forward(request, response);
+                break;
             case "Guardar":
                 this.agregar(request, response);
+                break;
             case "Editar":
                 this.mostrarDatos(request, response);
+                break;
             case "Actualizar":
                 this.editar(request, response);
+                break;
             case "Delete":
-                this.Eliminar(request, response);    
+                this.Eliminar(request, response);  
+                break;
             default:
                 request.getRequestDispatcher("ControllerMateria?accion=Listar").forward(request, response);
         }
@@ -133,8 +140,9 @@ public class ControllerMateria extends HttpServlet {
             list.add(materia);
         }
         request.setAttribute("lista", list);
-        request.getRequestDispatcher("crudMateria.jsp").forward(request, response);
         restM.close();
+        request.getRequestDispatcher("crudMateria.jsp").forward(request, response);
+      
     }
     
     private void agregar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -142,12 +150,15 @@ public class ControllerMateria extends HttpServlet {
         RestMateria restM = new RestMateria();
         Materia materia = null;
         Gson json = new Gson();
-        String nombreMateria = "\""+request.getParameter("nombreMateria")+"\"";
+        //String nombreMateria = "\""+request.getParameter("nombreMateria")+"\"";
+        String nombreMateria = request.getParameter("nombreMateria");
         int idCurso  = Integer.valueOf(request.getParameter("curso"));
         materia =  new Materia(1, nombreMateria, idCurso," ");
         restM.addMateria(materia, Materia.class);
-        request.getRequestDispatcher("ControllerMateria?accion=Listar").forward(request, response);
         restM.close();
+        Listar(request,response);
+       // request.getRequestDispatcher("ControllerMateria?accion=Listar").forward(request, response);
+        
     }
 
     private void mostrarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -156,8 +167,9 @@ public class ControllerMateria extends HttpServlet {
         RestMateria restM = new RestMateria();         
         Materia materia = restM.getMateria(Materia.class,  request.getParameter("txtid"));
         request.setAttribute("materia", materia);
+         restM.close();
         request.getRequestDispatcher("editarMateria.jsp").forward(request, response);
-        restM.close();
+       
     }
 
     private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -171,16 +183,19 @@ public class ControllerMateria extends HttpServlet {
         materia = new Materia(idMateria, nombre, idCurso, " ");
         request.setAttribute("editar", "editar");
         restM.updateMateria(materia);
-        request.getRequestDispatcher("ControllerMateria?accion=Listado").forward(request, response);
         restM.close();
+        request.getRequestDispatcher("ControllerMateria?accion=Listado").forward(request, response);
+        
     }
 
     private void Eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         RestMateria restM = new RestMateria();         
         restM.removeMateria(request.getParameter("txtid"));
-        request.getRequestDispatcher("ControllerMateria?accion=Listar").forward(request, response);
+        //request.getRequestDispatcher("ControllerMateria?accion=Listar").forward(request, response);
         restM.close();
+        request.getRequestDispatcher("ControllerMateria?accion=Listado").forward(request, response);
+       // Listar(request,response);
     }
 
     private void ListarMateriasPorCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -195,8 +210,9 @@ public class ControllerMateria extends HttpServlet {
             list.add(materia);
         }
         request.setAttribute("lista", list);
+         restM.close();
         request.getRequestDispatcher("crudMateria.jsp").forward(request, response);
-        restM.close();
+       
     }
 
     private void ListarCursosConLaMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -211,8 +227,9 @@ public class ControllerMateria extends HttpServlet {
             list.add(materia);
         }
         request.setAttribute("lista", list);
+          restM.close();
         request.getRequestDispatcher("crudMateria.jsp").forward(request, response);
-        restM.close();
+      
     }
 
 }
