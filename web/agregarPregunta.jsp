@@ -153,7 +153,7 @@
                           </div>
                        </div>
            
-          
+            <input type="hidden" name="Cuestionario" value="${idC}">                    
             <input type="submit" name="accion" value="Guardar">
         </form>
               </div>

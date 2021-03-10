@@ -89,8 +89,7 @@
             </div>
         </nav>
       <!-- -->
-    
-      
+
         <div class="container">
             <div class="mx-auto col-sm-19 main-section" id="myTab" role="tablist">
                 <ul class="nav nav-tabs justify-content-end">
@@ -138,9 +137,9 @@
                                                     <form action="ControllerImagenPregunta" method="POST">
                                                        
                                                         <input type="hidden" name="txtIdP" value="${dato.idPregunta}">
-                                                     
+                                                        <input type="hidden" name="Cuestionario" value="${dato.idCuestionario}">
                                                         <input type="submit" name="accion" value="Editar">
-                                                        <input type="submit" name="accion" value="Delete">
+                                                        <input type="submit" name="accion" value="Delete" onclick="return confirm('Se eliminaran todas las respuestas relaccionadas a esta pregunta');">
                                                         <input type="submit" name="accion" value="Ver Respuestas">
                                                     </form>
                                                 </td>

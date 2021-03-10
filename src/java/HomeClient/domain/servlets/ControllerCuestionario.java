@@ -240,9 +240,8 @@ public class ControllerCuestionario extends HttpServlet {
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = restC.getCuestionario(Cuestionario.class, request.getParameter("txtidCuestionario"));       
         request.setAttribute("cuestionario", cuestionario);
-         restC.close();
-        request.getRequestDispatcher("editarCuestionario.jsp").forward(request, response);
-       
+        restC.close();
+        request.getRequestDispatcher("editarCuestionario.jsp").forward(request, response);     
     }
 
     private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

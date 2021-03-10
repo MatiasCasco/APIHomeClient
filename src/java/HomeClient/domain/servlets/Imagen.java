@@ -12,6 +12,8 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -60,22 +63,36 @@ public class Imagen extends HttpServlet {
             throws ServletException, IOException {
         Gson json = new Gson();
         RestPregunta restP = new RestPregunta();
-	         
+	 try{         
         Pregunta pregunta = restP.getPregunta(Pregunta.class, id);
-      
-	try{
-               
-         ByteArrayOutputStream output = new ByteArrayOutputStream();
-         output.write(pregunta.getArchivoimg2());
-         response.setContentType("image/*");
-         response.setContentLength(output.size());
-         OutputStream out = response.getOutputStream();
-         output.writeTo(out);
-         out.flush();
-         out.close();
-		
-	}catch(Exception e){}
-        restP.close();
+            if (pregunta.getArchivoimg2().length > 0) {
+
+
+                 ByteArrayOutputStream output = new ByteArrayOutputStream();
+                 output.write(pregunta.getArchivoimg2());
+                 response.setContentType("image/*");
+                 response.setContentLength(output.size());
+                 OutputStream out = response.getOutputStream();
+                 output.writeTo(out);
+                 out.flush();
+                 out.close();
+
+            
+            } else {
+                File file = new File("C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\web\\img\\DefaultImage.png");
+                InputStream inputStream = new FileInputStream(file);        
+                byte[] bytes = IOUtils.toByteArray(inputStream);
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                output.write(bytes);
+                response.setContentType("image/*");
+                response.setContentLength(output.size());
+                OutputStream out = response.getOutputStream();
+                output.writeTo(out);
+                out.flush();
+                out.close();
+            }
+        }catch(Exception e){}
+            restP.close();
     }
     /**
      * Handles the HTTP <code>POST</code> method.

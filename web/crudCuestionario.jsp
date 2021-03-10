@@ -147,7 +147,7 @@
                                                     <form action="ControllerCuestionario" method="POST">
                                                         <input type="hidden" name="txtidCuestionario" value="${dato.idCuestionario}">
                                                         <input type="submit" name="accion" value="Editar">
-                                                        <input type="submit" name="accion" value="Delete">
+                                                        <input type="submit" name="accion" value="Delete" onclick="return confirm('Se eliminaran todas las preguntas y respuestas relaccionadas a este cuestionario');">
                                                         <input type="submit" name="accion" value="Ver Preguntas">
                                                     </form>
                                                 </td>

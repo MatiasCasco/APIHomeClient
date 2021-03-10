@@ -58,6 +58,9 @@ public class ControllerImagenPregunta extends HttpServlet {
             if(accion.equalsIgnoreCase("Listar")){
                 this.Listar(request, response);
             }
+            if(accion.equalsIgnoreCase("ListarP")){
+                this.ListarP(request, response);
+            }
             if(accion.equalsIgnoreCase("Editar")){                    
                 this.mostrarDatos(request, response);
             } else if(accion.equalsIgnoreCase("Actualizar")){
@@ -91,16 +94,16 @@ public class ControllerImagenPregunta extends HttpServlet {
         byte[] bytes = IOUtils.toByteArray(inputStream);
         String encoded = Base64.getEncoder().encodeToString(bytes);        
         pregunta =  new Pregunta(1, id, puntoAsignado, puntoObtenido, preg, encoded, "Probando");
+        request.setAttribute("idC", request.getParameter("Cuestionario"));
         restP.addPregunta(pregunta, Pregunta.class); 
         restP.close();
-        request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
-        
+        request.getRequestDispatcher("ControllerImagenPregunta?accion=ListarP").forward(request, response);      
     }
 
     private void mostrarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Gson json = new Gson();
         RestPregunta restP = new RestPregunta();         
-        Pregunta pregunta = restP.getPregunta(Pregunta.class, request.getParameter("txtid"));
+        Pregunta pregunta = restP.getPregunta(Pregunta.class, request.getParameter("txtIdP"));    
         request.setAttribute("pregunta", pregunta);
         boolean boo = false;
         if (pregunta.getArchivoimg2().length > 0) {
@@ -170,9 +173,10 @@ public class ControllerImagenPregunta extends HttpServlet {
     
     private void Eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         RestPregunta restP = new RestPregunta();         
-        restP.removePregunta(request.getParameter("txtid"));
-         restP.close();
-        request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
+        restP.removePregunta(request.getParameter("txtIdP"));
+        request.setAttribute("idC", request.getParameter("Cuestionario"));
+        restP.close();
+        request.getRequestDispatcher("ControllerImagenPregunta?accion=ListarP").forward(request, response);
        
     } 
     
@@ -199,5 +203,25 @@ public class ControllerImagenPregunta extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void ListarP(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gson json = new Gson();
+        RestPregunta restP = new RestPregunta();
+        Pregunta pregunta = new Pregunta();
+        ArrayList value = restP.getPreguntasCuestionario(ArrayList.class, request.getParameter("Cuestionario"));
+        ArrayList<Pregunta> list = new ArrayList();
+        for(Object pro: value){
+            pregunta = json.fromJson(pro.toString(), Pregunta.class);
+            list.add(pregunta);
+        }
+//        String idCuestionario= request.getParameter("Cuestionario");
+        request.setAttribute("lista", list);
+        restP.close();
+        request.getRequestDispatcher("indexPregunta.jsp").forward(request, response);
+        
+    }
+
+    
 
 }

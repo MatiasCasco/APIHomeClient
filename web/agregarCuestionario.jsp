@@ -49,7 +49,7 @@
                 alert('Fecha final debe ser mayor a la inicial');
                 return false;
               } else{
-                return True;
+                return true;
               }  
             }
         </script>
@@ -112,7 +112,7 @@
                   <h4>Agregar Cuestionario</h4>
               </div>
               <div class="card-body">                     
-                  <form class="form" action="ControllerCuestionario" id="ControllerCuestionario" method="POST" onsubmit=" return validarFecha();">
+                  <form class="form" action="ControllerCuestionario" id="ControllerCuestionario" method="POST" onsubmit="return validarFecha();">
                       <%Gson json = new Gson();
                       RestMateria restMateria = new RestMateria();
                       ArrayList<Materia> lista2 = new ArrayList();
@@ -141,7 +141,7 @@
                        <div class="form-group row">
                            <label class="col-lg-3 col-form-label form-control-label">Fecha Cierre</label>
                            <div class="col-lg-9">
-                               <input id= "fechafin" name="txtFechaCierre" class="form-control" type="date" data-date-format="yyyy-mm-dd" required autofocus >                          
+                               <input id= "fechaFin" name="txtFechaCierre" class="form-control" type="date" data-date-format="yyyy-mm-dd" required autofocus >                          
                            </div>
                        </div>
                        <div class="form-group row">
