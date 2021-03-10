@@ -15,6 +15,7 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    
 <head>
 	<title>Gestion de Usuarios</title>
       
@@ -107,7 +108,7 @@
 </head>
 
     <body>
-         <!--===================BARRA DE NAVEGACION=======================-->
+       <!--===================BARRA DE NAVEGACION=======================-->
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark"> 
             <a class="navbar-brand" href="#">Home Resident Admin</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,7 +132,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerCuestionario" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerCurso" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cursos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -140,7 +141,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerCuestionario" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerMateria" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Materias
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -219,7 +220,7 @@
 				<h4>Nuevo usuario</h4>
 			    </div>
                             <div class="card-body">
-				<form class="form" action="ControllerUsuarios" metod="POST" role="form" autocomplete="off">
+                                <form class="form" method="POST" role="form" action="ControllerUsuarios" autocomplete="off">
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Nombre</label>
                                         <div class="col-lg-9">
