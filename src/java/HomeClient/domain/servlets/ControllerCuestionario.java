@@ -6,8 +6,10 @@
 package HomeClient.domain.servlets;
 
 import Consumir.Resteasy.RestCuestionario;
+import Consumir.Resteasy.RestCurso;
 import Consumir.Resteasy.RestMateria;
 import HomeClient.domain.model.Cuestionario;
+import HomeClient.domain.model.Curso;
 import HomeClient.domain.model.Materia;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -75,6 +77,9 @@ public class ControllerCuestionario extends HttpServlet {
         String curso = request.getParameter("txtNameCurso");
         try{
         switch (accion){
+            case "FiltroporMateria":
+                 //this.CuestionariosPorMateria(request, response);
+                this.Listar(request, response);
             case "Listar":
                 if (!curso.isEmpty()){
                     this.ListarCuestionariosDeCurso(request, response);
@@ -280,5 +285,31 @@ public class ControllerCuestionario extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void CuestionariosPorMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gson json = new Gson();
+        RestCuestionario restC = new RestCuestionario();
+        Cuestionario cuestionario = new Cuestionario();
+        String idcurso = request.getParameter("txtid");
+        String curso=obtenernombreCurso(idcurso);
+        ArrayList value = restC.getCuestionariosOfCurso(ArrayList.class, curso);
+        ArrayList<Cuestionario> list = new ArrayList();
+        for(Object pro: value){
+            cuestionario = json.fromJson(pro.toString(), Cuestionario.class);
+            list.add(cuestionario);
+        }
+        request.setAttribute("lista", list);
+        restC.close();
+        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
+    }
+
+    private String obtenernombreCurso(String idcurso) {
+       //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         RestCurso client = new RestCurso();
+         Curso curso=client.getCurso(Curso.class, idcurso);
+         String nombre=curso.getNombre();
+         return nombre;
+    }
 
 }

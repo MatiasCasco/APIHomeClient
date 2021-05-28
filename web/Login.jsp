@@ -26,15 +26,9 @@
           <script type="text/javascript">
 	    $(document).ready(function() {
 	        
-                //$("#msgerror").hide();
+                  $("#msglogout").hide();
                   $("#msgerror").hide();                 
-                    var var1=${request.requestScope.get( "logerror")};
-                    if (var1!==null){ 
-                    if(var1===false){
-                        $("#msgerror").show();
-                     }else{
-                        $("#msgerror").hide();
-                     }}
+                   
                
             });
 	</script>
@@ -77,10 +71,13 @@
 		</div>
                 <% } %>
                 
-                
-		<!--div th:if="${param.logout}" class="alert alert-success" role="alert">
-		           You have been logged out.
-		</div-->
+                 <% String  logout=(String) request.getAttribute("logout");
+                  if(logout!=null){%>
+                  <div id="msglogout" class="alert alert-success" role="alert">
+		           Sesion Cerrada.
+		</div>
+                <% } %>
+		
             </div>
         </div>
     </div>

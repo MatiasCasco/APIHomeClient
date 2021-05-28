@@ -93,7 +93,8 @@ public class ControllerLogg extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        CerrarSesion(request,response);
     }
 
     /**
@@ -125,6 +126,12 @@ public class ControllerLogg extends HttpServlet {
          return per;
          //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+     private void CerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+      HttpSession session = request.getSession();
+        
+        session.removeAttribute("usuario");
+        request.getSession().invalidate();
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+     }
   
 }

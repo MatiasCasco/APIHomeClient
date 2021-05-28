@@ -15,6 +15,15 @@ public class Persona {
     private String password;
     private Integer idCurso;
 
+    public String getNombreCurso() {
+        return NombreCurso;
+    }
+
+    public void setNombreCurso(String NombreCurso) {
+        this.NombreCurso = NombreCurso;
+    }
+    private String NombreCurso;
+
     /**
      *
      */

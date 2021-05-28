@@ -45,7 +45,7 @@
     </head>
     <body>
         
-         <!--===================BARRA DE NAVEGACION=======================-->
+        <!--===================BARRA DE NAVEGACION=======================-->
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark"> 
             <a class="navbar-brand" href="#">Home Resident Admin</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,9 +53,7 @@
             </button>            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-item nav-link active" href="ControllerUsuarios">Gestion de Usuarios</a>    
                     </li>
@@ -69,7 +67,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerCuestionario" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerCurso" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cursos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -78,19 +76,23 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerCuestionario" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerMateria" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Materias
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="ControllerMateria">Gestion de Materias</a>
                             <a class="dropdown-item" href="agregarMateria.jsp">Agregar</a>
                         </div>
-                    </li>      
-                </ul>       
+                    </li>                                     
+                 
+                </ul>   
+                <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="POST">                           
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="accion" value="Cerrar Sesion">Cerrar Sesion</button>
+                </form>   
             </div>
         </nav>
       <!-- -->
-        
+ 
         
         <div class="container">
             <div class="mx-auto col-sm-15 main-section" id="myTab" role="tablist">
@@ -106,7 +108,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Lista de Cursos</h4>
-                                <form class="form-inline " action="ControllerCurso" method="POST">
+                                <form class="form-inline" action="ControllerCurso" method="POST">
                                     <span class="navbar-text active" ><b>Filtro de busqueda</b></span>                  
                                     <input class="form-control mr-sm-2" type="text" placeholder="Nombre Profesor" name="txtIdP">             
                                     <input class="form-control mr-sm-2" type="text" placeholder="Nombre Curso" name="txtNombreC">
@@ -136,10 +138,11 @@
                                                     <td>${dato.claveProfesor}</td>
                                                     <td>${dato.claveAlumno}</td>
                                                     <td>
-                                                        <form action="ControllerCurso" method="POST">
+                                                        <form action="ControllerCurso" class="form-inline" method="POST">
                                                             <input type="hidden" name="txtid" value="${dato.idCurso}">
-                                                            <input type="submit" name="accion" value="Editar">
-                                                            <input type="submit" name="accion" value="Delete">
+                                                            <input  type="submit" class="btn-info" name="accion" value="Materias">
+                                                            <input type="submit" class="btn-info" name="accion" value="Editar">
+                                                            <input type="submit" class="btn-danger" name="accion" value="Delete">
                                                         </form>
                                                     </td>
                                                 </tr>

@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <!-- Nuestro css-->
 	<link rel="stylesheet" type="text/css" href="css/user-form.css"
@@ -33,12 +33,6 @@
         
         
      
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.css"/>
-        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
-       
        
         <script>
         
@@ -53,9 +47,8 @@
               }  
             }
         </script>
-    </head>
+        </head>
     <body>
-        
            <!--===================BARRA DE NAVEGACION=======================-->
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark"> 
             <a class="navbar-brand" href="#">Home Resident Admin</a>
@@ -64,9 +57,7 @@
             </button>            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-item nav-link active" href="ControllerUsuarios">Gestion de Usuarios</a>    
                     </li>
@@ -96,18 +87,23 @@
                             <a class="dropdown-item" href="ControllerMateria">Gestion de Materias</a>
                             <a class="dropdown-item" href="agregarMateria.jsp">Agregar</a>
                         </div>
-                    </li>      
-                </ul>       
+                    </li>                                     
+                 
+                </ul>   
+                <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="POST">                           
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="accion" value="Cerrar Sesion">Cerrar Sesion</button>
+                </form>   
             </div>
         </nav>
       <!-- -->
-      <div class="mx-auto col-sm-9 main-section" id="myTab" role="tablist">
-          <ul class="nav nav-tabs justify-content-end">
-              <li class="nav-item">
+ 
+        <div class="mx-auto col-sm-9 main-section" id="myTab" role="tablist">
+            <ul class="nav nav-tabs justify-content-end">
+                <li class="nav-item">
                   <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Cuestionario</a>
               </li>
-          </ul>              
-          <div class="card">
+            </ul>              
+           <div class="card">
               <div class="card-header">
                   <h4>Agregar Cuestionario</h4>
               </div>
@@ -157,8 +153,8 @@
                            </div>                                                    
                            <input type="submit" name="accion" value="Guardar">
                     </form>
-              </div>
-           </div>
-      </div>
+               </div>
+            </div>
+        </div>
     </body>
 </html>

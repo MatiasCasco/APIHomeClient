@@ -41,9 +41,7 @@
             </button>            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-item nav-link active" href="ControllerUsuarios">Gestion de Usuarios</a>    
                     </li>
@@ -73,11 +71,16 @@
                             <a class="dropdown-item" href="ControllerMateria">Gestion de Materias</a>
                             <a class="dropdown-item" href="agregarMateria.jsp">Agregar</a>
                         </div>
-                    </li>      
-                </ul>       
+                    </li>                                     
+                 
+                </ul>   
+                <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="POST">                           
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="accion" value="Cerrar Sesion">Cerrar Sesion</button>
+                </form>   
             </div>
         </nav>
       <!-- -->
+ 
         <div class="mx-auto col-sm-9 main-section" id="myTab" role="tablist">
             <ul class="nav nav-tabs justify-content-end">
                 <li class="nav-item">
@@ -85,7 +88,7 @@
 		</li>
             </ul>
                     
-          <div class="card">
+            <div class="card">
               <div class="card-header">
                   <h4>Agregar Curso</h4>
               </div>        
@@ -129,7 +132,7 @@
                    <input type="submit" name="accion" value="Guardar">
                    </form>
               </div>
-          </div>
-      </div>
+            </div>
+        </div>
     </body>
 </html>

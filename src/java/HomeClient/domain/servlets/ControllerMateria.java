@@ -82,6 +82,7 @@ public class ControllerMateria extends HttpServlet {
         String curso = " ";
         curso = request.getParameter("curso");
         switch (accion){
+           
             case "Listar":
                 if (!curso.isEmpty()){
                     this.ListarMateriasPorCurso(request, response);
@@ -92,7 +93,13 @@ public class ControllerMateria extends HttpServlet {
                 if ((curso.isEmpty()) && (materia.isEmpty())){
                     this.Listar(request, response);
                 }
-               
+                break;  
+            case "Cuestionarios":
+                request.getRequestDispatcher("ControllerCuestionario?accion=FiltroporMateria").forward(request, response);  
+                break;
+            case "MC":
+                ListarMateriasPorCurso(request, response);
+                break;
             case "Listado":
                  
                 this.Listar(request, response);
@@ -203,7 +210,13 @@ public class ControllerMateria extends HttpServlet {
         Gson json = new Gson();
         RestMateria restM = new RestMateria();
         Materia materia = new Materia();
-        ArrayList value = restM.getMateriasCurso(ArrayList.class, request.getParameter("curso"));
+        String Curso;
+        if(request.getParameter("curso")==null){
+            Curso=(String) request.getAttribute("curso");
+        }else{
+            Curso=request.getParameter("curso");                    
+        }
+        ArrayList value = restM.getMateriasCurso(ArrayList.class,Curso);
         ArrayList<Materia> list = new ArrayList();
         for(Object pro: value){
             materia = json.fromJson(pro.toString(), Materia.class);

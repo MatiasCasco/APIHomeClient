@@ -42,9 +42,7 @@
             </button>            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-item nav-link active" href="ControllerUsuarios">Gestion de Usuarios</a>    
                     </li>
@@ -74,11 +72,16 @@
                             <a class="dropdown-item" href="ControllerMateria">Gestion de Materias</a>
                             <a class="dropdown-item" href="agregarMateria.jsp">Agregar</a>
                         </div>
-                    </li>      
-                </ul>       
+                    </li>                                     
+                 
+                </ul>   
+                <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="POST">                           
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="accion" value="Cerrar Sesion">Cerrar Sesion</button>
+                </form>   
             </div>
         </nav>
       <!-- -->
+ 
          <%-- Curso --%>
         <%  
             Gson json = new Gson();
@@ -123,7 +126,7 @@
                               <select name="curso" class="custom-select" id="selectC" required>
                                   <option value="" selected disabled>Agregar Curso</option>
                                   <%for(Curso elemento: lista){%>               
-                                  <option value="<%=elemento.getIdCurso()%>"><%=elemento.getNombre()%></option>
+                                  <option value="<%=elemento.getIdCurso()%>">#<%=elemento.getIdCurso()%> <%=elemento.getNombre()%> prof:<%=elemento.getNombreProfesor()%></option>
                                   <%}%>
                               </select>
                               <script>

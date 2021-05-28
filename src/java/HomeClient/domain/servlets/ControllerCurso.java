@@ -93,6 +93,9 @@ public class ControllerCurso extends HttpServlet {
 
             case "Listado":
                 this.Listar(request, response);
+            case "Materias":
+                this.VerMaterias(request, response);
+                break;
             case "Nuevo":
                 request.getRequestDispatcher("agregarCurso.jsp").forward(request, response);
             case "Guardar":
@@ -105,7 +108,7 @@ public class ControllerCurso extends HttpServlet {
                 this.Eliminar(request, response);    
             default:
 //                request.getRequestDispatcher("ControllerRespuesta?accion=Listar").forward(request, response);;
-                break;
+               break;
         }
     }
 
@@ -219,6 +222,15 @@ public class ControllerCurso extends HttpServlet {
          restC.close();
         request.getRequestDispatcher("crudCurso.jsp").forward(request, response);
        
+    }
+
+    private void VerMaterias(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String idCurso=request.getParameter("txtid");
+        request.setAttribute("curso",idCurso);
+        
+        request.getRequestDispatcher("ControllerMateria?accion=Listado").forward(request, response);
+        //request.getRequestDispatcher("ControllerMateria?accion=MateriasCurso").forward(request, response);
     }
 
 }

@@ -76,10 +76,10 @@ public class Imagen extends HttpServlet {
                  output.writeTo(out);
                  out.flush();
                  out.close();
-
+                 
             
-            } else {
-                File file = new File("C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\web\\img\\DefaultImage.png");
+            } else {//C:\Users\HP\Documents\NetBeansProjects\Cliente terminado+css\APIHomeClient\web\img
+                File file = new File("C:\\Users\\HP\\Documents\\NetBeansProjects\\img\\DefaultImage.png");
                 InputStream inputStream = new FileInputStream(file);        
                 byte[] bytes = IOUtils.toByteArray(inputStream);
                 ByteArrayOutputStream output = new ByteArrayOutputStream();

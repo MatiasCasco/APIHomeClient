@@ -36,7 +36,7 @@
         
     </head>
     <body>
-        <!--===================BARRA DE NAVEGACION=======================-->
+      <!--===================BARRA DE NAVEGACION=======================-->
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark"> 
             <a class="navbar-brand" href="#">Home Resident Admin</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,9 +44,7 @@
             </button>            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-item nav-link active" href="ControllerUsuarios">Gestion de Usuarios</a>    
                     </li>
@@ -76,11 +74,16 @@
                             <a class="dropdown-item" href="ControllerMateria">Gestion de Materias</a>
                             <a class="dropdown-item" href="agregarMateria.jsp">Agregar</a>
                         </div>
-                    </li>      
-                </ul>       
+                    </li>                                     
+                 
+                </ul>   
+                <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="POST">                           
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="accion" value="Cerrar Sesion">Cerrar Sesion</button>
+                </form>   
             </div>
         </nav>
       <!-- -->
+ 
         <div class="mx-auto col-sm-9 main-section" id="myTab" role="tablist">
             <ul class="nav nav-tabs justify-content-end">
                     <li class="nav-item">
@@ -110,7 +113,7 @@
                            <label class="col-lg-3 col-form-label form-control-label">Seleccionar Materia</label>
                            <div class="col-lg-9">
                                <select name="materia" class="custom-select" required>                               
-                                   <%for(Materia elemento: lista2){%><option value="<%=elemento.getIdMateria()%>"><%=elemento.getNombre()%></option><%}%>
+                                   <%for(Materia elemento: lista2){%><option value="<%=elemento.getIdMateria()%>">#<%=elemento.getIdMateria()%> <%=elemento.getNombre()%> <%=elemento.getNombreCurso()%></option><%}%>
                                </select>
                                <script>document.ready=document.getElementById("selectP").value=<%=cuestionario.getIdMateria()%></script>                                                             
                            </div>

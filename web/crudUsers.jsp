@@ -14,7 +14,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
     
 <head>
 	<title>Gestion de Usuarios</title>
@@ -116,9 +116,7 @@
             </button>            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-item nav-link active" href="ControllerUsuarios">Gestion de Usuarios</a>    
                     </li>
@@ -148,8 +146,12 @@
                             <a class="dropdown-item" href="ControllerMateria">Gestion de Materias</a>
                             <a class="dropdown-item" href="agregarMateria.jsp">Agregar</a>
                         </div>
-                    </li>      
-                </ul>       
+                    </li>                                     
+                 
+                </ul>   
+                <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="POST">                           
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="accion" value="Cerrar Sesion">Cerrar Sesion</button>
+                </form>   
             </div>
         </nav>
       <!-- -->
@@ -200,9 +202,9 @@
                                                       <form action="ControllerUsuarios" method="POST">
                                                           <a>
                                                           <input type="hidden" name="idUsuario" value="${dato.getId()}">
+                                                          <input type="hidden" name="nrol" value="${dato.getRol()}">
                                                           <i><input  type="submit" class="btn-info" name="action" value="Editar"></i></a>|<a><i>
-                                                          <input  type="submit" class="btn-danger" name="action" value="Delete">
-
+                                                          <input  type="submit" class="btn-danger" name="action" value="Delete" onclick="return confirm('Estas a punto de eliminar los cursos con los custionarios asosiados a este Usuario');">
                                                           </i></a>
                                                       </form>
                                                   </td>
