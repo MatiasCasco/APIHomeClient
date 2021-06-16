@@ -20,7 +20,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author User
+ * @author HP
  */
 public class RestCurso {
     private WebTarget webTarget;
@@ -35,6 +35,12 @@ public class RestCurso {
     public <T> T getCursos(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("cursos");
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T CursosfindIdProf(Class<T> responseType, String idProfesor) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("cursosIdprof/{0}", new Object[]{idProfesor}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

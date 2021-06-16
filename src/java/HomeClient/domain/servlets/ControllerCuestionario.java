@@ -6,19 +6,16 @@
 package HomeClient.domain.servlets;
 
 import Consumir.Resteasy.RestCuestionario;
-import Consumir.Resteasy.RestCurso;
-import Consumir.Resteasy.RestMateria;
 import HomeClient.domain.model.Cuestionario;
-import HomeClient.domain.model.Curso;
-import HomeClient.domain.model.Materia;
+import HomeClient.domain.model.Persona;
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -56,7 +53,14 @@ public class ControllerCuestionario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        if(usu.getRol()==2){//si es profesor
+           // CursosProfesor(request,response);
+            ListarCuestionariosProf(request, response);
+        }else{
             Listar(request, response);
+        }
     }
 
     /**
@@ -78,8 +82,8 @@ public class ControllerCuestionario extends HttpServlet {
         try{
         switch (accion){
             case "FiltroporMateria":
-                 //this.CuestionariosPorMateria(request, response);
-                this.Listar(request, response);
+                this.CuestionariosPorMateria(request, response);
+               // this.Listar(request, response);
             case "Listar":
                 if (!curso.isEmpty()){
                     this.ListarCuestionariosDeCurso(request, response);
@@ -203,6 +207,12 @@ public class ControllerCuestionario extends HttpServlet {
     }
     private void Listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        if(usu.getRol()==2){//si es profesor
+           // CursosProfesor(request,response);
+            ListarCuestionariosProf(request, response);
+        }
         Gson json = new Gson();
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = new Cuestionario();
@@ -291,9 +301,8 @@ public class ControllerCuestionario extends HttpServlet {
         Gson json = new Gson();
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = new Cuestionario();
-        String idcurso = request.getParameter("txtid");
-        String curso=obtenernombreCurso(idcurso);
-        ArrayList value = restC.getCuestionariosOfCurso(ArrayList.class, curso);
+        String idMateria = request.getParameter("txtid");
+        ArrayList value = restC.getCuestionariosForMateria(ArrayList.class, idMateria);
         ArrayList<Cuestionario> list = new ArrayList();
         for(Object pro: value){
             cuestionario = json.fromJson(pro.toString(), Cuestionario.class);
@@ -304,12 +313,28 @@ public class ControllerCuestionario extends HttpServlet {
         request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
     }
 
-    private String obtenernombreCurso(String idcurso) {
-       //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-         RestCurso client = new RestCurso();
-         Curso curso=client.getCurso(Curso.class, idcurso);
-         String nombre=curso.getNombre();
-         return nombre;
+    private void ListarCuestionariosProf(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        String idProfesor = String.valueOf(usu.getId());
+        
+        
+        Gson json = new Gson();
+        RestCuestionario restC = new RestCuestionario();
+        Cuestionario cuestionario = new Cuestionario();
+        ArrayList value = restC.getCuestionariosProfe(ArrayList.class, idProfesor);
+        ArrayList<Cuestionario> list = new ArrayList();
+        for(Object pro: value){
+            cuestionario = json.fromJson(pro.toString(), Cuestionario.class);
+            list.add(cuestionario);
+        }
+        request.setAttribute("lista", list);
+        restC.close();
+        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
+    
     }
+
+   
 
 }

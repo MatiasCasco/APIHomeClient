@@ -10,7 +10,7 @@ public class User /*extends BaseEntity<Integer> */{
     private String email;
     private String loginName;
     private String passwd;
-    private int tipoCliente;
+    private int tipoUsuario;
    /* 
     public User() {
         super(0, "");
@@ -30,16 +30,16 @@ public class User /*extends BaseEntity<Integer> */{
      * @param email
      * @param loginName
      * @param passwd
-     * @param tipoCliente
+     * @param tipoUsuario
      */
     /*
-    public User(Integer id, String nombre, String apellido, String email, String loginName, String passwd, int tipoCliente) {
+    public User(Integer id, String nombre, String apellido, String email, String loginName, String passwd, int tipoUsuario) {
         super(id, nombre);
         this.apellido = apellido;
         this.email = email;
         this.loginName = loginName;
         this.passwd = passwd;
-        this.tipoCliente = tipoCliente;
+        this.tipoUsuario = tipoUsuario;
     }*/
 
     public User(String nombre, String loginName, String passwd) {
@@ -48,6 +48,12 @@ public class User /*extends BaseEntity<Integer> */{
         this.passwd = passwd;
     }
 
+    public User(String nombre, String passwd, int tipoCliente) {
+        this.nombre = nombre;
+        this.passwd = passwd;
+        this.tipoUsuario = tipoCliente;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -65,7 +71,7 @@ public class User /*extends BaseEntity<Integer> */{
         this.email = email;
         this.loginName = loginName;
         this.passwd = passwd;
-        this.tipoCliente = tipoCliente;
+        this.tipoUsuario = tipoCliente;
     }
 
     public String getApellido() {
@@ -101,16 +107,16 @@ public class User /*extends BaseEntity<Integer> */{
     }
 
     public int getTipoCliente() {
-        return tipoCliente;
+        return tipoUsuario;
     }
 
     public void setTipoCliente(int tipoCliente) {
-        this.tipoCliente = tipoCliente;
+        this.tipoUsuario = tipoCliente;
     }
 
     @Override
     public String toString() {
-        return "User{" + "nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", loginName=" + loginName + ", passwd=" + passwd + ", tipoCliente=" + tipoCliente + '}';
+        return "User{" + "nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", loginName=" + loginName + ", passwd=" + passwd + ", tipoCliente=" + tipoUsuario + '}';
     }
 
     /**

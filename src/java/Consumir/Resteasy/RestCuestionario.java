@@ -20,7 +20,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author User
+ * @author HP
  */
 public class RestCuestionario {
     private WebTarget webTarget;
@@ -40,8 +40,20 @@ public class RestCuestionario {
         webTarget.path("cuestionario").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
+    public <T> T getCuestionariosForMateria(Class<T> responseType, String idMateria) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("cuestionariosForMateria/{0}", new Object[]{idMateria}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public void removeCuestionario(String id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("cuestionario/{0}", new Object[]{id})).request().delete();
+    }
+
+    public <T> T getBYAlumnoAndMateria(Class<T> responseType, String alumno, String materia) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("alumno/{0}/materia/{1}", new Object[]{alumno, materia}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public <T> T getCuestionarios(Class<T> responseType) throws ClientErrorException {
@@ -53,6 +65,12 @@ public class RestCuestionario {
     public <T> T getCuestionariosOfCurso(Class<T> responseType, String curso) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("cuestionariosOFCurso/{0}", new Object[]{curso}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getCuestionariosOfCursoAndMateriaApp(Class<T> responseType, String curso, String materia) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("curso/{0}/materia/{1}", new Object[]{curso, materia}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
@@ -71,6 +89,12 @@ public class RestCuestionario {
     public <T> T getCuestionariosOfCursoAndMateria(Class<T> responseType, String cursoName, String materiaName) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("cursoName/{0}/materiaName/{1}", new Object[]{cursoName, materiaName}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getCuestionariosProfe(Class<T> responseType, String idProfesor) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("cuestionariosProfesor/{0}", new Object[]{idProfesor}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

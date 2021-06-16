@@ -20,16 +20,23 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author User
+ * @author HP
  */
 public class RestMateria {
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8084/homeApi/rest";
+    
 
     public RestMateria() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("materiaApi");
+    }
+
+    public <T> T getMateriasProfesor(Class<T> responseType, String idProfesor) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("materiasProf/{0}", new Object[]{idProfesor}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void removeMateria(String id) throws ClientErrorException {
@@ -71,6 +78,12 @@ public class RestMateria {
     public <T> T getMateriaCurso(Class<T> responseType, String cursoN, String materiaN) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("cursoN/{0}/materiaN/{1}", new Object[]{cursoN, materiaN}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getMateriasForIdCurso(Class<T> responseType, String idCurso) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("materiasForCurso/{0}", new Object[]{idCurso}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

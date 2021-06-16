@@ -26,8 +26,8 @@
           <script type="text/javascript">
 	    $(document).ready(function() {
 	        
-                  $("#msglogout").hide();
-                  $("#msgerror").hide();                 
+                  //$("#msglogout").hide();
+                 // $("#msgerror").hide();                 
                    
                
             });
@@ -39,8 +39,9 @@
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!-- Nuestro css-->
-	<link rel="stylesheet" type="text/css" href="css/index.css"
-		th:href="@{/index.css}">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+        <!--link rel="stylesheet" type="text/css" href="css/index.css"
+		th:href="@{/index.css}"-->
 	
         <title>lOGGIN USER</title>
     </head>
@@ -49,9 +50,10 @@
         <div class="col-sm-8 main-section">
             <div class="modal-content">
                 <div class="col-12 user-img">
-                    <img src="img/user.png" th:src="@{/user.png}"/>
+                    <img src="img/user.png"/>
+                    <!img src="img/user.png" th:src="@{/user.png}"/>
                 </div>
-                <form class="col-12" action="ControllerLogg" method="get">
+                <form class="col-12" action="ControllerLogg" method="POST">
                     <div class="form-group" id="user-group">
                         <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"/>
                     </div>
@@ -63,7 +65,7 @@
                 <div class="col-12 forgot">
                     <a href="#">Recordar contrasena?</a>
                 </div>
-                <% String error;
+                <%String error;
                         error=(String) request.getAttribute("error");
                   if(error!=null){%>
                 <div id="msgerror" class="alert alert-danger" role="alert" >

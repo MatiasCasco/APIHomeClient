@@ -7,6 +7,7 @@ package HomeClient.domain.servlets;
 
 import Consumir.Resteasy.RestMateria;
 import HomeClient.domain.model.Materia;
+import HomeClient.domain.model.Persona;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -61,7 +63,16 @@ public class ControllerMateria extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest
-        Listar(request, response);
+        //Listar(request, response);
+         HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        if(usu.getRol()==2){//si es profesor
+           // CursosProfesor(request,response);
+            ListarMateriasProf(request, response);
+        }else{
+        //si es admin
+            Listar(request, response);
+        }
     }
 
     /**
@@ -120,6 +131,9 @@ public class ControllerMateria extends HttpServlet {
             case "Delete":
                 this.Eliminar(request, response);  
                 break;
+            case "ListarMateriasDeCurso":
+                this.ListarMateriasPorIdCurso(request, response);  
+                break;
             default:
                 request.getRequestDispatcher("ControllerMateria?accion=Listar").forward(request, response);
         }
@@ -137,6 +151,12 @@ public class ControllerMateria extends HttpServlet {
 
      private void Listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        if(usu.getRol()==2){//si es profesor
+           // CursosProfesor(request,response);
+            ListarMateriasProf(request, response);
+        }
         Gson json = new Gson();
         RestMateria restM = new RestMateria();
         Materia materia = new Materia();
@@ -243,6 +263,47 @@ public class ControllerMateria extends HttpServlet {
           restM.close();
         request.getRequestDispatcher("crudMateria.jsp").forward(request, response);
       
+    }
+
+    private void ListarMateriasProf(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gson json = new Gson();
+        RestMateria restM = new RestMateria();
+        Materia materia = new Materia();
+     
+        HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        String idProfesor = String.valueOf(usu.getId());
+        
+        
+        ArrayList value = restM.getMateriasProfesor(ArrayList.class,idProfesor);
+        ArrayList<Materia> list = new ArrayList();
+        for(Object pro: value){
+            materia = json.fromJson(pro.toString(), Materia.class);
+            list.add(materia);
+        }
+        request.setAttribute("lista", list);
+        restM.close();
+        request.getRequestDispatcher("crudMateria.jsp").forward(request, response);
+      
+    }
+
+    private void ListarMateriasPorIdCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Gson json = new Gson();
+        RestMateria restM = new RestMateria();
+        Materia materia = new Materia();
+        String Curso=(String) request.getAttribute("curso");
+       
+        ArrayList value = restM.getMateriasForIdCurso(ArrayList.class,Curso);
+        ArrayList<Materia> list = new ArrayList();
+        for(Object pro: value){
+            materia = json.fromJson(pro.toString(), Materia.class);
+            list.add(materia);
+        }
+        request.setAttribute("lista", list);
+         restM.close();
+        request.getRequestDispatcher("crudMateria.jsp").forward(request, response);
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

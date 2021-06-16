@@ -25,8 +25,12 @@ public class SRespuesta {
 //            Respuesta respuesta = json.fromJson(ob.toString(), Respuesta.class);
 //            list.add(respuesta);
 //        }
-        Respuesta respuesta =  new Respuesta(1, 1, "hola","Uno", true);
-        client.addRespuesta(respuesta, Respuesta.class);
+        //Respuesta respuesta =  new Respuesta(1, 1, "hola","Uno", true);
+        //client.addRespuesta(respuesta, Respuesta.class);
+        String id="423";
+        Respuesta respuesta;
+        respuesta = client.getRespuesta(Respuesta.class,id);
+        System.out.println(respuesta.toString());
         System.out.println("Fue exitoso");
         //System.out.println(list);
         client.close();

@@ -167,6 +167,8 @@ public class ControllerRespuesta extends HttpServlet {
         Gson json = new Gson();
         RestRespuesta restR = new RestRespuesta();         
         Respuesta respuesta = restR.getRespuesta(Respuesta.class,  request.getParameter("txtidRta"));
+        String idC=request.getParameter("idC");
+        request.setAttribute("idC", idC);
         request.setAttribute("respuesta", respuesta);
         restR.close();
         request.getRequestDispatcher("editarRespuesta.jsp").forward(request, response);

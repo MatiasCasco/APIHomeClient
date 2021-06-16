@@ -39,7 +39,9 @@ public class ControllerImagenPregunta extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       //processRequest(request, response);
+        this.Listar(request, response);
+        
     }
 
     @Override
@@ -102,7 +104,8 @@ public class ControllerImagenPregunta extends HttpServlet {
 
     private void mostrarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Gson json = new Gson();
-        RestPregunta restP = new RestPregunta();         
+        RestPregunta restP = new RestPregunta();
+        request.setAttribute("idC", request.getParameter("Cuestionario"));
         Pregunta pregunta = restP.getPregunta(Pregunta.class, request.getParameter("txtIdP"));    
         request.setAttribute("pregunta", pregunta);
         boolean boo = false;
@@ -138,7 +141,12 @@ public class ControllerImagenPregunta extends HttpServlet {
         }
         restP.updatePregunta(pregunta); 
         restP.close();
-        request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
+        String idC=request.getParameter("Cuestionario");
+        request.setAttribute("idC",idC);
+        this.MostrarPreguntas(request, response);
+//request.getRequestDispatcher("ControllerImagenPregunta?accion=Ver Preguntas").forward(request, response);  
+                
+        //request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
         
     }
 
@@ -185,7 +193,15 @@ public class ControllerImagenPregunta extends HttpServlet {
         Gson json = new Gson();
         RestPregunta restP = new RestPregunta();
         Pregunta pregunta = new Pregunta();
-        ArrayList value = restP.getPreguntasCuestionario(ArrayList.class, request.getParameter("txtidCuestionario"));
+        String idC;
+        //
+        if(request.getParameter("txtidCuestionario")!=null){
+            idC=request.getParameter("txtidCuestionario");
+            request.setAttribute("idC", request.getParameter("txtidCuestionario"));
+        }else{
+            idC=(String) request.getAttribute("idC");
+        }
+        ArrayList value = restP.getPreguntasCuestionario(ArrayList.class, idC);
         ArrayList<Pregunta> list = new ArrayList();
         for(Object pro: value){
             pregunta = json.fromJson(pro.toString(), Pregunta.class);

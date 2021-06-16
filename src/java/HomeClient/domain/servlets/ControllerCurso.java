@@ -7,14 +7,15 @@ package HomeClient.domain.servlets;
 
 import Consumir.Resteasy.RestCurso;
 import HomeClient.domain.model.Curso;
+import HomeClient.domain.model.Persona;
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -61,7 +62,15 @@ public class ControllerCurso extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest
-        Listar(request, response);
+        //si es profesor
+        HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        if(usu.getRol()==2){//si es profesor
+            CursosProfesor(request,response);
+        }else{
+        //si es admin
+            Listar(request, response);
+        }
     }
 
     /**
@@ -115,6 +124,13 @@ public class ControllerCurso extends HttpServlet {
     
     private void Listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //si es profesor
+        HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        if(usu.getRol()==2){//si es profesor
+            CursosProfesor(request,response);
+        }
+        
         Gson json = new Gson();
         RestCurso restC = new RestCurso();
         Curso curso = new Curso();
@@ -194,7 +210,8 @@ public class ControllerCurso extends HttpServlet {
         Gson json = new Gson();
         RestCurso restC = new RestCurso();
         Curso curso = new Curso();
-        String nombre = request.getParameter("txtIdP");//Cambiar este 
+        String nombre="";
+        nombre = request.getParameter("txtIdP");
         ArrayList value = restC.getCursosProf(ArrayList.class, nombre);
         ArrayList<Curso> list = new ArrayList();
         for(Object pro: value){
@@ -207,6 +224,26 @@ public class ControllerCurso extends HttpServlet {
         
     }
 
+     private void CursosProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gson json = new Gson();
+        RestCurso restC = new RestCurso();
+        Curso curso = new Curso();
+        HttpSession sesion = request.getSession();
+        Persona usu=(Persona) sesion.getAttribute("usuario");
+        String idProfesor = String.valueOf(usu.getId());
+        ArrayList value = restC.CursosfindIdProf(ArrayList.class, idProfesor);
+        ArrayList<Curso> list = new ArrayList();
+        for(Object pro: value){
+            curso = json.fromJson(pro.toString(), Curso.class);
+            list.add(curso);
+        }
+        request.setAttribute("lista", list);
+        restC.close();
+        request.getRequestDispatcher("crudCurso.jsp").forward(request, response);
+     
+     
+     }
     private void mostrarCursos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Gson json = new Gson();
@@ -229,8 +266,10 @@ public class ControllerCurso extends HttpServlet {
         String idCurso=request.getParameter("txtid");
         request.setAttribute("curso",idCurso);
         
-        request.getRequestDispatcher("ControllerMateria?accion=Listado").forward(request, response);
+        request.getRequestDispatcher("ControllerMateria?accion=ListarMateriasDeCurso").forward(request, response);
         //request.getRequestDispatcher("ControllerMateria?accion=MateriasCurso").forward(request, response);
     }
+
+   
 
 }

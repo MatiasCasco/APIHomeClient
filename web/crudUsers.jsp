@@ -149,7 +149,7 @@
                     </li>                                     
                  
                 </ul>   
-                <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="POST">                           
+                <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="GET">                           
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="accion" value="Cerrar Sesion">Cerrar Sesion</button>
                 </form>   
             </div>

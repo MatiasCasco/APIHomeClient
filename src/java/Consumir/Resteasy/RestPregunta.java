@@ -20,7 +20,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author User
+ * @author HP
  */
 public class RestPregunta {
     private WebTarget webTarget;

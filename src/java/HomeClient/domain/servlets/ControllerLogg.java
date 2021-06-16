@@ -41,15 +41,32 @@ public class ControllerLogg extends HttpServlet {
         nombre = request.getParameter("username");
         pass = request.getParameter("password");
         Persona p=getUser(nombre);//busaca un usuario con el loginname
-        if (nombre.equalsIgnoreCase(p.getLoginName())) {
-            if (pass.equalsIgnoreCase(p.getPassword())) {
+        
+        //si encontro verificar el rol sea 1 Admin o 2 Profesor
+        if(p.getRol()==3){
+            request.setAttribute("error","Usuario invalido para la aplicacion" );
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }
+        if (nombre.equalsIgnoreCase(p.getLoginName())||nombre.equalsIgnoreCase(p.getEmail())) {
+            if (pass.equalsIgnoreCase(p.getPassword())) {//cambiar esto por dios!!1
                 /*ok, usuario correcto*/
-                User usu = new User(nombre, pass, "Admin");
-                HttpSession session = request.getSession();
-                //request.setAttribute("logerror", logerror);
-                session.setAttribute("usuario", usu);
-                request.setAttribute("action", "List");
-                request.getRequestDispatcher("ControllerUsuarios").forward(request, response);
+                //verificar si es profesor o Administrador
+                if(p.getRol()==1){
+                   // User usu = new User(nombre, pass, 1);
+                    HttpSession session = request.getSession();
+                    //session.setAttribute("tipo", 1);
+                    //session.setAttribute("usuario", usu);
+                    session.setAttribute("usuario", p);
+                    request.setAttribute("action", "List");
+                    request.getRequestDispatcher("ControllerUsuarios").forward(request, response);
+                }else{
+                    User usu = new User(nombre, pass, 2);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("tipo", 2);
+                    session.setAttribute("usuario", p);
+                    request.getRequestDispatcher("menuTeacher.jsp").forward(request, response);
+                    
+                }
             } else {
                 /*Pass incorrecto*/
                 //logerror= true;
@@ -79,7 +96,8 @@ public class ControllerLogg extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        CerrarSesion(request,response);
     }
 
     /**
@@ -93,8 +111,8 @@ public class ControllerLogg extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        CerrarSesion(request,response);
+        processRequest(request, response);
+        //CerrarSesion(request,response);
     }
 
     /**
@@ -114,23 +132,26 @@ public class ControllerLogg extends HttpServlet {
          Persona per=new Persona();
          for(Object pro: value){
              Persona p = json.fromJson(pro.toString(), Persona.class);
-             if(p.getRol()==1){
-                 if(p.getLoginName().equalsIgnoreCase(nombre))
-                     per=p;
-             }
-                 
-           
-           
+            if(p.getLoginName().equalsIgnoreCase(nombre)){
+                per=p;
+            }else if(p.getEmail().equalsIgnoreCase(nombre)){
+                 per=p;    
+            }
          }
          prod.close();
          return per;
          //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+     
+     
+     private void isLog(){
+     }
+     
      private void CerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
       HttpSession session = request.getSession();
-        
         session.removeAttribute("usuario");
         request.getSession().invalidate();
+        request.setAttribute("logout","SESION CERRADA" );
         request.getRequestDispatcher("Login.jsp").forward(request, response);
      }
   
