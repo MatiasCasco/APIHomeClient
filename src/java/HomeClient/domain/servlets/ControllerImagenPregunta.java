@@ -87,7 +87,7 @@ public class ControllerImagenPregunta extends HttpServlet {
         RestPregunta restP = new RestPregunta();
         Pregunta pregunta = null;
         Gson json = new Gson();
-        String preg = "\""+request.getParameter("txtPregunta")+"\"";
+        String preg = "\""+new String(request.getParameter("txtPregunta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         int id  = Integer.valueOf(request.getParameter("txtIdentificador"));
         int puntoAsignado = Integer.valueOf(request.getParameter("txtPuntoAsignado"));
         int puntoObtenido = Integer.valueOf(request.getParameter("txtPuntoObtenido"));
@@ -121,7 +121,7 @@ public class ControllerImagenPregunta extends HttpServlet {
     private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Gson json = new Gson();
         RestPregunta restP = new RestPregunta();
-        String preg = "\""+request.getParameter("txtPregunta")+"\"";
+        String preg = "\""+new String(request.getParameter("txtPregunta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         int idPregunta = Integer.valueOf(request.getParameter("txtId"));
         int idCuestionario  = Integer.valueOf(request.getParameter("txtIdentificador"));
         int puntoAsignado = Integer.valueOf(request.getParameter("txtPuntoAsignado"));
@@ -139,12 +139,13 @@ public class ControllerImagenPregunta extends HttpServlet {
             pregunta = new Pregunta(idPregunta, idCuestionario, puntoAsignado, puntoObtenido, preg);
             restP.updatePregunta(pregunta);
         }
-        restP.updatePregunta(pregunta); 
-        restP.close();
         String idC=request.getParameter("Cuestionario");
         request.setAttribute("idC",idC);
-        this.MostrarPreguntas(request, response);
-//request.getRequestDispatcher("ControllerImagenPregunta?accion=Ver Preguntas").forward(request, response);  
+        restP.updatePregunta(pregunta); 
+        restP.close(); 
+        request.getRequestDispatcher("ControllerImagenPregunta?accion=ListarP").forward(request, response);
+        //this.MostrarPreguntas(request, response);
+//++++request.getRequestDispatcher("ControllerImagenPregunta?accion=Ver Preguntas").forward(request, response);  
                 
         //request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
         

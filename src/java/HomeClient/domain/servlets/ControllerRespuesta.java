@@ -146,7 +146,7 @@ public class ControllerRespuesta extends HttpServlet {
         RestRespuesta restR = new RestRespuesta();
         Respuesta respuesta = null;
         Gson json = new Gson();
-        String resp = "\""+request.getParameter("txtRespuesta")+"\"";
+        String resp = "\""+new String(request.getParameter("txtRespuesta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         int idPregunta  = Integer.valueOf(request.getParameter("pregunta"));
        
         String valor = request.getParameter("Bool");
@@ -182,7 +182,7 @@ public class ControllerRespuesta extends HttpServlet {
         int idCuestionario  = Integer.valueOf(request.getParameter("txtIdC"));
         int idPregunta = Integer.valueOf(request.getParameter("pregunta"));
         int idRta = Integer.valueOf(request.getParameter("txtIdRta"));
-        String resp = "\""+request.getParameter("txtRespuesta")+"\"";
+        String resp = "\""+new String(request.getParameter("txtRespuesta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         String valor = request.getParameter("Bool");
         Boolean Bool = false; 
         if(valor != null){

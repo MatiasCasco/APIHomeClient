@@ -78,8 +78,10 @@ public class Imagen extends HttpServlet {
                  out.close();
                  
             
-            } else {//C:\Users\HP\Documents\NetBeansProjects\Cliente terminado+css\APIHomeClient\web\img
-                File file = new File("C:\\Users\\HP\\Documents\\NetBeansProjects\\img\\DefaultImage.png");
+            } else {
+                //"C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\web\\imgDefaultImage.png"
+                //C:\\Users\\HP\\Documents\\NetBeansProjects\\img\\DefaultImage.png
+                File file = new File("C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\web\\img\\DefaultImage.png");
                 InputStream inputStream = new FileInputStream(file);        
                 byte[] bytes = IOUtils.toByteArray(inputStream);
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
