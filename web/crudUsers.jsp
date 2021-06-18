@@ -65,7 +65,8 @@
                 $("#idCurso").hide();
                 $('select#rol').on('change',function(){
                     var valor= $(this).val();
-                    if (valor==="3") {
+                    ///////////////////////////////////////////////////////////// aca cambio 3 por 4
+                    if (valor==="4") {
                         $("#idCurso").show();
                     } else {
                          $("#idCurso").hide();
@@ -264,7 +265,7 @@
                                         <div class="col-lg-9">
                                             <select name = "rol" id="rol" >
                                                 <option value="2">Profesor</option>
-                                                <option value="3">Alumno</option>
+                                                <option value="4">Alumno</option> <%-- aca cambo 3 por 4--%>
                                                 <option value="1">Administrador</option>
                                             </select>
                                         </div>

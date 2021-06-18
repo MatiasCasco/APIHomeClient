@@ -178,7 +178,7 @@ public class ControllerUsuarios extends HttpServlet {
             int id=1;//Integer.parseInt(request.getParameter("id"));
             int rol=Integer.parseInt(request.getParameter("rol"));
             int idCurso;
-            if(rol==3)
+            if(rol==4)
                 idCurso=Integer.parseInt(request.getParameter("idCurso"));
             else
                  idCurso=0;
@@ -193,7 +193,9 @@ public class ControllerUsuarios extends HttpServlet {
                 case 3:
                     descripcion="Alumno";
                     break;                 
-                        
+                case 4:
+                    descripcion="Alumno";
+                    break;  
             }
             //--------instanciamos un objeto persona para insertar----------------------------------
             //  public Persona(String nombre, String apellido, String email, int rol, String descripcion, String password, Integer id, String loginName,Integer idCurso) {

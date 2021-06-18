@@ -14,7 +14,16 @@ public class Persona {
     private String descripcion;
     private String password;
     private Integer idCurso;
+    private String passwordOld;
+    private String NombreCurso;
+    
+    public String getPasswordOld() {
+        return passwordOld;
+    }
 
+    public void setPasswordOld(String passwordOld) {
+        this.passwordOld = passwordOld;
+    }
     public String getNombreCurso() {
         return NombreCurso;
     }
@@ -22,7 +31,7 @@ public class Persona {
     public void setNombreCurso(String NombreCurso) {
         this.NombreCurso = NombreCurso;
     }
-    private String NombreCurso;
+    
 
     /**
      *
@@ -78,13 +87,7 @@ public class Persona {
         this.idCurso = idCurso;
     }
 
-  
 
-   
-            
- 
-      
-   
    
 //////Getters
 
@@ -180,6 +183,6 @@ public class Persona {
                 .append(", descripcion: ").append(descripcion)
                 .append(", passwd: ").append(password)
                 .append(", loginName: ").append(loginName)
-                .append(",idCurso").append(idCurso).append("}").toString();
+                .append(", idCurso:").append(idCurso).append("}").toString();
     }
 }
