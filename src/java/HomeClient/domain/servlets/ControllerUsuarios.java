@@ -126,7 +126,10 @@ public class ControllerUsuarios extends HttpServlet {
                     break;
                 case 3:
                     descripcion="Alumno";
-                    break;                 
+                    break;
+                case 4:
+                    descripcion="Alumno";
+                    break;   
                         
             }
             //--------instanciamos un objeto persona para insertar----------------------------------
