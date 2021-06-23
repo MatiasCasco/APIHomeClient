@@ -20,7 +20,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author HP
+ * @author User
  */
 public class RestCurso {
     private WebTarget webTarget;
@@ -70,8 +70,20 @@ public class RestCurso {
         return webTarget.path("cursos").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
     }
 
+    public <T> T getAlumnosCurso(Class<T> responseType, String NameCurso) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("alumnos/{0}", new Object[]{NameCurso}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public void removeCurso(String id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("cursos/{0}", new Object[]{id})).request().delete();
+    }
+
+    public <T> T getResumenCurso(Class<T> responseType, String idCurso, String inicio, String cierre) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("resumen/{0}/inicio/{1}/cierre/{2}", new Object[]{idCurso, inicio, cierre}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void close() {

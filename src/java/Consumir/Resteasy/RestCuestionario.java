@@ -20,7 +20,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author HP
+ * @author User
  */
 public class RestCuestionario {
     private WebTarget webTarget;
@@ -34,6 +34,30 @@ public class RestCuestionario {
 
     public <T> T addCuestionario(Object requestEntity, Class<T> responseType) throws ClientErrorException {
         return webTarget.path("cuestionario").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
+    }
+
+    public <T> T getBYAlumnoAndMateria(Class<T> responseType, String alumno, String materia) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("alumno/{0}/materia/{1}", new Object[]{alumno, materia}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getCuestionarioAlumnos(Class<T> responseType, String id) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("alumnos/{0}", new Object[]{id}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getCuestionariosOfCursoAndMateriaApp(Class<T> responseType, String curso, String materia) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("curso/{0}/materia/{1}", new Object[]{curso, materia}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getCuestionariosOFmateria(Class<T> responseType, String materia) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("cuestionariosOFmateria/{0}", new Object[]{materia}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void updateCuestionario(Object requestEntity) throws ClientErrorException {
@@ -50,12 +74,6 @@ public class RestCuestionario {
         webTarget.path(java.text.MessageFormat.format("cuestionario/{0}", new Object[]{id})).request().delete();
     }
 
-    public <T> T getBYAlumnoAndMateria(Class<T> responseType, String alumno, String materia) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("alumno/{0}/materia/{1}", new Object[]{alumno, materia}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
     public <T> T getCuestionarios(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("cuestionarios");
@@ -68,15 +86,9 @@ public class RestCuestionario {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T getCuestionariosOfCursoAndMateriaApp(Class<T> responseType, String curso, String materia) throws ClientErrorException {
+    public <T> T getResumenTest(Class<T> responseType, String idCuestionario) throws ClientErrorException {
         WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("curso/{0}/materia/{1}", new Object[]{curso, materia}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T getCuestionariosOFmateria(Class<T> responseType, String materia) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("cuestionariosOFmateria/{0}", new Object[]{materia}));
+        resource = resource.path(java.text.MessageFormat.format("resumen/{0}", new Object[]{idCuestionario}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

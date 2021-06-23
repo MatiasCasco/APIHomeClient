@@ -20,7 +20,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author HP
+ * @author User
  */
 public class RestPregunta {
     private WebTarget webTarget;
@@ -64,6 +64,12 @@ public class RestPregunta {
 
     public <T> T addPregunta(Object requestEntity, Class<T> responseType) throws ClientErrorException {
         return webTarget.path("pregunta").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
+    }
+
+    public <T> T getEstadisticas(Class<T> responseType, String idCuestionario) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("estadisticas/{0}", new Object[]{idCuestionario}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public void close() {
