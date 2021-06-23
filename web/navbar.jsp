@@ -50,7 +50,7 @@
              if(tipo==2){//si es profesor
          %>
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark"> 
-            <a class="navbar-brand" href="menuTeacher.jsp">Home Resident Teacher</a>
+            <a class="navbar-brand" href="ControllerMenuProfesor">Home Resident Teacher</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>            

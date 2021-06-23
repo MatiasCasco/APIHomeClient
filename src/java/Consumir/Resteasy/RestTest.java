@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -33,6 +33,16 @@ public class RestTest {
 
     public String addCuestionario(String Cuestionario, String Alumno, String Puntaje) throws ClientErrorException {
         return webTarget.path(java.text.MessageFormat.format("cuestionario/{0}/alumno/{1}/puntos/{2}", new Object[]{Cuestionario, Alumno, Puntaje})).request().post(null, String.class);
+    }
+
+    public void updatePuntaje(String idPregunta, String idAlumno, String Puntaje) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("pregunta/{0}/alumno/{1}/puntos/{2}", new Object[]{idPregunta, idAlumno, Puntaje})).request().put(null);
+    }
+
+    public <T> T getWebTest(Class<T> responseType, String Cuestionario) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("webtest/{0}", new Object[]{Cuestionario}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public String addPregunta(String Pregunta, String Alumno, String Puntaje) throws ClientErrorException {

@@ -50,10 +50,20 @@
               </div>
               <div class="card-body">                     
                   <form class="form" action="ControllerCuestionario" id="ControllerCuestionario" method="POST" onsubmit="return validarFecha();">
-                      <%Gson json = new Gson();
+                      <%
+                      Gson json = new Gson();
                       RestMateria restMateria = new RestMateria();
                       ArrayList<Materia> lista2 = new ArrayList();
-                      ArrayList valueM = restMateria.getMaterias(ArrayList.class);
+                      //HttpSession son = request.getSession();
+                      ArrayList valueM; 
+                      Persona us=(Persona) sesion.getAttribute("usuario");
+                      if(us.getRol()==2){
+                          String idProfesor = String.valueOf(us.getId());
+                          valueM = restMateria.getMateriasProfesor(ArrayList.class,idProfesor);
+                          
+                      }else{
+                          valueM = restMateria.getMaterias(ArrayList.class);
+                      }
                       for(Object pro: valueM){
                           Materia materias = json.fromJson(pro.toString(), Materia.class);
                           lista2.add(materias);                   
@@ -64,7 +74,7 @@
                                 <select name="materia" class="custom-select" required>
                                 <option value="" selected disabled>Agregar Materia</option>
                                 <%for(Materia elemento: lista2){%>               
-                                <option value="<%=elemento.getIdMateria()%>"><%=elemento.getNombre()%></option>
+                                <option value="<%=elemento.getIdMateria()%>"><%=elemento.getNombreCurso()%> - <%=elemento.getNombre()%></option>
                                 <%}%>
                                 </select>
                           </div>
@@ -82,9 +92,8 @@
                            </div>
                        </div>
                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">Puntos</label>
                            <div class="col-lg-9">
-                               <input  name="txtPuntos" class="form-control" type="number" value=0 required autofocus >
+                               <input  name="txtPuntos" class="form-control" type="hidden" value=0>
                            </div>
                        </div>
                        <div class="form-group row">

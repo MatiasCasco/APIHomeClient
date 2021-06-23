@@ -23,8 +23,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-       
-       
+
+
          <%-- Grafico 1
         <div id="grafica"></div>   
        
@@ -57,7 +57,6 @@
 <div id="container" style="with: 100%;"></div>
  <script>
              
-
 // Create the chart
 Highcharts.chart('container', {
     chart: {
@@ -69,7 +68,6 @@ Highcharts.chart('container', {
     subtitle: {
         text: ''
     },
-
     accessibility: {
         announceNewData: {
             enabled: true
@@ -78,7 +76,6 @@ Highcharts.chart('container', {
             valueSuffix: '%'
         }
     },
-
     plotOptions: {
         series: {
             dataLabels: {
@@ -87,12 +84,10 @@ Highcharts.chart('container', {
             }
         }
     },
-
     tooltip: {
         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
         pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b>  Total<br/>'
     },
-
     series: [
         {
             name: "Materia",
@@ -102,8 +97,6 @@ Highcharts.chart('container', {
     ],
 });
               
-
-
          </script>
     </body>
 </html>

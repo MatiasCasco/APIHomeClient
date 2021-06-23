@@ -44,9 +44,21 @@ public class RestPuntuaciones {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
+    public <T> T getPuntuacionesCuestionario(Class<T> responseType, String idCuestionario) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("puntuaciones/{0}", new Object[]{idCuestionario}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public <T> T getRanking(Class<T> responseType, String idCuestionario) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("ranking/{0}", new Object[]{idCuestionario}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public <T> T getRankingGlobalById(Class<T> responseType, String idCurso, String idMateria) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("rankingGlobal/idcurso/{0}/idmateria/{1}", new Object[]{idCurso, idMateria}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

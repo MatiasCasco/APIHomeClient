@@ -64,7 +64,7 @@ public class ControllerLogg extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("tipo", 2);
                     session.setAttribute("usuario", p);
-                    request.getRequestDispatcher("menuTeacher.jsp").forward(request, response);
+                    request.getRequestDispatcher("ControllerMenuProfesor?accion=verMenu").forward(request, response);
                     
                 }
             } else {

@@ -66,7 +66,7 @@ public class EstadisticaPregunta {
     public void setIncorrecta(int incorrecta) {
         this.incorrecta = incorrecta;
     }
-    
+
     @Override
     public String toString() {
        // puntoAsignado=" + puntoAsignado + ", pregunta=" + pregunta + '}';

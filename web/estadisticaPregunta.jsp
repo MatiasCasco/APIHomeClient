@@ -21,7 +21,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+
         <% 
             int idCuestionario = 77;
             String name = " ";

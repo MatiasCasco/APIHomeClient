@@ -39,7 +39,6 @@
                 subtitle: {
                     text: 'Cantidad de alumnos con un porcentaje de puntos mayor 70% y menor a 70%'
                 },
-
                 accessibility: {
                     announceNewData: {
                         enabled: true
@@ -48,7 +47,6 @@
                         valueSuffix: '%'
                     }
                 },
-
                 plotOptions: {
                     series: {
                         dataLabels: {
@@ -57,12 +55,10 @@
                         }
                     }
                 },
-
                 tooltip: {
                     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                     pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> alumnos en total<br/>'
                 },
-
                 series: [
                     {
                         name: "Materia",

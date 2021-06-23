@@ -37,6 +37,10 @@ public class PersonaCliente {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
+    public <T> T updatePassword(Object requestEntity, Class<T> responseType) throws ClientErrorException {
+        return webTarget.path("password").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
+    }
+
     public <T> T getProfesores(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("profesores");
@@ -49,6 +53,10 @@ public class PersonaCliente {
 
     public void updatePersona(Object requestEntity) throws ClientErrorException {
         webTarget.path("persona").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public <T> T isLog(Object requestEntity, Class<T> responseType) throws ClientErrorException {
+        return webTarget.path("log").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
     }
 
     public <T> T getPersonas(Class<T> responseType) throws ClientErrorException {

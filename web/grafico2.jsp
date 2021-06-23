@@ -21,7 +21,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-       
+
         <% 
         int idCuestionario = 77;    
         Gson json = new Gson();
@@ -31,7 +31,7 @@
         RestCurso restC = new RestCurso();
         int alumnos = restC.getAlumnosCurso(int.class, "PrimeroTT");
         %>
-       
+
         <div id="container" style="with: 100%;"></div>
         <script>
                 // Create the chart
@@ -45,7 +45,6 @@
                     subtitle: {
                         text: 'En el curso existen <%=alumnos%> Alumnos'
                     },
-
                     accessibility: {
                         announceNewData: {
                             enabled: true
@@ -54,7 +53,6 @@
                             valueSuffix: '%'
                         }
                     },
-
                     plotOptions: {
                         series: {
                             dataLabels: {
@@ -63,12 +61,10 @@
                             }
                         }
                     },
-
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                         pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b>  Total<br/>'
                     },
-
                     series: [
                         {
                             name: "Cuestionario",

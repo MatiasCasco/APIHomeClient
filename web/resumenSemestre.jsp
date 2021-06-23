@@ -22,7 +22,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-       
+
         <%    
             int semestre = 2;
             int idCurso = 1;

@@ -32,6 +32,14 @@
         <servlet-name>ControllerUsuarios</servlet-name>
         <servlet-class>HomeClient.domain.servlets.ControllerUsuarios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControllerMenuProfesor</servlet-name>
+        <servlet-class>HomeClient.domain.servlets.ControllerMenuProfesor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControllerRanking</servlet-name>
+        <servlet-class>HomeClient.domain.servlets.ControllerRanking</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Imagen</servlet-name>
         <url-pattern>/Imagen</url-pattern>
@@ -64,11 +72,18 @@
         <servlet-name>ControllerUsuarios</servlet-name>
         <url-pattern>/ControllerUsuarios</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerMenuProfesor</servlet-name>
+        <url-pattern>/ControllerMenuProfesor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerRanking</servlet-name>
+        <url-pattern>/ControllerRanking</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
-        
     </session-config>
     <welcome-file-list>
         <welcome-file>Login.jsp</welcome-file>

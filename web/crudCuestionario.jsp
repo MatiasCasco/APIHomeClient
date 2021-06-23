@@ -65,10 +65,10 @@
                                     <table id="userList" class="table table-bordered table-hover table-striped">
 				    <thead class="thead-light">
 				    <tr>
-                                        <th scope="col">Id Cuestionario</th>
+                                        <th scope="col">Id</th>
                                         <th scope="col">NOMBRE MATERIA</th>
                                         <th scope="col">FECHA INICIO</th>
-                                        <th scope="col">FECHA FIN</th>
+                                        <th scope="col">FECHA FIN </th>
                                         <th scope="col">PUNTOS</th>
                                         <th scope="col">TIEMPO LIMITE</th>
                                         <th scope="col">CURSO</th>

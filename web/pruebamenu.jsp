@@ -34,16 +34,66 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
         <script type="text/javascript">
+             function barWidth() {
+                    var barWidth = $('.progress-bar').width();
+                    $('.progress-fill-text').css('width',barWidth);
+                }
+                barWidth();
+                window.onresize = function() {
+                    barWidth();
+                }
+            </script>
+            <script type="text/javascript">    
 	    $(document).ready(function() {
 	        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
 	        $('#userList').DataTable();
-                
+               
 	    } );
 	</script>
+        <style type="text/css">
+            .progress {
+                position: relative;
+                display: flex;
+                height: 20px;
+                border: 1px solid #566573;
+                border-radius: 8px;
+                font-size: 18px;
+                font-family: Courier, monospace;
+                overflow: hidden;
+              }
+              
+              .back {
+                  position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: white;
+                color: black;
+                clip-path: inset(0 0 0 50%);
+                -webkit-clip-path: inset(0 0 0 50%);
+                transition: clip-path 1s linear;
+               
+              }
+              .front {
+                
+                 display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                background: #5D6D7E;
+                color: white;
+            }
+        </style>
 
 	
     </head>
     <body>
+        
+        
          
        <!--cabecera narvar-->
          <!--===================BARRA DE NAVEGACION=======================-->
@@ -92,6 +142,23 @@
         </nav>
       <!-- -->
  
+      
+      
+      
+      
+      
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
  <!--Navbar-->
         <h1>Hello World!</h1>
          <!--botones-->
@@ -104,26 +171,218 @@
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
          
-         
-         
-         
+          <CENTER>
+          <div class="jumbotron">  
+        
+            <div class="container">
+            <div class="mx-auto col-sm-18 main-section" id="myTab" role="tablist">
+                <ul class="nav nav-tabs justify-content-end">
+			<li class="nav-item">
+                            <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Calificaciones</a>
+			</li>
+		
+		</ul>
+                <div class="tab-content" id="myTabContent">
+                    <!--Lista de usuarios-->
+                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Matematicas</h4>
+			    </div>
+                             
+
+                            <div class="card-body">
+                               <div class="table-responsive">
+                                <table id="userList" class="table table-bordered table-hover table-striped">
+				    <thead class="thead-light">
+				    <tr>
+                                        <th scope="col" > Nombre Apellido </th>
+                                        <th scope="col">       Puntaje Obtenido / Puntaje Total </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>                                      
+                                        <tr>
+                                            <td>1 Sofia Servin</td>
+                                            
+                                            <td>
+                                                <div class="progress">
+                                                   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style=" width: 90%; "  aria-valuenow="10" aria-valuemin="-100" aria-valuemax="100">300/300</div>
+                                                   
+                                                </div>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                            <td>1 Sofia Servin</td>
+                                            
+                                            <td>
+                                                <div class="progress">
+                                                   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 10%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                       
+                                                   </div>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                            <td>2 Sara Servin</td>
+                                            
+                                            <td>
+                                                <div class="progress">
+                                                <div class="back" >progress 100%</div>
+                                                <div class="front" >progress 100%</div>
+                                              </div>
+                                                
+                                             </td>
+                                          </tr>
+                                       
+                                    </tbody>
+                                 </table>
+                             </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+		</div>
+	    </div>
+        </div>
+        </div>   
+      </center>
+
+         <table>
+				    
+				    <tr>
+                                        <th scope="col">NOMBRE ALUMNO</th>
+                                        <th scope="col">Puntos totales/Puntos obtenidos</th>
+                                    </tr>
+                                   
+                                    <tbody>
+                                        <tr>
+                                        <td> Sofia Delgado</td>
+                                        <td>
+                                           <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                         </tr>
+                                         <tr>
+                                        <td> Sara Delgado</td>
+                                        <td>
+                                          <div class="progress">
+                                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                           </div>  
+                                        </td>
+                                         </tr>
+                                        <!-- c:forEach var="dato" items="$ {lista}">
+                                                <tr>
+                                                    <td>$ {dato.nombre} $ {dato.apellido}</td>
+                                                    <td>$ {dato.puntosMateria}</td>
+                                                    <td>$ {dato.puntosObtenidos}</td>
+                                                   
+                                               
+                                        <!--/c:forEach-->   
+                                    </tbody>
+                                 </table>
+    
+    
+    
          barras de progresso
          <div class="progress">
-  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+         </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
    
+         
+         
+         
+         
+          <div class="table-responsive">
+                 <table id="userList" class="table table-bordered table-hover table-striped">
+				    <thead class="thead-light">
+				    <tr>
+                                        <th scope="col">Nombre Apellido</th>
+                                        
+                                        <th scope="col">ACCIONES</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>                                      
+                                        <tr>
+                                            <td>Sofia Servin</td>
+                                            
+                                            <td>
+                                                <div class="progress">
+                                                   <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">300/300</div>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                            <td>Sara Servin</td>
+                                            
+                                            <td>
+                                                <div class="progress">
+                                                   <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 50%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">150/300</div>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                       
+                                    </tbody>
+                                 </table>
+          </div>
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+          <td>
+                                                
+                                                <!-- Default checked disabled -->
+                                                <div class="custom-control custom-radio">
+                                                  <input type="radio" class="custom-control-input" id="defaultCheckedDisabled2" name="disabledGroupExample" checked disabled>
+                                                  <label class="custom-control-label" for="defaultCheckedDisabled2">Perro</label>
+                                                </div>
+                                                <!-- Default checked disabled -->
+                                                <div class="custom-control custom-radio">
+                                                  <input type="radio" class="custom-control-input" id="defaultCheckedDisabled1" name="disabledGroupExamples" checked disabled>
+                                                  <label class="custom-control-label" for="defaultCheckedDisabled2">Jagua</label>
+                                                </div>
+                                                    
+                                                 <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" disabled>
+                                                        <label class="form-check-label" for="exampleRadios2">
+                                                          Mbarakaja
+                                                        </label>
+                                                  </div>
+                                                  <div class="form-check disabled">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
+                                                        <label class="form-check-label" for="exampleRadios3">
+                                                          ynambu
+                                                        </label>
+                                                  </div>
+                                                </td>
+         
+         
    
     </body>
 </html>

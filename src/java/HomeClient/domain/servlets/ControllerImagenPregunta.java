@@ -75,6 +75,8 @@ public class ControllerImagenPregunta extends HttpServlet {
                 this.MostrarPreguntas(request, response);
             }
             if(accion.equalsIgnoreCase("Ver Respuestas")){
+                String idC=request.getParameter("Cuestionario");
+                request.setAttribute("idC", idC);
                 request.getRequestDispatcher("ControllerRespuesta?accion=RespuestasdePregunta").forward(request, response);
             }
 // referencia por default el servlet y la accion
@@ -87,6 +89,7 @@ public class ControllerImagenPregunta extends HttpServlet {
         RestPregunta restP = new RestPregunta();
         Pregunta pregunta = null;
         Gson json = new Gson();
+        //String preg = "\""+request.getParameter("txtPregunta")+"\"";
         String preg = "\""+new String(request.getParameter("txtPregunta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         int id  = Integer.valueOf(request.getParameter("txtIdentificador"));
         int puntoAsignado = Integer.valueOf(request.getParameter("txtPuntoAsignado"));
@@ -99,7 +102,9 @@ public class ControllerImagenPregunta extends HttpServlet {
         request.setAttribute("idC", request.getParameter("Cuestionario"));
         restP.addPregunta(pregunta, Pregunta.class); 
         restP.close();
-        request.getRequestDispatcher("ControllerImagenPregunta?accion=ListarP").forward(request, response);      
+        
+        this.MostrarPreguntas(request, response);
+        //request.getRequestDispatcher("ControllerImagenPregunta?accion=ListarP").forward(request, response);      
     }
 
     private void mostrarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -121,6 +126,7 @@ public class ControllerImagenPregunta extends HttpServlet {
     private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Gson json = new Gson();
         RestPregunta restP = new RestPregunta();
+        //String preg = "\""+request.getParameter("txtPregunta")+"\"";
         String preg = "\""+new String(request.getParameter("txtPregunta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         int idPregunta = Integer.valueOf(request.getParameter("txtId"));
         int idCuestionario  = Integer.valueOf(request.getParameter("txtIdentificador"));
@@ -139,15 +145,13 @@ public class ControllerImagenPregunta extends HttpServlet {
             pregunta = new Pregunta(idPregunta, idCuestionario, puntoAsignado, puntoObtenido, preg);
             restP.updatePregunta(pregunta);
         }
+        restP.updatePregunta(pregunta); 
+        restP.close();
         String idC=request.getParameter("Cuestionario");
         request.setAttribute("idC",idC);
-        restP.updatePregunta(pregunta); 
-        restP.close(); 
-        request.getRequestDispatcher("ControllerImagenPregunta?accion=ListarP").forward(request, response);
-        //this.MostrarPreguntas(request, response);
-//++++request.getRequestDispatcher("ControllerImagenPregunta?accion=Ver Preguntas").forward(request, response);  
-                
-        //request.getRequestDispatcher("ControllerImagenPregunta?accion=Listar").forward(request, response);
+        this.MostrarPreguntas(request, response);
+         //a matias le anda a mi no
+       // request.getRequestDispatcher("ControllerImagenPregunta?accion=ListarP").forward(request, response);
         
     }
 
@@ -185,6 +189,8 @@ public class ControllerImagenPregunta extends HttpServlet {
         restP.removePregunta(request.getParameter("txtIdP"));
         request.setAttribute("idC", request.getParameter("Cuestionario"));
         restP.close();
+        
+        //this.MostrarPreguntas(request, response);
         request.getRequestDispatcher("ControllerImagenPregunta?accion=ListarP").forward(request, response);
        
     } 
@@ -208,9 +214,9 @@ public class ControllerImagenPregunta extends HttpServlet {
             pregunta = json.fromJson(pro.toString(), Pregunta.class);
             list.add(pregunta);
         }
-        String idCuestionario= request.getParameter("txtidCuestionario");
+        //String idCuestionario= request.getParameter("txtidCuestionario");
         request.setAttribute("lista", list);
-        request.setAttribute("idC", idCuestionario);
+        request.setAttribute("idC", idC);
         restP.close();
         request.getRequestDispatcher("indexPregunta.jsp").forward(request, response);
         

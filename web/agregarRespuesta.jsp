@@ -20,14 +20,16 @@
     </head>
     <body>
         <%  
-            Gson json = new Gson();
+             Gson json = new Gson();
             RestPregunta restPregunta = new RestPregunta();
             ArrayList<Pregunta> lista = new ArrayList();
-            ArrayList value = restPregunta.getPreguntas(ArrayList.class);
+            String idC=(String) request.getAttribute("idC");
+            ArrayList value = restPregunta.getPreguntasCuestionario(ArrayList.class,idC);
             for(Object pro: value){
                 Pregunta pregunta = json.fromJson(pro.toString(), Pregunta.class);
                 lista.add(new Pregunta(pregunta.getIdPregunta(), pregunta.getIdCuestionario(), pregunta.getPuntoAsignado(), pregunta.getPuntoObtenido(), pregunta.getPregunta()));                   
             }
+            restPregunta.close();
         %> 
          <!--===================BARRA DE NAVEGACION=======================-->
        <%@include file="navbar.jsp" %>    

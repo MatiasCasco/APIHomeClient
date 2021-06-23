@@ -48,7 +48,7 @@ public class resumenEstructura {
     public void setData(List data) {
         this.data = data;
     }
-    
+
     @Override
     public String toString() {
         return new StringBuilder("{type: ").append(type)

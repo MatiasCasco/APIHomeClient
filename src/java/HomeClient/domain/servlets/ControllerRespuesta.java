@@ -48,6 +48,7 @@ public class ControllerRespuesta extends HttpServlet {
         String accion = request.getParameter("accion");
         String pregunta = request.getParameter("txtIdP");
         String cuestionario = request.getParameter("txtIdC");
+        String idCu=request.getParameter("idC");
         switch (accion){
             case "RespuestasdePregunta":
                 this.ListarRespuestaP(request, response);
@@ -68,6 +69,8 @@ public class ControllerRespuesta extends HttpServlet {
             case "Listado":
                 this.Listar(request, response);
             case "Nuevo":
+                String idC=request.getParameter("idC");
+                request.setAttribute("idC",idC );
                 String idPregunta= request.getParameter("idP");
                 request.setAttribute("idP", idPregunta);
                 request.getRequestDispatcher("agregarRespuesta.jsp").forward(request, response);
@@ -117,6 +120,7 @@ public class ControllerRespuesta extends HttpServlet {
             respuesta = json.fromJson(pro.toString(), Respuesta.class);
             list.add(respuesta);
         }
+        request.setAttribute("idC", (String)request.getAttribute("idC"));
         request.setAttribute("lista", list);
         request.setAttribute("IdP", IdP);
         
@@ -146,7 +150,8 @@ public class ControllerRespuesta extends HttpServlet {
         RestRespuesta restR = new RestRespuesta();
         Respuesta respuesta = null;
         Gson json = new Gson();
-        String resp = "\""+new String(request.getParameter("txtRespuesta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
+        //String resp = "\""+request.getParameter("txtRespuesta")+"\"";
+         String resp = "\""+new String(request.getParameter("txtRespuesta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         int idPregunta  = Integer.valueOf(request.getParameter("pregunta"));
        
         String valor = request.getParameter("Bool");
@@ -182,6 +187,7 @@ public class ControllerRespuesta extends HttpServlet {
         int idCuestionario  = Integer.valueOf(request.getParameter("txtIdC"));
         int idPregunta = Integer.valueOf(request.getParameter("pregunta"));
         int idRta = Integer.valueOf(request.getParameter("txtIdRta"));
+        //String resp = "\""+request.getParameter("txtRespuesta")+"\"";
         String resp = "\""+new String(request.getParameter("txtRespuesta").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         String valor = request.getParameter("Bool");
         Boolean Bool = false; 

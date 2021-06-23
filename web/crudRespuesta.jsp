@@ -48,13 +48,14 @@
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                         <div class="card">
                             <div class="card-header">
-                                <h4> #${IdP} Lista de Respuestas: </h4>
-                                <form class="form-inline " action="ControllerRespuesta" method="POST">
-                                    <span class="navbar-text active" ><b>Filtro de busqueda</b></span> 
-                                    <input class="form-control mr-sm-2" placeholder="Identificador de la pregunta" type="text" name="txtIdP">
+                                <h4> #${IdP} Lista de Respuestas:  </h4>
+                                <form class="form-inline float-right" action="ControllerRespuesta" method="POST">
+                                    <span class="navbar-text active" ><b>Agregar mas Respuestas:  </b></span> 
+                                    <!--input class="form-control mr-sm-2" placeholder="Identificador de la pregunta" type="text" name="txtIdP">
                                     <input class="form-control mr-sm-2" placeholder="Identificador del cuestionario" type="text" name="txtIdC">
-                                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="accion" value="Listar">
-                                    <input type="hidden" name="idP" value=${IdP}> 
+                                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="accion" value="Listar"-->
+                                    <input type="hidden" name="idP" value=${IdP} >
+                                    <input type="hidden" name="idC" value=${idC} > 
                                     <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="accion" value="Nuevo">
                                 </form>
 			    </div>
