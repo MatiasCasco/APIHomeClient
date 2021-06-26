@@ -19,7 +19,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author HP
+ * @author User
  */
 public class RestTest {
     private WebTarget webTarget;
@@ -29,6 +29,12 @@ public class RestTest {
     public RestTest() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("testApi");
+    }
+
+    public <T> T getReporte(Class<T> responseType, String Cuestionario) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("reporte/{0}", new Object[]{Cuestionario}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
     public String addCuestionario(String Cuestionario, String Alumno, String Puntaje) throws ClientErrorException {
