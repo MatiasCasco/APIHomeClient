@@ -19,7 +19,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author User
+ * @author HP
  */
 public class RestTest {
     private WebTarget webTarget;

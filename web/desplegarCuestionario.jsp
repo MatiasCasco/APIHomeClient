@@ -31,20 +31,21 @@
                 
                
             <div class="mx-auto col-sm-15 main-section" id="myTab" role="tablist">
-                <ul class="nav nav-tabs justify-content-end">
-			<li class="nav-item">
-                            <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Cuestionarios</a>
-			</li>
-			
-		</ul>
+                
                 <div class="tab-content" id="myTabContent">
-                    <!--Lista de Cuestionarios-->
+                    
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                         <div class="card">
+                             <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="ControllerMenuProfesor">Home</a></li>
+                                      <li class="breadcrumb-item"><a href="ControllerRanking?accion=mostrarMaterias&idC=${idC}&nombreCurso=${nombreCurso}">${nombreCurso}/Materias</a></li>
+                                       <li class="breadcrumb-item"><a href="ControllerRanking?accion=MostrarCuestionarios&idCurso=${idC}&nombreCurso=${nombreCurso}&idMateria=${idMateria}&Materia=${Materia}">${Materia}/Puntuaciones por Cuestionario</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">Puntajes</li>
+                            </ol>
                             <div class="card-header">
-                                <h4>Cuestionarios: ${idAlumno} </h4>
-                                
-			    </div>
+                                <h4><b>Nombre:</b> ${nombre}</h4>
+                                <h5><b>Puntaje Total:</b> ${puntajeT} <b>Puntaje Obtenido:</b> ${puntaje}</h5>
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="userListh" class="table table-bordered table-hover table-striped">

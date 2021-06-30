@@ -32,6 +32,12 @@
                     <!--Lista de usuarios-->
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                         <div class="card">
+                            <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="ControllerMenuProfesor">Home</a></li>
+                                      <li class="breadcrumb-item"><a href="ControllerRanking?accion=mostrarMaterias&idC=${idC}&nombreCurso=${nombreCurso}">${nombreCurso}/Materias</a></li>
+                                       <li class="breadcrumb-item"><a href="ControllerRanking?accion=MostrarCuestionarios&idCurso=${idC}&nombreCurso=${nombreCurso}&idMateria=${idMateria}&Materia=${Materia}">${Materia}/Puntuaciones por Cuestionario</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">Puntajes</li>
+                            </ol>
                             <div class="card-header">
                                 <h4>${materia}</h4>
 			    </div>
@@ -53,7 +59,7 @@
                                                 <tr>
                                                     <th scope="col"><%= i %></th>
                                                     <td> ${dato.nombre} ${dato.apellido}</td>
-                                                    <td scope="row"> <a href="ControllerRanking?accion=verRespuesta&idCuestionario=${idC}&idAlumno=${dato.id}"> ${dato.puntos} </a> </td>
+                                                    <td scope="row"> <a href="ControllerRanking?accion=verRespuesta&idCuestionario=${idCuestionario}&idAlumno=${dato.id}&nombre=${dato.nombre}&apellido=${dato.apellido}&puntosObtenido=${dato.puntos}&puntoTotal=${PuntajeT}"> ${dato.puntos} </a> </td>
                                                     <td>
                                                         <div class="progress">
                                                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${dato.puntosObtenido}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> ${dato.puntosObtenido} %</div>

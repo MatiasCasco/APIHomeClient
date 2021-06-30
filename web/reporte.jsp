@@ -57,7 +57,6 @@
                 viewer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
                 viewer.setVisible(true); //Se vizualiza el reporte
             } catch (JRException ex) {
-
             }
         /* Funciona bien este web
         JasperReport reporte; 
@@ -73,7 +72,6 @@
             outs.flush();
             outs.close();
          } catch (JRException ex) {
-
             }*/
         %>
         <h1>Hello World! <%=list%></h1>

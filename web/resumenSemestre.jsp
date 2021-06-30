@@ -20,12 +20,12 @@
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
         <title>JSP Page</title>
-    </head>
+       
     <body>
 
         <%    
             int semestre = 2;
-            int idCurso = 1;
+            int idCurso = 2;
             int inicio = 0;
             int cierre = 0;
             int posicion = 0;
@@ -54,6 +54,7 @@
                 resumenS = json.fromJson(pro.toString(), resumenSemestre.class);
                 list.add(resumenS);
             }
+            try{
             name = list.get(0).getMateria();
             for(int a=0;a<list.size();a++){
                 if(name.equalsIgnoreCase(list.get(a).getMateria()) == true){
@@ -80,9 +81,11 @@
                     serie.add(new resumenEstructura("'column'",name,prueba));
                 }
             } 
+            }catch(Exception e){
+                
+            }
         %>
-         <%--<h1>Hello World! <%=list%></h1>
-         <h1>Hello World! <%=serie%></h1>--%>
+        
         <div id="grafica"></div>   
         <script>
              $(function($){

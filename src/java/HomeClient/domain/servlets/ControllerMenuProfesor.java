@@ -70,8 +70,7 @@ public class ControllerMenuProfesor extends HttpServlet {
         processRequest(request, response);
         String accion = request.getParameter("accion");
         String idC = request.getParameter("idC");
-        String nombreCurso=request.getParameter("nombreCurso");
-        request.setAttribute("nombreCurso",nombreCurso);
+        
         request.setAttribute("idC", idC);
         
         switch (accion){
@@ -81,7 +80,10 @@ public class ControllerMenuProfesor extends HttpServlet {
 
             case "verMenu":
                 this.verMenu(request, response);
-                 
+                break;
+            case "estadisticas":
+                this.estadisticasCurso(request, response);
+                break;
             default:
                 this.verMenu(request, response);
 //                request.getRequestDispatcher("ControllerRespuesta?accion=Listar").forward(request, response);;
@@ -123,6 +125,14 @@ public class ControllerMenuProfesor extends HttpServlet {
         
         restC.close();
         request.getRequestDispatcher("menuTeacher.jsp").forward(request, response);
+    }
+
+    private void estadisticasCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         String idC = request.getParameter("idC");
+         String nombreCurso = request.getParameter("nombreCurso");
+         request.setAttribute("idC", idC);
+         request.setAttribute("nombreCurso", nombreCurso);    
+        request.getRequestDispatcher("estadisticasCurso.jsp").forward(request, response);
     }
 
 }

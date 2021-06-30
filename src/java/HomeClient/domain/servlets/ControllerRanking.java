@@ -74,22 +74,23 @@ public class ControllerRanking extends HttpServlet {
         processRequest(request, response);
         String accion = request.getParameter("accion");
         String idC = request.getParameter("idC");
-        request.setAttribute("idC", idC);
+        String nombreCurso=request.getParameter("nombreCurso");
+        request.setAttribute("nombreCurso",nombreCurso);
+        if (idC!=null) {
+            request.setAttribute("idC", idC);   
+        }
         
         switch (accion){
             case "mostrarMaterias":
                 this.mostrarMaterias(request,response);
                 break;
 
-            case "verMenu":
-                this.mostrarMaterias(request,response);
-                break;
              case "RankingGlobal":
                 this.rankingGlobalMateria(
                         request,response);
                 break;
              case "MostrarCuestionarios":
-                this.mostrarCuestionario(request, response);
+                this.listarCuestionarioCurso(request, response);
                 break;
              case "RankingCuestionario":
                  this.rankingPorCuestionario(request, response);
@@ -135,8 +136,10 @@ public class ControllerRanking extends HttpServlet {
          restM.close();
         request.getRequestDispatcher("menuRanking.jsp").forward(request, response);
     }
+    
     private void rankingGlobalMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idMateria,idCurso,materia;
+        String idMateria,idCurso,materia,nombreCurso;
+        nombreCurso=request.getParameter("nombreCurso");
         idMateria=request.getParameter("idMateria");
         materia=request.getParameter("Materia");
         idCurso=request.getParameter("idCurso");
@@ -158,18 +161,24 @@ public class ControllerRanking extends HttpServlet {
         }
         request.setAttribute("puntosMateria", r.getPuntosMateria());
         request.setAttribute("lista", list);
-        request.setAttribute("materia",materia);
-        
+        request.setAttribute("Materia",materia);
+        request.setAttribute("idC",idCurso);
+        request.setAttribute("nombreCurso",nombreCurso);
         restP.close();
         request.getRequestDispatcher("RankingMateria.jsp").forward(request, response);
     }
-    private void mostrarCuestionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+    private void listarCuestionarioCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idMateria,idCurso,materia,nombreCurso;
+        nombreCurso=request.getParameter("nombreCurso");
+        idMateria=request.getParameter("idMateria");
+        materia=request.getParameter("Materia");
+        idCurso=request.getParameter("idCurso");
+        
+        
         Gson json = new Gson();
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = new Cuestionario();
-        String idMateria=request.getParameter("idMateria");
-        //String materia=request.getParameter("Materia");
-        //String idCurso=request.getParameter("idCurso");
         
         ArrayList value = restC.getCuestionariosForMateria(ArrayList.class, idMateria);
         ArrayList<Cuestionario> list = new ArrayList();
@@ -177,7 +186,10 @@ public class ControllerRanking extends HttpServlet {
             cuestionario = json.fromJson(pro.toString(), Cuestionario.class);
             list.add(cuestionario);
         }
-        
+        request.setAttribute("idMateria",idMateria);
+        request.setAttribute("Materia",materia);
+        request.setAttribute("idC",idCurso);
+        request.setAttribute("nombreCurso",nombreCurso);
         request.setAttribute("lista", list);
         restC.close();
         request.getRequestDispatcher("verCuestionarios.jsp").forward(request, response);
@@ -185,7 +197,10 @@ public class ControllerRanking extends HttpServlet {
 
     private void rankingPorCuestionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        //To change body of generated methods, choose Tools | Templates.
-        String idCuestionario,idCurso,materia;
+        String idCuestionario,idCurso,materia,nombreCurso,idMateria;
+         idMateria=request.getParameter("idMateria");
+        nombreCurso=request.getParameter("nombreCurso");
+        idCurso=request.getParameter("idC");
         idCuestionario=request.getParameter("idCuestionario");
         materia=request.getParameter("Materia");
         int PuntoTotal= Integer.valueOf( request.getParameter("puntos"));
@@ -207,10 +222,13 @@ public class ControllerRanking extends HttpServlet {
             list.add(r);
             //posicion=posicion+1;
         }
-        request.setAttribute("idC", idCuestionario);
+        request.setAttribute("idMateria",idMateria);
+        request.setAttribute("idC", idCurso);
+        request.setAttribute("idCuestionario", idCuestionario);
         request.setAttribute("PuntajeT", PuntoTotal);
+        request.setAttribute("nombreCurso",nombreCurso);
         request.setAttribute("lista", list);
-        request.setAttribute("materia",materia);
+        request.setAttribute("Materia",materia);
         
         restP.close();
         request.getRequestDispatcher("RankingCuestionario.jsp").forward(request, response);
@@ -219,10 +237,21 @@ public class ControllerRanking extends HttpServlet {
     private void verRespuesta(HttpServletRequest request, HttpServletResponse response) throws ServletException, ServletException, IOException {
         String idAlumno=request.getParameter("idAlumno");
         String idCuestionario=request.getParameter("idCuestionario");
+        String nombre=request.getParameter("nombre");
+        String apellido=request.getParameter("apellido");
+        nombre=nombre+" "+apellido;
+        String puntosObtenido=request.getParameter("puntosObtenido");
+        String puntoTotal=request.getParameter("puntoTotal");
+        
         ArrayList<Test> list = new ArrayList();
         list= obtenerPreguntas(idCuestionario);
         ArrayList<Test> respuestas= obtenerRespuestas(idCuestionario,idAlumno);
         ArrayList<Test> unido = unirRespuestas(list,respuestas);
+        
+        request.setAttribute("puntajeT", puntoTotal);
+        request.setAttribute("puntaje", puntosObtenido);
+        request.setAttribute("idAlumno", idAlumno);
+        request.setAttribute("nombre", nombre);
         request.setAttribute("idAlumno", idAlumno);
         request.setAttribute("idCuestionario", idCuestionario);
         request.setAttribute("lista", unido);

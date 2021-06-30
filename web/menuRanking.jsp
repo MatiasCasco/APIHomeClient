@@ -24,18 +24,20 @@
         
             <div class="container">
             <div class="mx-auto col-sm-10 main-section" id="myTab" role="tablist">
-                <ul class="nav nav-tabs justify-content-end">
-			<li class="nav-item">
-                            <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Calificaciones</a>
-			</li>
-		
-		</ul>
+                
                 <div class="tab-content" id="myTabContent">
                     <!--Lista de usuarios-->
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                         <div class="card">
+                            <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="ControllerMenuProfesor">Home</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">${nombreCurso}/Materias</li>
+                                    </ol>
+                                  </nav>
                             <div class="card-header">
-                                <h4>${nombreCurso}</h4>
+                                 
+                                 <h4>${nombreCurso}</h4>
 			    </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -58,8 +60,9 @@
                                                             <input type="hidden" name="idMateria" value="${dato.idMateria}">
                                                             <input type="hidden" name="Materia" value="${dato.nombre}">
                                                             <input type="hidden" name="idCurso" value="${dato.idCurso}">
+                                                            <input type="hidden" name="nombreCurso" value="${nombreCurso}">
                                                             <button type="submit"  name="accion" value="RankingGlobal" class="btn btn-info mr-1"  id="btnRG">Ranking Global de la materia</button>
-                                                            <button type="submit"  name="accion" value="MostrarCuestionarios" class="btn btn-info mr-1"  id="btnRC">Ranking por Cuestionarios</button>
+                                                            <button type="submit"  name="accion" value="MostrarCuestionarios" class="btn btn-info mr-1"  id="btnRC">Puntuaciones por Cuestionarios</button>
                                                         </form>
                                                     </td>
                                                 </tr>

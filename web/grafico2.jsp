@@ -2,6 +2,7 @@
     Document   : grafico2
     Created on : 18/06/2021, 11:31:35 AM
     Author     : User
+    Description: Cantidad de respuestas por cuestionarios
 --%>
 
 <%@page import="Consumir.Resteasy.RestCuestionario"%>

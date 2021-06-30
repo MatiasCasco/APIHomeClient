@@ -32,6 +32,13 @@
                     <!--Lista de usuarios-->
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                         <div class="card">
+                             <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="ControllerMenuProfesor">Home</a></li>
+                                      <li class="breadcrumb-item"><a href="ControllerRanking?accion=mostrarMaterias&idC=${idC}&nombreCurso=${nombreCurso}">${nombreCurso}/Materias</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">${Materia}/Ranking Global</li>
+                                    </ol>
+                             </nav>
                             <div class="card-header">
                                 <h4>${materia}</h4>
 			    </div>

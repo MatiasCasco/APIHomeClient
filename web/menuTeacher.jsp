@@ -24,16 +24,17 @@
            <center><h1 class="display-6"><b>Bienvenido/a Profe: ${usuario.getNombre()}</b> </h1>
            <p class="lead">En Home Resident tendrás una herramienta de apoyo para tus clases!.</p>
            <hr class="my-4"></center> 
+           
             <div class="container">
             <div class="mx-auto col-sm-10 main-section" id="myTab" role="tablist">
                 <ul class="nav nav-tabs justify-content-end">
 			<li class="nav-item">
-                            <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Calificaciones</a>
+                            <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Puntuaciones</a>
 			</li>
 		
 		</ul>
                 <div class="tab-content" id="myTabContent">
-                    <!--Lista de usuarios-->
+                  
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                         <div class="card">
                             <div class="card-header">
@@ -60,7 +61,8 @@
                                                         <form action="ControllerMenuProfesor" class="form-inline" method="POST">
                                                             <input type="hidden" name="idC" value="${dato.idCurso}">
                                                             <input type="hidden" name="nombreCurso" value="${dato.nombre}">
-                                                            <button type="submit" class="btn btn-info mr-1" name="accion" value="Ranking"> Ver Ranking</button>
+                                                            <button type="submit" class="btn btn-info mr-1" name="accion" value="Ranking"> Ver Puntuaciones</button>
+                                                            <button type="submit" class="btn btn-info mr-1" name="accion" value="estadisticas"> Ver Estadisticas</button>
                                                             <!--button type="submit" class="btn btn-info mr-1" name="accion" value="Calificaciones">Calificaciones de Cuestionarios</button-->
                                                             
                                                         </form>

@@ -98,6 +98,12 @@ public class RestMateria {
         return webTarget.path("materia").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
     }
 
+    public <T> T getGraficaContenidoMXid(Class<T> responseType, String idCurso) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("grafica/idCurso/{0}", new Object[]{idCurso}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public <T> T getMateriasForIdCurso(Class<T> responseType, String idCurso) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("materiasForCurso/{0}", new Object[]{idCurso}));

@@ -39,16 +39,18 @@
                 
                
             <div class="mx-auto col-sm-15 main-section" id="myTab" role="tablist">
-                <ul class="nav nav-tabs justify-content-end">
-			<li class="nav-item">
-                            <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Cuestionarios</a>
-			</li>
-			
-		</ul>
+                
                 <div class="tab-content" id="myTabContent">
                     <!--Lista de Cuestionarios-->
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                         <div class="card">
+                             <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="ControllerMenuProfesor">Home</a></li>
+                                      <li class="breadcrumb-item"><a href="ControllerRanking?accion=mostrarMaterias&idC=${idC}&nombreCurso=${nombreCurso}">${nombreCurso}/Materias</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">${Materia}/Puntuaciones por Cuestionario</li>
+                                    </ol>
+                             </nav>
                             <div class="card-header">
                                 <h4>Lista de Cuestionarios</h4>
                                 
@@ -80,7 +82,10 @@
                                                       <form class="form-inline" action="ControllerRanking" method="POST">
                                                         <input type="hidden" name="idCuestionario" value="${dato.idCuestionario}">
                                                         <input type="hidden" name="puntos" value="${dato.puntos}">
-                                                         <input type="hidden" name="Materia" value="${dato.getNombreMateria()}">
+                                                        <input type="hidden" name="Materia" value="${dato.getNombreMateria()}">
+                                                        <input type="hidden" name="idC" value="${idC}">
+                                                        <input type="hidden" name="nombreCurso" value="${nombreCurso}">
+                                                        <input type="hidden" name="idMateria" value="${idMateria}">
                                                         <button type="submit"  name="accion" value="RankingCuestionario" class="btn btn-info mr-1"  id="btnRC">Seleccionar Cuestionario</button>
                                                     </form>
                                                 </td>

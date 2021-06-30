@@ -56,7 +56,7 @@ public class Reporte {
     public void setPl(int pl) {
         this.pl = pl;
     }
-    
+
     @Override
     public String toString() {
         //return "Curso{" + "idProfesr=" + idProfesr + ", claveProfesor=" + claveProfesor + ", claveAlumno=" + claveAlumno + '}';
