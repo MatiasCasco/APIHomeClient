@@ -74,7 +74,7 @@
                         <label>Rta Correcta</label>
                         <input type="checkbox" name="Bool" value="True">
                         <div class="form-group row"></div>
-                       
+                        <input type="hidden" name="idC" value="${idC}">
                         <input type="submit" name="accion" value="Guardar">
                     </form>
                 

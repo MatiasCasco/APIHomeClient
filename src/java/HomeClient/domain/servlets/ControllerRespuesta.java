@@ -163,6 +163,7 @@ public class ControllerRespuesta extends HttpServlet {
         restR.addRespuesta(respuesta, Respuesta.class);
         //request.getRequestDispatcher("ControllerRespuesta?accion=Listar").forward(request, response);
         restR.close();
+        request.setAttribute("idC", (String)request.getParameter("idC"));
         request.setAttribute("txtIdP", request.getParameter("pregunta"));
         this.ListarRespuestaP(request, response);
         
@@ -198,6 +199,7 @@ public class ControllerRespuesta extends HttpServlet {
         restR.updateRespuesta(respuesta);    
         restR.close();
         request.setAttribute("txtIdP", request.getParameter("pregunta"));
+        request.setAttribute("idC", request.getParameter("txtIdC"));
         this.ListarRespuestaP(request, response);
         //request.getRequestDispatcher("ControllerRespuesta?accion=Listado").forward(request, response);
         

@@ -48,8 +48,8 @@
                list.add(report);
             } 
             // Funciona bien ventana jasperviewer mas formatos de descarga
-            JasperReport reporte; 
-            String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
+            /*JasperReport reporte; 
+           String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
             try {
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(list)); //Agregamos los parametros para llenar el reporte
@@ -57,8 +57,8 @@
                 viewer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
                 viewer.setVisible(true); //Se vizualiza el reporte
             } catch (JRException ex) {
-            }
-        /* Funciona bien este web
+            }*/
+        // Funciona bien este web
         JasperReport reporte; 
         String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
         try {
@@ -72,7 +72,7 @@
             outs.flush();
             outs.close();
          } catch (JRException ex) {
-            }*/
+            }
         %>
         <h1>Hello World! <%=list%></h1>
     </body>
