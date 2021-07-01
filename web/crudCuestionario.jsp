@@ -80,8 +80,8 @@
                                         <c:forEach var="dato" items="${lista}">
                                             <tr>
                                                 <td>${dato.idCuestionario}</td>
-                                                <td>${dato.descripcion}</td>
                                                 <td>${dato.getNombreMateria()}</td>
+                                                <td>${dato.descripcion}</td>
                                                 <td>${dato.fechaInicio}</td>
                                                 <td>${dato.fechaCierre}</td>
                                                 <td>${dato.puntos}</td>

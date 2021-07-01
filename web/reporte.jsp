@@ -49,7 +49,7 @@
             } 
             // Funciona bien ventana jasperviewer mas formatos de descarga
             /*JasperReport reporte; 
-           String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
+            String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
             try {
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(list)); //Agregamos los parametros para llenar el reporte
@@ -60,7 +60,9 @@
             }*/
         // Funciona bien este web
         JasperReport reporte; 
-        String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
+        //String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
+        String path = "C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
+       
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
             //JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(list));

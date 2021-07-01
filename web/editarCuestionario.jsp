@@ -49,11 +49,12 @@
                                      lista2.add(materias);                   
                                  }
                                  %>
+                        %>
                         <div class="form-group row">
                           <label class="col-lg-3 col-form-label form-control-label">Descripcion</label>
                           <div class="col-lg-9">
                               <input id="descripcion" name="txtDescripcion" class="form-control" type="text" value=<%=cuestionario.getDescripcion()%> required autofocus >
-                         
+
                           </div>
                        </div>
                        <div class="form-group row">

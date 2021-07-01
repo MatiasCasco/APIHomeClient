@@ -84,10 +84,8 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Punto Obtenido</label>
-                            <div class="col-lg-9">
-                                <input  type="number" name="txtPuntoObtenido" class="form-control" value="0"  max="100" required autofocus >                          
-                            </div>
+                            
+                                
                        </div>
                         <div class="form-group row">
                           <label class="col-lg-3 col-form-label form-control-label">Imagen</label>
@@ -95,7 +93,7 @@
                               <input type="file" name="fichero" class="form-control"   >                         
                           </div>
                        </div>
-           
+            <input  type="hidden" name="txtPuntoObtenido"  value="0" >
             <input type="hidden" name="Cuestionario" value="${idC}">                    
             <input type="submit" name="accion" value="Guardar">
         </form>

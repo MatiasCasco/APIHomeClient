@@ -65,7 +65,7 @@ public class Cuestionario {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
     public int getIdCurso() {
         return idCurso;
     }
@@ -89,7 +89,7 @@ public class Cuestionario {
     public void setNombreMateria(String nombreMateria) {
         this.nombreMateria = nombreMateria;
     }
-    
+
     public int getIdCuestionario() {
         return idCuestionario;
     }
@@ -131,7 +131,7 @@ public class Cuestionario {
     }
 
     public String getTiempoLimite() {
-        
+
         String [] aux = tiempoLimite.split("-");
         tiempoLimite = aux[0] +":"+ aux[1] +":"+ aux[2];
         return tiempoLimite;

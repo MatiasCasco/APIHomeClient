@@ -83,12 +83,7 @@
                               <input type="number" name="txtPuntoAsignado" min="1" max="100" class="form-control"  value="<%=pre.getPuntoAsignado()%>"  >
                           </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Punto Obtenido</label>
-                            <div class="col-lg-9">
-                                <input  type="number" name="txtPuntoObtenido" class="form-control" value=<%=pre.getPuntoObtenido()%>  max="100" required autofocus >                          
-                            </div>
-                        </div>
+                       
                         
                         <div class="form-group row">
                           <label class="col-lg-3 col-form-label form-control-label">Cambiar Imagen</label>
@@ -102,6 +97,7 @@
                             <input type="file" name="fichero" class="form-control" >  
                          </div>
                        </div>
+                        <input  type="hidden" name="txtPuntoObtenido"  value="0" >  
                         <input type="hidden" name="Cuestionario" value=<%=request.getAttribute("idC")%>>
                         <input type="hidden" name="txtId" value=<%=pre.getIdPregunta()%>>
                         <input type="submit" name="accion" value="Actualizar">

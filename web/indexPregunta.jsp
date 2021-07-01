@@ -64,7 +64,6 @@
                                         <th scope="col">FOTO</th>
                                         <th scope="col">ID CUESTIONARIO</th>
                                         <th scope="col">PUNTO ASIGNADO</th>
-                                        <th scope="col">PUNTO OBTENIDO</th>
                                         <th scope="col">ACCIONES</th>
                                     </tr>
                                     </thead>
@@ -76,7 +75,6 @@
                                                 <td><img src = "Imagen?id=${dato.idPregunta}" width="250" height="230"></td>
                                                 <td>${dato.idCuestionario}</td>
                                                 <td>${dato.puntoAsignado}</td>
-                                                <td>${dato.puntoObtenido}</td>
                                                 <td>
                                                     <form action="ControllerImagenPregunta" method="POST">
                                                        

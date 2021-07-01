@@ -24,13 +24,14 @@
     <body>
 
         <% 
-        int idCuestionario = 77;    
+        int idCuestionario = 73;
+        String idCurso = "1";
         Gson json = new Gson();
         RestCuestionario restCue = new RestCuestionario();
-        ArrayList value = restCue.getCuestionarioAlumnos(ArrayList.class, String.valueOf(idCuestionario));
-        String jsonS = json.toJson(value);
+        ArrayList values= restCue.getCuestionarioAlumnos(ArrayList.class, String.valueOf(idCuestionario));
+        String respuestas = json.toJson(values);
         RestCurso restC = new RestCurso();
-        int alumnos = restC.getAlumnosCurso(int.class, "PrimeroTT");
+        int alumnos = restC.getAlumnosXidCurso(int.class, idCurso);
         %>
 
         <div id="container" style="with: 100%;"></div>
@@ -70,7 +71,7 @@
                         {
                             name: "Cuestionario",
                             colorByPoint: true,
-                            data: <%=jsonS%>
+                            data: <%=respuestas%>
                         }
                     ],
                 });

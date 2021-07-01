@@ -38,7 +38,7 @@
           <div class="container">
                 
                
-            <div class="mx-auto col-sm-15 main-section" id="myTab" role="tablist">
+            <div class="mx-auto col-sm-16 main-section" id="myTab" role="tablist">
                 
                 <div class="tab-content" id="myTabContent">
                     <!--Lista de Cuestionarios-->
@@ -86,7 +86,9 @@
                                                         <input type="hidden" name="idC" value="${idC}">
                                                         <input type="hidden" name="nombreCurso" value="${nombreCurso}">
                                                         <input type="hidden" name="idMateria" value="${idMateria}">
-                                                        <button type="submit"  name="accion" value="RankingCuestionario" class="btn btn-info mr-1"  id="btnRC">Seleccionar Cuestionario</button>
+                                                        <button type="submit"  name="accion" value="RankingCuestionario" class="btn btn-info mr-1"  id="btnRC">Ver Puntuaciones</button>
+                                                        <button type="submit"  name="accion" value="estadistica" class="btn btn-info mr-1"  id="btnRC">Estadísticas</button>
+                                                    
                                                     </form>
                                                 </td>
                                             </tr>

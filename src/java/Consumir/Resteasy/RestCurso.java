@@ -66,6 +66,12 @@ public class RestCurso {
         webTarget.path("cursos").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
+    public <T> T getAlumnosXidCurso(Class<T> responseType, String idCurso) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("alumnos/curso/{0}", new Object[]{idCurso}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
     public <T> T addCurso(Object requestEntity, Class<T> responseType) throws ClientErrorException {
         return webTarget.path("cursos").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON), responseType);
     }

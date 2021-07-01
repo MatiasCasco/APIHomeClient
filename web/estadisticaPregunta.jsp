@@ -32,10 +32,10 @@
             Gson json = new Gson();
             EstadisticaPregunta estadistica = new EstadisticaPregunta();
             RestPregunta restP = new RestPregunta();
-            ArrayList value = restP.getEstadisticas(ArrayList.class, String.valueOf(idCuestionario));
+            ArrayList valueP = restP.getEstadisticas(ArrayList.class, String.valueOf(idCuestionario));
             ArrayList<EstadisticaPregunta> list = new ArrayList();
             ArrayList<resumenEstructura> serie = new ArrayList();
-            for(Object pro: value){
+            for(Object pro: valueP){
                estadistica = json.fromJson(pro.toString(), EstadisticaPregunta.class);
                list.add(estadistica);
             }
@@ -52,10 +52,10 @@
             } catch(Exception ex){}
         %>
         <%--<h1>Hello World!<%=serie%></h1>--%>
-        <div id="grafica"></div>   
+        <div id="estadisticaPregunta"></div>   
         <script>
          $(function($){
-                 $('#grafica').highcharts({
+                 $('#estadisticaPregunta').highcharts({
                      title:{text:'Estadistica por pregunta'},
                      xAxis:{tile:'Pregunta',categories:<%=indice%>},
                      yAxis:{title:'',plotLines:[{value:0,width:1,color:'#808080'}]},

@@ -101,6 +101,9 @@ public class ControllerRanking extends HttpServlet {
              case "modificarPuntoRespuesta":
                  this.modificarPuntoRespuesta(request, response);
                  break;
+             case "estadistica":
+                 this.verEstadisticaCuestionario(request, response);
+                 break;
                  
             default:
                 this.mostrarMaterias(request,response);
@@ -195,45 +198,6 @@ public class ControllerRanking extends HttpServlet {
         request.getRequestDispatcher("verCuestionarios.jsp").forward(request, response);
     }
 
-    private void rankingPorCuestionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       //To change body of generated methods, choose Tools | Templates.
-        String idCuestionario,idCurso,materia,nombreCurso,idMateria;
-         idMateria=request.getParameter("idMateria");
-        nombreCurso=request.getParameter("nombreCurso");
-        idCurso=request.getParameter("idC");
-        idCuestionario=request.getParameter("idCuestionario");
-        materia=request.getParameter("Materia");
-        int PuntoTotal= Integer.valueOf( request.getParameter("puntos"));
-        //idCurso=request.getParameter("idCurso");
-        Gson json = new Gson();
-        RestPuntuaciones restP= new RestPuntuaciones();
-        Ranking r= new Ranking();
-        ArrayList value= restP.getPuntuacionesCuestionario(ArrayList.class, idCuestionario);
-        ArrayList<Ranking> list = new ArrayList();
-        int posicion=1;
-        int porcentaje;
-        for(Object pro: value){
-            r = json.fromJson(pro.toString(), Ranking.class);
-            //String nombre=""+posicion+" "+r.getNombre();
-            //r.setNombre(nombre);
-            
-            porcentaje=(r.getPuntos()*100)/PuntoTotal;
-            r.setPuntosObtenido(porcentaje);
-            list.add(r);
-            //posicion=posicion+1;
-        }
-        request.setAttribute("idMateria",idMateria);
-        request.setAttribute("idC", idCurso);
-        request.setAttribute("idCuestionario", idCuestionario);
-        request.setAttribute("PuntajeT", PuntoTotal);
-        request.setAttribute("nombreCurso",nombreCurso);
-        request.setAttribute("lista", list);
-        request.setAttribute("Materia",materia);
-        
-        restP.close();
-        request.getRequestDispatcher("RankingCuestionario.jsp").forward(request, response);
-    }
-
     private void verRespuesta(HttpServletRequest request, HttpServletResponse response) throws ServletException, ServletException, IOException {
         String idAlumno=request.getParameter("idAlumno");
         String idCuestionario=request.getParameter("idCuestionario");
@@ -319,6 +283,65 @@ public class ControllerRanking extends HttpServlet {
          String path="ControllerRanking?accion=verRespuesta&idCuestionario="+idCuestionario+"&idAlumno="+idAlumno;
         request.getRequestDispatcher(path).forward(request, response);
          restT.close();
+    }
+
+     private void rankingPorCuestionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       //To change body of generated methods, choose Tools | Templates.
+        String idCuestionario,idCurso,materia,nombreCurso,idMateria;
+         idMateria=request.getParameter("idMateria");
+        nombreCurso=request.getParameter("nombreCurso");
+        idCurso=request.getParameter("idC");
+        idCuestionario=request.getParameter("idCuestionario");
+        materia=request.getParameter("Materia");
+        int PuntoTotal= Integer.valueOf( request.getParameter("puntos"));
+        //idCurso=request.getParameter("idCurso");
+        Gson json = new Gson();
+        RestPuntuaciones restP= new RestPuntuaciones();
+        Ranking r= new Ranking();
+        ArrayList value= restP.getPuntuacionesCuestionario(ArrayList.class, idCuestionario);
+        ArrayList<Ranking> list = new ArrayList();
+        int posicion=1;
+        int porcentaje;
+        for(Object pro: value){
+            r = json.fromJson(pro.toString(), Ranking.class);
+            //String nombre=""+posicion+" "+r.getNombre();
+            //r.setNombre(nombre);
+            
+            porcentaje=(r.getPuntos()*100)/PuntoTotal;
+            r.setPuntosObtenido(porcentaje);
+            list.add(r);
+            //posicion=posicion+1;
+        }
+        request.setAttribute("idMateria",idMateria);
+        request.setAttribute("idC", idCurso);
+        request.setAttribute("idCuestionario", idCuestionario);
+        request.setAttribute("PuntajeT", PuntoTotal);
+        request.setAttribute("nombreCurso",nombreCurso);
+        request.setAttribute("lista", list);
+        request.setAttribute("Materia",materia);
+        
+        restP.close();
+        request.getRequestDispatcher("RankingCuestionario.jsp").forward(request, response);
+    }
+
+   
+    private void verEstadisticaCuestionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       
+        String idCuestionario,idCurso,materia,nombreCurso,idMateria;
+        idMateria=request.getParameter("idMateria");
+        nombreCurso=request.getParameter("nombreCurso");
+        idCurso=request.getParameter("idC");
+        idCuestionario=request.getParameter("idCuestionario");
+        materia=request.getParameter("Materia");
+        int PuntoTotal= Integer.valueOf( request.getParameter("puntos"));
+        ////
+        request.setAttribute("idMateria",idMateria);
+        request.setAttribute("idC", idCurso);
+        request.setAttribute("idCuestionario", idCuestionario);
+        request.setAttribute("PuntajeT", PuntoTotal);
+        request.setAttribute("nombreCurso",nombreCurso);
+        request.setAttribute("Materia",materia);
+         request.getRequestDispatcher("estadisticasCuestionario.jsp").forward(request, response);
     }
 
     
