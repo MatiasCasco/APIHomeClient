@@ -10,6 +10,7 @@ import HomeClient.domain.model.Cuestionario;
 import HomeClient.domain.model.Persona;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -139,6 +140,7 @@ public class ControllerCuestionario extends HttpServlet {
     
     private void ListarCuestionariosDeCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
         Gson json = new Gson();
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = new Cuestionario();
@@ -152,11 +154,12 @@ public class ControllerCuestionario extends HttpServlet {
         request.setAttribute("lista", list);
         restC.close();
         request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
-        
+        }catch(Exception ex){}
     }
     
     private void ListarCuestionariosDeCursoPorMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
         Gson json = new Gson();
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = new Cuestionario();
@@ -171,11 +174,12 @@ public class ControllerCuestionario extends HttpServlet {
         request.setAttribute("lista", list);
         restC.close();
         request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
-        
+        } catch(Exception ex){}
     }
     
     private void ListarCuestionariosPorMateria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
         Gson json = new Gson();
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = new Cuestionario();
@@ -189,6 +193,7 @@ public class ControllerCuestionario extends HttpServlet {
         request.setAttribute("lista", list);
          restC.close();
         request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
+        } catch(Exception ex){}
        
     }
     
@@ -224,8 +229,7 @@ public class ControllerCuestionario extends HttpServlet {
         }
         request.setAttribute("lista", list);
         restC.close();
-        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);
-        
+        request.getRequestDispatcher("crudCuestionario.jsp").forward(request, response);     
     }
 
     private void agregar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -233,6 +237,7 @@ public class ControllerCuestionario extends HttpServlet {
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = null;
         Gson json = new Gson();
+        String descripcion = "\""+new String(request.getParameter("txtDescripcion").getBytes("ISO-8859-1"),"UTF-8")+"\"";    
         int idMateria  = Integer.valueOf(request.getParameter("materia"));
         String fechaInicio  = request.getParameter("txtFechaInicio");
         String fechaFin  = request.getParameter("txtFechaCierre");
@@ -242,7 +247,7 @@ public class ControllerCuestionario extends HttpServlet {
 //        int idCurso  = Integer.valueOf(request.getParameter("curso"));
         String [] aux = tiempoLimite.split(":");
         tiempoLimite = aux[0] +"-"+ aux[1] +"-"+ aux[2];
-        cuestionario =  new Cuestionario(1, idMateria, " ",fechaFin, fechaInicio, puntos, tiempoLimite, 0, " ");
+        cuestionario =  new Cuestionario(1, descripcion, idMateria, " ",fechaFin, fechaInicio, puntos, tiempoLimite, 0, " ");
         restC.addCuestionario(cuestionario, Cuestionario.class);
          restC.close();
         request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);
@@ -264,6 +269,7 @@ public class ControllerCuestionario extends HttpServlet {
         Gson json = new Gson();
         RestCuestionario restC = new RestCuestionario();
         Cuestionario cuestionario = null;
+        String descripcion = "\""+new String(request.getParameter("txtDescripcion").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         int idCuestionario  = Integer.valueOf(request.getParameter("txtIdC"));
 //        int idMateria  = Integer.valueOf(request.getParameter("txtIdMateria"));
         int idMateria  = Integer.valueOf(request.getParameter("materia"));
@@ -275,7 +281,7 @@ public class ControllerCuestionario extends HttpServlet {
 //        int idCurso = Integer.valueOf(request.getParameter("curso"));
         String [] aux = tiempoLimite.split(":");
         tiempoLimite = aux[0] +"-"+ aux[1] +"-"+ aux[2];
-        cuestionario =  new Cuestionario(idCuestionario, idMateria, "",fechaFin, fechaInicio, puntos, tiempoLimite, 0, " ");
+        cuestionario =  new Cuestionario(idCuestionario, descripcion, idMateria, "",fechaFin, fechaInicio, puntos, tiempoLimite, 0, " ");
         restC.updateCuestionario(cuestionario);  
         restC.close();
         request.getRequestDispatcher("ControllerCuestionario?accion=Listado").forward(request, response);

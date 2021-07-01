@@ -11,6 +11,7 @@ package HomeClient.domain.model;
  */
 public class Cuestionario {
     private int idCuestionario;
+    private String descripcion;
     private int idMateria;
     private String nombreMateria;
     private String fechaCierre;
@@ -34,6 +35,19 @@ public class Cuestionario {
         this.nombreCurso = nombreCurso;
     }
 
+    public Cuestionario(int idCuestionario, String descripcion, int idMateria, String nombreMateria, String fechaCierre, String fechaInicio, int puntos, String tiempoLimite, int idCurso, String nombreCurso) {
+        this.idCuestionario = idCuestionario;
+        this.descripcion = descripcion;
+        this.idMateria = idMateria;
+        this.nombreMateria = nombreMateria;
+        this.fechaCierre = fechaCierre;
+        this.fechaInicio = fechaInicio;
+        this.puntos = puntos;
+        this.tiempoLimite = tiempoLimite;
+        this.idCurso = idCurso;
+        this.nombreCurso = nombreCurso;
+    }
+
 //    public Cuestionario(int idCuestionario, int idMateria, String fechaCierre, String fechaInicio, String tiempoLimite, int idCurso, String nombreCurso) {
 //        this.idCuestionario = idCuestionario;
 //        this.idMateria = idMateria;
@@ -44,6 +58,14 @@ public class Cuestionario {
 //        this.nombreCurso = nombreCurso;
 //    }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     public int getIdCurso() {
         return idCurso;
     }
@@ -123,6 +145,7 @@ public class Cuestionario {
     public String toString() {
         //return "Cuestionario{" + "id=" + id + ", materia=" + materia + ", fechaFin=" + fechaFin + ", fechaInicio=" + fechaInicio + ", puntos=" + puntos + ", limite=" + limite + '}';
         return new StringBuilder("{idcuestionario: ").append(idCuestionario)
+                .append(", descripcion: ").append(descripcion)
                 .append(", idmateria: ").append(idMateria)
                 .append(", nombremateria: ").append(nombreMateria)
                 .append(", fechacierre: ").append(fechaCierre)
@@ -132,7 +155,5 @@ public class Cuestionario {
                 .append(", idcurso:").append(idCurso)
                 .append(", nombrecurso:").append(nombreCurso)
                 .append("}").toString();                
-    }
-    
-    
+    }   
 }

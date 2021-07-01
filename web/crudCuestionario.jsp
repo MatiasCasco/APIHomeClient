@@ -66,6 +66,7 @@
 				    <thead class="thead-light">
 				    <tr>
                                         <th scope="col">Id</th>
+                                        <th scope="col">DESCRIPCION</th>
                                         <th scope="col">NOMBRE MATERIA</th>
                                         <th scope="col">FECHA INICIO</th>
                                         <th scope="col">FECHA FIN </th>
@@ -79,6 +80,7 @@
                                         <c:forEach var="dato" items="${lista}">
                                             <tr>
                                                 <td>${dato.idCuestionario}</td>
+                                                <td>${dato.descripcion}</td>
                                                 <td>${dato.getNombreMateria()}</td>
                                                 <td>${dato.fechaInicio}</td>
                                                 <td>${dato.fechaCierre}</td>
