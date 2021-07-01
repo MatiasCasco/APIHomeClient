@@ -38,8 +38,10 @@
             <div class="mx-auto col-sm-19 main-section" id="myTab" role="tablist">
                 <ul class="nav nav-tabs justify-content-end">
 			<li class="nav-item">
-                            <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">List</a>
-			</li>
+                        <form  action="ControllerCuestionario" method="POST">
+                           <button type="submit" class="btn btn-outline-success my-2 my-sm-0" name="accion" value="Listado"> Volver a Listar Cuestionarios</button>
+                        </form>
+                        </li>
 			
 		</ul>
                 <div class="tab-content" id="myTabContent">

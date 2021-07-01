@@ -81,6 +81,9 @@ public class ControllerRanking extends HttpServlet {
         }
         
         switch (accion){
+            case "Reporte":
+                this.reporte(request,response);
+                break;
             case "mostrarMaterias":
                 this.mostrarMaterias(request,response);
                 break;
@@ -343,6 +346,12 @@ public class ControllerRanking extends HttpServlet {
         request.setAttribute("Materia",materia);
          request.getRequestDispatcher("estadisticasCuestionario.jsp").forward(request, response);
     }
+
+    private void reporte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idCuestionario=request.getParameter("idC");
+        
+        request.getRequestDispatcher("reporte.jsp").forward(request, response);
+        }
 
     
 

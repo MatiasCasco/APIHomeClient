@@ -24,10 +24,15 @@
         
             <div class="container">
             <div class="mx-auto col-sm-10 main-section justify-content-center" id="myTab" role="tablist">
-                <ul class="nav nav-tabs justify-content-center">
-			
-		
-		</ul>
+                <ul class="nav nav-tabs justify-content-end">
+                    <li class="nav-item">
+                        <form  action="Controller Ranking" method="POST">
+                            <input type="hidden" name="idC" value="${idCuestionario}">
+                            <button type="submit" class="btn btn-info mr-1" name="accion" value="Reporte">Ver Reporte</button>
+                                                       
+                        </form>
+                    </li>
+                </ul>
                 <div class="tab-content" id="myTabContent">
                     <!--Lista de usuarios-->
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">

@@ -40,7 +40,11 @@
             <div class="mx-auto col-sm-15 main-section" id="myTab" role="tablist">
                 <ul class="nav nav-tabs justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Respuesta</a>
+                        <form  action="ControllerCuestionario" method="POST">
+                                                        <input type="hidden" name="txtidCuestionario" value="${idC}">
+                                                        <button type="submit" class="btn btn-outline-success my-2 my-sm-0" name="accion" value="Ver Preguntas"> Volver al Cuestionario</button>
+                                                       
+                        </form>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -49,6 +53,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4> #${IdP} Lista de Respuestas:  </h4>
+                                
                                 <form class="form-inline float-right" action="ControllerRespuesta" method="POST">
                                     <span class="navbar-text active" ><b>Agregar mas Respuestas:  </b></span> 
                                     <!--input class="form-control mr-sm-2" placeholder="Identificador de la pregunta" type="text" name="txtIdP">
