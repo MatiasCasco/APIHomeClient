@@ -349,7 +349,7 @@ public class ControllerRanking extends HttpServlet {
 
     private void reporte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idCuestionario=request.getParameter("idC");
-        
+        request.setAttribute("identificador", idCuestionario);
         request.getRequestDispatcher("reporte.jsp").forward(request, response);
         }
 

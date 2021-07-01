@@ -36,7 +36,7 @@
     </head>
     <body>
         <% 
-            int idCuestionario = 77;     
+            int idCuestionario = Integer.valueOf(request.getAttribute("identificador").toString());     
             Gson json = new Gson();
             RestTest restT = new RestTest();
             Reporte report = new Reporte();
@@ -47,7 +47,7 @@
                report = json.fromJson(pro.toString(), Reporte.class);
                list.add(report);
             } 
-            // Funciona bien ventana jasperviewer mas formatos de descarga
+             /*Funciona bien ventana jasperviewer mas formatos de descarga
             JasperReport reporte; 
              String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
             //String path = "C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
@@ -59,11 +59,11 @@
                 viewer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
                 viewer.setVisible(true); //Se vizualiza el reporte
             } catch (JRException ex) {
-            }
-        /* Funciona bien este web
+            }*/
+        //Funciona bien este web
         JasperReport reporte; 
-        //String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
-        String path = "C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
+        String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
+        //String path = "C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
        
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
@@ -76,8 +76,8 @@
             outs.flush();
             outs.close();
          } catch (JRException ex) {
-            }*/
+            }
         %>
-        <h1>Hello World! <%=list%></h1>
+       
     </body>
 </html>
