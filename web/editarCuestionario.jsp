@@ -37,7 +37,7 @@
                 <div class="card-body"> 
                     <form class="form" action="ControllerCuestionario" method="POST" >
                        <% Cuestionario cuestionario = (Cuestionario) request.getAttribute("cuestionario");%>
-                       <label>Identificador Cuestionario: <%=cuestionario.getIdCuestionario()%></label>
+                       <label>Identificador Cuestionario: <%= cuestionario.getIdCuestionario()%> </label>
                        <input type="hidden" name="txtIdC"  value="<%=cuestionario.getIdCuestionario()%>">
                             <%  
                                  Gson json = new Gson();
@@ -48,8 +48,8 @@
                                      Materia materias = json.fromJson(pro.toString(), Materia.class);
                                      lista2.add(materias);                   
                                  }
-                                 %>
-                        %>
+                            %>
+                        
                         <div class="form-group row">
                           <label class="col-lg-3 col-form-label form-control-label">Descripcion</label>
                           <div class="col-lg-9">
@@ -60,7 +60,7 @@
                        <div class="form-group row">
                            <label class="col-lg-3 col-form-label form-control-label">Seleccionar Materia</label>
                            <div class="col-lg-9">
-                               <select name="materia" class="custom-select" required>                               
+                               <select name="materia" class="custom-select" id="selectP" required>                               
                                    <%for(Materia elemento: lista2){%><option value="<%=elemento.getIdMateria()%>">#<%=elemento.getIdMateria()%> <%=elemento.getNombre()%> <%=elemento.getNombreCurso()%></option><%}%>
                                </select>
                                <script>document.ready=document.getElementById("selectP").value=<%=cuestionario.getIdMateria()%></script>                                                             
@@ -78,19 +78,16 @@
                                <input id= "fechafin" name="txtFechaCierre" class="form-control" type="date" data-date-format="yyyy-mm-dd" value=<%=cuestionario.getFechaCierre()%> required autofocus >                          
                            </div>
                        </div>
-                       <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">Puntos</label>
-                           <div class="col-lg-9">
-                               <input  name="txtPuntos" class="form-control" type="number" value=<%=cuestionario.getPuntos()%> required autofocus >
-                           </div>
-                       </div>                
+                       
+                                       
                        <div class="form-group row">
                            <label class="col-lg-3 col-form-label form-control-label">Tiempo Limite(hh:mm:ss)</label>
                            <div class="col-lg-9">
-                               <input type="text" name="txtTiempoLimite" value=<%=cuestionario.getTiempoLimite()%>>                     
+                               <input type="text" name="txtTiempoLimite" value=<%=cuestionario.getTiempoLimite()%> >                     
                            </div>
                        </div>
-                                             
+                          <input  name="txtPuntos" type="hidden" value=<%=cuestionario.getPuntos()%> >
+                                                  
                        <input type="submit" name="accion" value="Actualizar">
                     </form>
                  </div>

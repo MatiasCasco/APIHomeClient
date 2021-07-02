@@ -36,11 +36,13 @@
                     
                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                         <div class="card">
+                            
                              <ol class="breadcrumb">
                                       <li class="breadcrumb-item"><a href="ControllerMenuProfesor">Home</a></li>
                                       <li class="breadcrumb-item"><a href="ControllerRanking?accion=mostrarMaterias&idC=${idC}&nombreCurso=${nombreCurso}">${nombreCurso}/Materias</a></li>
-                                       <li class="breadcrumb-item"><a href="ControllerRanking?accion=MostrarCuestionarios&idCurso=${idC}&nombreCurso=${nombreCurso}&idMateria=${idMateria}&Materia=${Materia}">${Materia}/Puntuaciones por Cuestionario</a></li>
-                                      <li class="breadcrumb-item active" aria-current="page">Puntajes</li>
+                                      <li class="breadcrumb-item"><a href="ControllerRanking?accion=MostrarCuestionarios&idCurso=${idC}&nombreCurso=${nombreCurso}&idMateria=${idMateria}&Materia=${Materia}">${Materia}/Puntuaciones por Cuestionario</a></li>
+                                      <li class="breadcrumb-item"><a href="ControllerRanking?accion=RankingCuestionario&idCurso=${idC}&nombreCurso=${nombreCurso}&idMateria=${idMateria}&Materia=${Materia}&idCuestionario=${idCuestionario}&puntos=${puntajeT}">Puntajes</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">Cuestionario Resuelto</li>
                             </ol>
                             <div class="card-header">
                                 <h4><b>Nombre:</b> ${nombre}</h4>

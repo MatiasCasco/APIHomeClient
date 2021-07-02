@@ -64,7 +64,7 @@
                                                 <tr>
                                                     <th scope="col"><%= i %></th>
                                                     <td> ${dato.nombre} ${dato.apellido}</td>
-                                                    <td scope="row"> <a href="ControllerRanking?accion=verRespuesta&idCuestionario=${idCuestionario}&idAlumno=${dato.id}&nombre=${dato.nombre}&apellido=${dato.apellido}&puntosObtenido=${dato.puntos}&puntoTotal=${PuntajeT}"> ${dato.puntos} </a> </td>
+                                                    <td scope="row"> <a href="ControllerRanking?accion=verRespuesta&idCuestionario=${idCuestionario}&idAlumno=${dato.id}&nombre=${dato.nombre}&apellido=${dato.apellido}&puntosObtenido=${dato.puntos}&puntoTotal=${PuntajeT}&Materia=${Materia}&idC=${idC}&nombreCurso=${nombreCurso}&idMateria=${idMateria} "> ${dato.puntos} </a> </td>
                                                     <td>
                                                         <div class="progress">
                                                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${dato.puntosObtenido}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> ${dato.puntosObtenido} %</div>

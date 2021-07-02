@@ -202,25 +202,37 @@ public class ControllerRanking extends HttpServlet {
     }
 
     private void verRespuesta(HttpServletRequest request, HttpServletResponse response) throws ServletException, ServletException, IOException {
+        String idCurso,materia,nombreCurso,idMateria;
+        
         String idAlumno=request.getParameter("idAlumno");
         String idCuestionario=request.getParameter("idCuestionario");
+        String puntoTotal=request.getParameter("puntoTotal");
+        materia=request.getParameter("Materia");
+        idCurso=request.getParameter("idC");
+        nombreCurso=request.getParameter("nombreCurso");
+        idMateria=request.getParameter("idMateria");
         String nombre=request.getParameter("nombre");
         String apellido=request.getParameter("apellido");
         nombre=nombre+" "+apellido;
         String puntosObtenido=request.getParameter("puntosObtenido");
-        String puntoTotal=request.getParameter("puntoTotal");
+        
         
         ArrayList<Test> list = new ArrayList();
         list= obtenerPreguntas(idCuestionario);
         ArrayList<Test> respuestas= obtenerRespuestas(idCuestionario,idAlumno);
         ArrayList<Test> unido = unirRespuestas(list,respuestas);
         
+        request.setAttribute("idCuestionario", idCuestionario);
         request.setAttribute("puntajeT", puntoTotal);
+        request.setAttribute("Materia",materia);
+        request.setAttribute("idC", idCurso);
+        request.setAttribute("nombreCurso",nombreCurso);
+        request.setAttribute("idMateria",idMateria);
         request.setAttribute("puntaje", puntosObtenido);
         request.setAttribute("idAlumno", idAlumno);
         request.setAttribute("nombre", nombre);
         request.setAttribute("idAlumno", idAlumno);
-        request.setAttribute("idCuestionario", idCuestionario);
+        
         request.setAttribute("lista", unido);
         request.getRequestDispatcher("desplegarCuestionario.jsp").forward(request, response);
     
@@ -291,7 +303,7 @@ public class ControllerRanking extends HttpServlet {
      private void rankingPorCuestionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        //To change body of generated methods, choose Tools | Templates.
         String idCuestionario,idCurso,materia,nombreCurso,idMateria;
-         idMateria=request.getParameter("idMateria");
+        idMateria=request.getParameter("idMateria");
         nombreCurso=request.getParameter("nombreCurso");
         idCurso=request.getParameter("idC");
         idCuestionario=request.getParameter("idCuestionario");

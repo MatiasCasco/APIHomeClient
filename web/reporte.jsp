@@ -47,7 +47,7 @@
                report = json.fromJson(pro.toString(), Reporte.class);
                list.add(report);
             } 
-             /*Funciona bien ventana jasperviewer mas formatos de descarga
+            /*Funciona bien ventana jasperviewer mas formatos de descarga
             JasperReport reporte; 
              String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
             //String path = "C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
@@ -60,7 +60,7 @@
                 viewer.setVisible(true); //Se vizualiza el reporte
             } catch (JRException ex) {
             }*/
-        //Funciona bien este web
+        // Funciona bien este web
         JasperReport reporte; 
         String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
         //String path = "C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
@@ -78,6 +78,6 @@
          } catch (JRException ex) {
             }
         %>
-       
+        
     </body>
 </html>
