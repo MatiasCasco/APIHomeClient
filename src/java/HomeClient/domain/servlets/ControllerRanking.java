@@ -238,7 +238,33 @@ public class ControllerRanking extends HttpServlet {
     
     }
 
-    private ArrayList<Test> obtenerPreguntas(String idCuestionario) {
+    private void modificarPuntoRespuesta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idAlumno=request.getParameter("idAlumno");
+        String idPregunta=request.getParameter("idPregunta");
+        String puntaje=request.getParameter("newPuntaje");
+        String idCuestionario=request.getParameter("idCuestionario");
+        String apellido,nombre,PuntajeT,Materia,idC,nombreCurso,idMateria,puntosCuestionario;
+        apellido=" ";
+        nombre=request.getParameter("nombre");
+        PuntajeT=request.getParameter("puntoTotal");
+        Materia=request.getParameter("Materia");                
+        idC=request.getParameter("idC");
+        nombreCurso=request.getParameter("nombreCurso");
+        idMateria=request.getParameter("idMateria");
+        puntosCuestionario=request.getParameter("puntosObtenido");
+         
+        RestTest restT=new RestTest();
+        restT.updatePuntaje(idPregunta, idAlumno, puntaje);
+        String path="ControllerRanking?accion=verRespuesta&idCuestionario="+idCuestionario+"&idAlumno="+idAlumno+""
+                 + "&nombre="+nombre+"&apellido="+apellido+"&puntosObtenido="+puntosCuestionario+"&puntoTotal="
+              + ""+PuntajeT+"&Materia="+Materia+"&idC="+idC+"&nombreCurso="+nombreCurso+"&idMateria="+idMateria+"";
+         
+        String path3="ControllerRanking?accion=verRespuesta&idCuestionario="+idCuestionario+"&idAlumno="+idAlumno;
+        request.getRequestDispatcher(path).forward(request, response);
+         restT.close();
+    }
+
+    private static ArrayList<Test> obtenerPreguntas(String idCuestionario) {
         
         Gson json = new Gson();
         RestTest restT=new RestTest();
@@ -255,7 +281,7 @@ public class ControllerRanking extends HttpServlet {
     
     }
 
-    private ArrayList<Test> obtenerRespuestas(String idCuestionario, String idAlumno) {
+    private static ArrayList<Test> obtenerRespuestas(String idCuestionario, String idAlumno) {
       Gson json = new Gson();
         RestTest restT=new RestTest();
         Test test;
@@ -269,7 +295,7 @@ public class ControllerRanking extends HttpServlet {
         return list;
     }
 
-    private ArrayList<Test> unirRespuestas(ArrayList<Test> list, ArrayList<Test> listRespuestas) {
+    private static ArrayList<Test> unirRespuestas(ArrayList<Test> list, ArrayList<Test> listRespuestas) {
         Test respuesta;
         int index=0;
         for (Test pregunta : list) {
@@ -288,19 +314,7 @@ public class ControllerRanking extends HttpServlet {
         return list;
     }
 
-    private void modificarPuntoRespuesta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idAlumno=request.getParameter("idAlumno");
-        String idPregunta=request.getParameter("idPregunta");
-        String puntaje=request.getParameter("puntoObtenido");
-        String idCuestionario=request.getParameter("idCuestionario");
-         RestTest restT=new RestTest();
-         restT.updatePuntaje(idPregunta, idAlumno, puntaje);
-         String path="ControllerRanking?accion=verRespuesta&idCuestionario="+idCuestionario+"&idAlumno="+idAlumno;
-        request.getRequestDispatcher(path).forward(request, response);
-         restT.close();
-    }
-
-     private void rankingPorCuestionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void rankingPorCuestionario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        //To change body of generated methods, choose Tools | Templates.
         String idCuestionario,idCurso,materia,nombreCurso,idMateria;
         idMateria=request.getParameter("idMateria");
@@ -363,7 +377,7 @@ public class ControllerRanking extends HttpServlet {
         String idCuestionario=request.getParameter("idC");
         request.setAttribute("identificador", idCuestionario);
         request.getRequestDispatcher("reporte.jsp").forward(request, response);
-        }
+    }
 
     
 

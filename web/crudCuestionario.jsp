@@ -70,8 +70,8 @@
 				    <thead class="thead-light">
 				    <tr>
                                         <th scope="col">Id</th>
-                                        <th scope="col">DESCRIPCION</th>
                                         <th scope="col">NOMBRE MATERIA</th>
+                                        <th scope="col">DESCRIPCION</th>
                                         <th scope="col">FECHA INICIO</th>
                                         <th scope="col">FECHA FIN </th>
                                         <th scope="col">PUNTOS</th>

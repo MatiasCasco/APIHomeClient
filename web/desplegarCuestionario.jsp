@@ -64,7 +64,7 @@
                                         <c:forEach var="dato" items="${lista}">
                                             <%  ArrayList<Test> a =(ArrayList<Test>) request.getAttribute("lista");
                                                 Test t = a.get(i);
-                                                int correcta=t.getAnswer().get(0);
+                                                //int correcta=t.getAnswer().get(0);
                                                 options = t.getOptions();
                                                 i=i+1;
                                             %>
@@ -73,7 +73,7 @@
                                                 
                                             </tr>
                                             <tr>
-                                                <td><h5><b> ${dato.question}</b></h5></td>
+                                                <td><h5><b><%=i%>) ${dato.question}</b></h5></td>
                                                 
                                             </tr>
                                             
@@ -84,17 +84,14 @@
                                                     for(String r : options){%>
                                                     <div class="custom-control custom-radio">                                                        
                                                         <%String id="defaultCheckedDisabled"+s;
-                                                            if(t.getMarcadas().contains(s) ){%>
+                                                            if(t.getMarcadas()!=null &&  t.getMarcadas().contains(s) ){%>
                                                                <input type="radio" class="custom-control-input" id= ${id}   name = "disabledGroupExample" checked disabled>
                                                                <label class="custom-control-label" for="defaultCheckedDisabled2"><%=r%></label>
-                                                                <%if(t.getAnswer().contains(s) ){%><img src = "img/correct.png" width="20" height="20"><%}else{%><img src = "img/incorrect.png" width="20" height="20"><%}%>                                        
+                                                                <%if(t.getAnswer().contains(s) ){ Correctas=Correctas+r+"\", "; %><img src = "img/correct.png" width="20" height="20"><%}else{%><img src = "img/incorrect.png" width="20" height="20"><%}%>                                        
                                                             <%}else{%>
                                                                 <input type="radio" class="custom-control-input" id= ${id}   name = "disabledGroupExample"  disabled>
                                                                 <label class="custom-control-label" for="defaultCheckedDisabled2"><%=r%></label></label>
-                                                          <%}
-                                                            if(t.getAnswer().contains(s) ){	
-								Correctas=Correctas+r+"\", ";
-                                                            }                                                            
+                                                          <%}                                                         
                                                             s=s+1;%>   
                                                       </div>
                                                     <%}%> 
@@ -102,13 +99,22 @@
                                             </tr>
                                             <tr>
                                                 <td>
+                                                     <%if(Correctas.length()<2) Correctas="\"Ninguna es Correcta\"";%> 
                                                     <h6><b>Correctas:</b> <%=Correctas%>  </h6> 
                                                     <h6><b>Total de Puntos:</b> ${dato.assignedscore} <b>Obtenido:</b>${dato.puntoobtenido} </h6> 
                                                     <form class="form-inline" action="ControllerRanking" method="POST">
-                                                             <input type="NUMBER" name="puntoObtenido"   VALUE="${dato.puntoobtenido}">
+                                                             <input type="NUMBER" name="newPuntaje"   VALUE="${dato.puntoobtenido}">
                                                              <input type="hidden" name="idPregunta" VALUE="${dato.id}">
                                                              <input type="hidden" name="idCuestionario" value="${idCuestionario}">
                                                              <input type="hidden" name="idAlumno" value="${idAlumno}">
+                                                             
+                                                             <input type="hidden" name="nombre" value="${nombre}">
+                                                             <input type="hidden" name="puntoTotal" value="${puntajeT}">
+                                                             <input type="hidden" name="Materia" value="${Materia}">
+                                                             <input type="hidden" name="idC" value="${idC}">
+                                                             <input type="hidden" name="nombreCurso" value="${nombreCurso}">
+                                                             <input type="hidden" name="idMateria" value="${idMateria}">
+                                                             <input type="hidden" name="puntosObtenido" value="${puntaje}">
                                                             <button type="submit"  name="accion" value="modificarPuntoRespuesta" class="btn btn-info mr-1"  id="btnRC">Modificar Punto</button>
                                                     </FORM>
                                                   
