@@ -27,7 +27,13 @@
             Gson json = new Gson();
             RestCurso restCurso = new RestCurso();
             ArrayList<Curso> lista = new ArrayList();
-            ArrayList value = restCurso.getCursos(ArrayList.class);
+            ArrayList value;
+            if (usu.getRol()==2){
+             String idProfesor=String.valueOf(usu.getId());
+             value = restCurso.CursosfindIdProf(ArrayList.class,idProfesor);
+            }else{
+                value = restCurso.getCursos(ArrayList.class);
+            }
             for(Object pro: value){
                 Curso cursos = json.fromJson(pro.toString(), Curso.class);
                 lista.add(cursos);                   
@@ -64,7 +70,7 @@
                           <label class="col-lg-3 col-form-label form-control-label">Seleccionar Curso</label>
                           <div class="col-lg-9">                         
                               <select name="curso" class="custom-select" id="selectC" required>
-                                  <option value="" selected disabled>Agregar Curso</option>
+                                  
                                   <%for(Curso elemento: lista){%>               
                                   <option value="<%=elemento.getIdCurso()%>">#<%=elemento.getIdCurso()%> <%=elemento.getNombre()%> prof:<%=elemento.getNombreProfesor()%></option>
                                   <%}%>

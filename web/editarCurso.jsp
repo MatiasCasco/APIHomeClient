@@ -32,31 +32,38 @@
                     
           <div class="card">
               <div class="card-header">
-                  <h4>Agregar Curso</h4>
+                  <h4>Editar Curso</h4>
               </div>        
               <div class="card-body">
                   <form class="form"  role="form" action="ControllerCurso" method="POST">
                         <% Curso curso = (Curso) request.getAttribute("curso");%>
                         <label>Identificador Curso: <%=curso.getIdCurso()%></label>
                         <input type="hidden" name="txtIdC"  value="<%=curso.getIdCurso()%>">
+                        
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Nombre Curso</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" required autofocus name="txtNombreCurso" value="<%=curso.getNombre()%>">
-                            </div>
-                        </div>
+                          <label class="col-lg-3 col-form-label form-control-label">Nombre Curso</label>
+                          <div class="col-lg-9">
+                              <input id="nombre" name="txtNombreCurso" class="form-control" type="text" value=<%=curso.getNombre()%> required autofocus >
+
+                          </div>
+                       </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Profesor</label>
                             <div class="col-lg-9">
-                                <%  Gson json = new Gson();
-                                 PersonaCliente prod = new PersonaCliente ();
-                                 ArrayList value = prod.getProfesores(ArrayList.class);%>      
+                                <%if (usu.getRol()!=2){  
+                                    Gson json = new Gson();
+                                    PersonaCliente prod = new PersonaCliente ();
+                                    ArrayList value = prod.getProfesores(ArrayList.class);%>      
                                  <select name="txtIdProfesor" class="custom-select" id="selectP" required>
                                      <option value="" selected disabled>Seleccionar Profesor</option>
                                      <%for(Object pro: value){Persona p = json.fromJson(pro.toString(), Persona.class);%>
                                      <option value="<%=p.getId()%>"><%=p.getId()%>) <%=p.getNombre()%>, <%=p.getApellido()%> </option>
                                      <%} prod.close();%>
                                  </select>
+                                 <%}else{%>
+                               <label class="col-lg-3 col-form-label form-control-label"><%=usu.getId()%>) <%=usu.getNombre()%> <%=usu.getApellido()%></label>
+                              <input type="hidden" name="txtIdProfesor" value="<%=usu.getId()%>" >
+                               <%}%>
                                  <script>
                                      document.ready=document.getElementById("selectP").value=<%=curso.getIdProfesor()%> ;
                                  </script>

@@ -52,9 +52,9 @@
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>
-			<image scaleImage="FillFrame">
-				<reportElement x="451" y="0" width="102" height="132"/>
-				<imageExpression><![CDATA["C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\web\\img\\student.png"]]></imageExpression>
+			<image>
+				<reportElement x="455" y="0" width="100" height="138"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\web\\img\\student.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

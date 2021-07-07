@@ -28,7 +28,13 @@
             Gson json = new Gson();
             RestCurso restCurso = new RestCurso();
             ArrayList<Curso> lista = new ArrayList();
-            ArrayList value = restCurso.getCursos(ArrayList.class);
+            ArrayList value;
+            if (usu.getRol()==2){
+             String idProfesor=String.valueOf(usu.getId());
+             value = restCurso.CursosfindIdProf(ArrayList.class,idProfesor);
+            }else{
+                value = restCurso.getCursos(ArrayList.class);
+            }
             for(Object pro: value){
                 Curso cursos = json.fromJson(pro.toString(), Curso.class);
                 lista.add(cursos);                   

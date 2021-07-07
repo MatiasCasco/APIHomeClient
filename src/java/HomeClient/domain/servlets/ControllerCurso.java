@@ -151,7 +151,10 @@ public class ControllerCurso extends HttpServlet {
         RestCurso restC = new RestCurso();
         Curso curso = null;
         Gson json = new Gson();
-        String Nombre  = request.getParameter("txtNombreCurso");
+        //String Nombre  = request.getParameter("txtNombreCurso");
+        // String descripcion = "\""+new String(request.getParameter("txtDescripcion").getBytes("ISO-8859-1"),"UTF-8")+"\"";
+       String Nombre  = "\""+new String(request.getParameter("txtNombreCurso").getBytes("ISO-8859-1"),"UTF-8")+"\"";
+        //Nombre=Nombre.replace(' ', '_');
         int idProfesor  = Integer.valueOf(request.getParameter("txtIdProfesor"));
         String claveProfesor  = request.getParameter("txtClaveProfesor");
         String claveAlumno  = request.getParameter("txtClaveAlumno");
@@ -179,7 +182,9 @@ public class ControllerCurso extends HttpServlet {
         RestCurso restC = new RestCurso();
         Curso curso = null;
         int idCurso  = Integer.valueOf(request.getParameter("txtIdC"));
-        String nombre  = request.getParameter("txtNombreCurso");
+        //String nombre  = request.getParameter("txtNombreCurso");
+        String nombre  = "\""+new String(request.getParameter("txtNombreCurso").getBytes("ISO-8859-1"),"UTF-8")+"\"";
+       
         int idProfesor  = Integer.valueOf(request.getParameter("txtIdProfesor"));
         String claveProfesor  = request.getParameter("txtClaveProfesor");
         String claveAlumno  = request.getParameter("txtClaveAlumno");

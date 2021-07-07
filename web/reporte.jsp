@@ -63,9 +63,11 @@
         // Funciona bien este web
         JasperReport reporte; 
         //String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
-        String path = "C:\\Users\\HP\\Documents\\reportTest.jasper"; 
+        //String path = "C:\\Users\\HP\\Documents\\reportTest.jasper"; 
+        String path = "C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
        
-        try {
+       
+        //try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
             //JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(list));
             byte[] bytes = JasperRunManager.runReportToPdf(reporte, null, new JRBeanCollectionDataSource(list));    
@@ -75,8 +77,8 @@
             outs.write(bytes,0,bytes.length);
             outs.flush();
             outs.close();
-         } catch (JRException ex) {
-            }
+         ///} catch (JRException ex) {
+            //}
         %>
         
     </body>

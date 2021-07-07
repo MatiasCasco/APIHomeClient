@@ -45,17 +45,23 @@
                        <div class="form-group row">
                           <label class="col-lg-3 col-form-label form-control-label">Profesor</label>
                           <div class="col-lg-9">
-                              <%  Gson json = new Gson();
+                              
+                              <%
+                              if (usu.getRol()!=2){
+                              Gson json = new Gson();
                                  PersonaCliente prod = new PersonaCliente ();
                                
                                 ArrayList value = prod.getProfesores(ArrayList.class);%>      
-                              <select name="txtIdProfesor" class="custom-select" required>
+                              <select name="txtIdProfesor" class="custom-select" id="selectP" required>
                                   <option value="" selected disabled>Seleccionar Profesor</option>
                                   <%for(Object pro: value){Persona p = json.fromJson(pro.toString(), Persona.class);%>
                                   <option value="<%=p.getId()%>"><%=p.getId()%>) <%=p.getNombre()%>, <%=p.getApellido()%> </option>
                                   <%} prod.close();%>
                               </select>
-                              
+                               <%}else{%>
+                               <label class="col-lg-3 col-form-label form-control-label"><%=usu.getId()%>) <%=usu.getNombre()%> <%=usu.getApellido()%></label>
+                              <input type="hidden" name="txtIdProfesor" value="<%=usu.getId()%>" >
+                               <%}%>
                             </div>
                        </div>
                        

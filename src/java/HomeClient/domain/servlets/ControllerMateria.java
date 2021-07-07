@@ -177,8 +177,8 @@ public class ControllerMateria extends HttpServlet {
         RestMateria restM = new RestMateria();
         Materia materia = null;
         Gson json = new Gson();
-        //String nombreMateria = "\""+request.getParameter("nombreMateria")+"\"";
-        String nombreMateria = request.getParameter("nombreMateria");
+        //String nombre  = "\""+new String(request.getParameter("txtNombreCurso").getBytes("ISO-8859-1"),"UTF-8")+"\"";
+        String nombreMateria = "\""+new String(request.getParameter("nombreMateria").getBytes("ISO-8859-1"),"UTF-8")+"\"";
         int idCurso  = Integer.valueOf(request.getParameter("curso"));
         materia =  new Materia(1, nombreMateria, idCurso," ");
         restM.addMateria(materia, Materia.class);
@@ -205,8 +205,8 @@ public class ControllerMateria extends HttpServlet {
         RestMateria restM = new RestMateria();
         Materia materia = null;
         int idMateria  = Integer.valueOf(request.getParameter("txtIdM"));
-        String nombre  = request.getParameter("txtNombreMateria");
-        int idCurso  = Integer.valueOf(request.getParameter("curso"));
+        String nombre = "\""+new String(request.getParameter("nombreMateria").getBytes("ISO-8859-1"),"UTF-8")+"\"";
+       int idCurso  = Integer.valueOf(request.getParameter("curso"));
         materia = new Materia(idMateria, nombre, idCurso, " ");
         request.setAttribute("editar", "editar");
         restM.updateMateria(materia);

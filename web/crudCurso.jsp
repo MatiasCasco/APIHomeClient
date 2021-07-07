@@ -36,13 +36,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Lista de Cursos</h4>
-                                <form class="form-inline" action="ControllerCurso" method="POST">
-                                    <span class="navbar-text active" ><b>Filtro de busqueda</b></span>                  
-                                    <input class="form-control mr-sm-2" type="text" placeholder="Nombre Profesor" name="txtIdP">             
-                                    <input class="form-control mr-sm-2" type="text" placeholder="Nombre Curso" name="txtNombreC">
-                                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="accion" value="Listar">
-                                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="accion" value="Nuevo">
-                                </form>
+                                 
 			    </div>
                             <div class="card-body">
                                 <div class="table-responsive">
