@@ -66,16 +66,16 @@
                        </div>
                        
                        <div class="form-group row">
-                          <label class="col-lg-3 col-form-label form-control-label">Clave Profesor</label>
+                          <!--label class="col-lg-3 col-form-label form-control-label">Clave Profesor</label-->
                           <div class="col-lg-9">
-                                <input type="text" name="txtClaveProfesor" class="form-control"  required autofocus >
+                                <input type="hidden" name="txtClaveProfesor" class="form-control"  value="123" >
                           </div>
                        </div>
                        <div class="form-group row">
-                          <label class="col-lg-3 col-form-label form-control-label">Clave Alumno</label>
-                          <div class="col-lg-9">
-                              <input  name="txtClaveAlumno" class="form-control" type="text" required autofocus >
-                         </div>
+                          <!--label class="col-lg-3 col-form-label form-control-label">Clave Alumno</label>
+                          <div class="col-lg-9"--->
+                              <input  name="txtClaveAlumno" class="form-control" type="hidden" value="123" >
+                         <!-- /div -->
                        </div>
                    <input type="submit" name="accion" value="Guardar">
                    </form>

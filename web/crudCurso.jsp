@@ -36,7 +36,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Lista de Cursos</h4>
-                                 
+                                 <form class="form-inline" action="ControllerCurso" method="POST">
+                                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="accion" value="Nuevo">
+                                </form>
 			    </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -46,8 +48,8 @@
                                                 <th scope="col">ID CURSO</th>
                                                 <th scope="col">NOMBRE</th>
                                                 <th scope="col">PROFESOR</th>
-                                                <th scope="col">CLAVE PROFESOR</th>
-                                                <th scope="col">CLAVE ALUMNO</th>
+                                                <!--th scope="col">CLAVE PROFESOR</th>
+                                                <th scope="col">CLAVE ALUMNO</th-->
                                                 <th scope="col">ACCIONES</th>
                                             </tr>
                                         </thead>
@@ -57,8 +59,8 @@
                                                     <td>${dato.idCurso}</td>
                                                     <td>${dato.nombre}</td>
                                                     <td>${dato.nombreProfesor}</td>
-                                                    <td>${dato.claveProfesor}</td>
-                                                    <td>${dato.claveAlumno}</td>
+                                                    <!--td>$ {dato.claveProfesor}</td>
+                                                    <td>$ {dato.claveAlumno}</td-->
                                                     <td>
                                                         <form action="ControllerCurso" class="form-inline" method="POST">
                                                             <input type="hidden" name="txtid" value="${dato.idCurso}">

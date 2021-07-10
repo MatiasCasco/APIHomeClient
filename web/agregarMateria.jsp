@@ -64,7 +64,7 @@
                               <select name="curso" class="custom-select" required>
                                   <option value="" selected disabled>Agregar Curso</option>
                                   <%for(Curso elemento: lista){%>               
-                                  <option value="<%=elemento.getIdCurso()%>"><%=elemento.getNombre()%></option>
+                                  <option value="<%=elemento.getIdCurso()%>"><%=elemento.getNombre()%> - Prof. <%=elemento.getNombreProfesor()%></option>
                                   <%}%>
                               </select>
                           </div>

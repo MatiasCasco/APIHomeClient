@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="Consumir.Resteasy.RestCurso"%>
+<%@page import="HomeClient.domain.model.Curso"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -120,15 +122,7 @@
                     <li class="nav-item">
                         <a class="nav-item nav-link active" href="ControllerUsuarios">Gestion de Usuarios</a>    
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerCuestionario" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Cuestionarios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="ControllerCuestionario">CRUD Cuestionarios</a>
-                            <a class="dropdown-item" href="agregarCuestionario.jsp">Agregar</a>
-                        </div>
-                    </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link active dropdown-toggle" href="ControllerCurso" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Cursos
@@ -146,7 +140,16 @@
                             <a class="dropdown-item" href="ControllerMateria">Gestion de Materias</a>
                             <a class="dropdown-item" href="agregarMateria.jsp">Agregar</a>
                         </div>
-                    </li>                                     
+                    </li>   
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link active dropdown-toggle" href="ControllerCuestionario" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cuestionarios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="ControllerCuestionario">CRUD Cuestionarios</a>
+                            <a class="dropdown-item" href="agregarCuestionario.jsp">Agregar</a>
+                        </div>
+                    </li>
                  
                 </ul>   
                 <form class="form-inline my-2 my-lg-0" action="ControllerLogg" method="GET">                           
@@ -157,7 +160,18 @@
       <!-- -->
  
  <!--Navbar-->
-        
+         <%  
+            Gson json = new Gson();
+            RestCurso restCurso = new RestCurso();
+            ArrayList<Curso> lista = new ArrayList();
+            ArrayList value;
+            value = restCurso.getCursos(ArrayList.class);
+            
+            for(Object pro: value){
+                Curso cursos = json.fromJson(pro.toString(), Curso.class);
+                lista.add(cursos);                   
+            }
+        %> 
         <div class="container">
             <div class="mx-auto col-sm-10 main-section" id="myTab" role="tablist">
                 <ul class="nav nav-tabs justify-content-end">
@@ -271,9 +285,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group row" id="idCurso" >
-                                        <label class="col-lg-3 col-form-label form-control-label" >IdCurso</label>
-                                        <div class="col-lg-9">
-                                            <input type="number" name="idCurso" >
+                                        <label class="col-lg-3 col-form-label form-control-label" >Curso</label>
+                                         <div class="col-lg-9">
+                                            <select name="idCurso" class="custom-select" required>
+                                                <option value="" selected disabled>Agregar Curso</option>
+                                                <%for(Curso elemento: lista){%>               
+                                                <option value="<%=elemento.getIdCurso()%>"><%=elemento.getNombre()%> Prof. <%=elemento.getNombreProfesor()%></option>
+                                                <%}%>
+                                            </select>                                       
                                         </div>
                                     </div>
                                     <div class="form-group row">

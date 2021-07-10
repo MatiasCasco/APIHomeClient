@@ -70,16 +70,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Clave Profesor</label>
-                            <div class="col-lg-9">
-                                <input type="text" name="txtClaveProfesor" value="<%=curso.getClaveProfesor()%>" class="form-control"  required autofocus >
-                            </div>
+                            <!--label class="col-lg-3 col-form-label form-control-label">Clave Profesor</label>
+                            <div class="col-lg-9"-->
+                                <input type="hidden" name="txtClaveProfesor" value="<%=curso.getClaveProfesor()%>" class="form-control"  >
+                            <!--/div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Clave Alumno</label>
-                            <div class="col-lg-9">
-                                <input  name="txtClaveAlumno" class="form-control" value="<%=curso.getClaveAlumno()%>" type="text" required autofocus >
-                            </div>
+                            <div class="col-lg-9"-->
+                                <input  name="txtClaveAlumno" class="form-control" value="<%=curso.getClaveAlumno()%>" type="hidden"  >
+                            <!--/div-->
                         </div>               
                             <input type="submit" name="accion" value="Actualizar">
                   </form>
