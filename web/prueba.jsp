@@ -42,7 +42,7 @@ function addCancion(){
     <div class="row">
         <div class="col-md-offset-1 col-md-6"><label>T&iacute;tulo canci&oacute;n</label></div>
         <div class="col-md-2"><label>Duraci&oacute;n</label></div>
-        <div class="col-md-1"><input type="button" class="btn btn-success" id="add_cancion()" onClick="addCancion()" value="+" /></div>
+        <div class="col-md-1"><input type="button" class="btn btn-success" id="add_cancion" onClick="addCancion()" value="+" /></div>
     </div>
     <!-- El id="canciones" indica que la función de JavaScript dejará aquí el resultado -->
     <div class="row" id="canciones">

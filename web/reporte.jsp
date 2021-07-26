@@ -64,7 +64,7 @@
         JasperReport reporte; 
         //String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; //Ponemos la localizacion del reporte creado
         //String path = "C:\\Users\\HP\\Documents\\reportTest.jasper"; 
-        String path = "C:\\Users\\HP\\Documents\\NetBeansProjects\\Cliente terminado+css\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
+        String path = "C:\\Users\\User\\Documents\\NetBeansProjects\\APIHomeClient\\src\\java\\report\\reportTest.jasper"; 
        
        
         //try {

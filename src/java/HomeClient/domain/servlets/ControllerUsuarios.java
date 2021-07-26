@@ -181,7 +181,7 @@ public class ControllerUsuarios extends HttpServlet {
             int id=1;//Integer.parseInt(request.getParameter("id"));
             int rol=Integer.parseInt(request.getParameter("rol"));
             int idCurso;
-            if(rol==3)
+            if(rol==3|| rol==4)
                 idCurso=Integer.parseInt(request.getParameter("idCurso"));
             else
                  idCurso=0;
